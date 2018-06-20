@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::middleware(["auth"])->get('/', function () {
+    return view('dashboard');
+})->name('home');
+
+Auth::routes();
+

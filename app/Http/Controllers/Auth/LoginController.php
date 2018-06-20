@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
+    
     /*
     |--------------------------------------------------------------------------
     | Login Controller
@@ -17,8 +18,8 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-
     use AuthenticatesUsers;
+
 
     /**
      * Where to redirect users after login.
@@ -26,6 +27,7 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = '/home';
+
 
     /**
      * Create a new controller instance.
@@ -36,4 +38,5 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
 }
