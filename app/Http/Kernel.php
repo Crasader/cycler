@@ -73,9 +73,10 @@ class Kernel extends HttpKernel
          * RBAC Entrust middleware
          *
          */
-
+        'hasSomeRoles' => \App\Http\Middleware\UserHasSomeRoles::class,
         'hasRole' => \App\Http\Middleware\UserHasRole::class,
         'hasntRole' => \App\Http\Middleware\UserHasntRole::class,
+        'role' => \Zizaco\Entrust\Middleware\EntrustRole::class,
         'permission' => \Zizaco\Entrust\Middleware\EntrustPermission::class,
         'ability' => \Zizaco\Entrust\Middleware\EntrustAbility::class,
     ];

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class HomeController extends Controller
+class SupervisorController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -15,9 +15,7 @@ class HomeController extends Controller
     public function __construct()
     {
        $this->middleware("auth");
-       $this->middleware("hasRole:supervisor|manager");
-       $this->middleware('hasSomeRoles')->except('selectrole');
-       
+       $this->middleware("role:supervisor");
     }
 
     /**

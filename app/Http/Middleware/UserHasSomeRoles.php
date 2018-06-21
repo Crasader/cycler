@@ -13,9 +13,8 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
-class UserHasRole
+class UserHasSomeRoles
 {
-	const DELIMITER = '|';
 
 	protected $auth;
 
@@ -37,19 +36,21 @@ class UserHasRole
 	 * @param  $roles
 	 * @return mixed
 	 */
-	public function handle($request, Closure $next, $roles)
+	public function handle($request, Closure $next)
 	{
-		if (!is_array($roles)) {
-			$roles = explode(self::DELIMITER, $roles);
-		}
-
+		
+		
 		if($this->auth->guest()){
 			return redirect("login");
 		}
 
-		if (!$request->user()->hasRole($roles)) {
-
-			return redirect("norole");
+		$roles = $this->auth->user()->roles()->get();
+		
+		if (count($roles) == 1) {
+			$role = $roles[0];
+			return redirect()->route($role->name);
+		}else{
+			return redirect()->route('selectrole');
 		}
 
 		return $next($request);

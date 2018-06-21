@@ -2,14 +2,14 @@
 
 @section('content')
 <body class="hold-transition login-page">
-@if (isset($message) && $message)
+@if ($errors->has('message'))
 <div class="container-fluid">
     <div class="row">
         <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
             <div class="alert alert-warning alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <h4><i class="icon fa fa-lg fa-warning"></i>&nbsp;Предупреждение!</h4>
-                {{$message}}
+                {{$errors->first('message')}}
             </div>
         </div>
     </div>
@@ -55,7 +55,7 @@
 </div>
 <script>function autoexec(){history.pushState(null, null, "{{ url()->current() }}");}</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script>
 !function ($) {
     "use strict";

@@ -43,9 +43,12 @@ class UserHasntRole
 			$roles = explode(self::DELIMITER, $roles);
 		}
 		
-		
-		if ($this->auth->guest() || $request->user()->hasRole($roles)) {
-			return redirect("/home");
+		if($this->auth->guest()){
+			return redirect("login");
+		}
+
+		if ($request->user()->hasRole($roles)) {
+			return redirect("home");
 		}
 
 		return $next($request);
