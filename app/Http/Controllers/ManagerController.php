@@ -28,4 +28,80 @@ class ManagerController extends Controller
         return view('dashboard');
     }
 
+
+     /*
+    *
+    * GET <baseUrl>/api/<role_name>/self
+    *
+    */
+    public function self(){
+        return response()->json(['result'=>1]);
+    }
+
+
+
+
+
+
+    /*
+    * 
+    * GET <baseUrl>/api/<role_name>/deals
+    *
+    */
+    public function getDeals(){
+        return response()->json(['result'=>1]);
+    }
+
+
+
+
+
+
+    /*
+    * PUT <baseUrl>/api/<role_name>/deals
+    */
+    public function createDeals(){
+        return response()->json(['result'=>1]);
+    }
+
+
+
+
+
+
+    /*
+    *
+    * GET <baseUrl>/api/<role_name>/deals/<id>
+    *
+    */
+    public function getDeal($id){
+        return response()->json(['result'=>1]);
+    }
+
+
+
+
+
+    /*
+    *
+    * POST <baseUrl>/api/<role_name>/deals/<id>
+    *
+    */
+    public function updateDeal($id){
+        return response()->json(['result'=>1]);
+    }
+
+
+
+
+
+
+    /*
+    *
+    * DELETE <baseUrl>/api/<role_name>/deals/<id>
+    *
+    */
+    public function deleteDeal($id){
+        return response()->json(['result'=>1]);
+    }
 }

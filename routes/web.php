@@ -28,10 +28,70 @@ Auth::routes();
 
 
 /*
-* Routes for roles
+* Routes for role supervisor
 *
 */
 Route::get('/supervisor/dashboard',"SupervisorController@index")->name('supervisor');
 
+
+
+/*
+* Routes for role manager
+*
+*/
 Route::get('/manager/dashboard',"ManagerController@index")->name('manager');
 
+
+
+/*
+* Routes for role supervisor
+*
+*/
+
+Route::group(['prefix'=>'/api/supervisor'],function($route){
+	$route->get("self","SupervisorController@self")->name("supervisor-self");
+
+	$route->get("deals","SupervisorController@getDeals")->name("supervisor-getDeals");
+
+	$route->put("deals","SupervisorController@createDeal")->name("supervisor-createDeal");
+
+	$route->get("deals/{id}","SupervisorController@getDeal")->name("supervisor-getDeal");
+
+	$route->post("deals","SupervisorController@updateDeal")->name("supervisor-updateDeal");
+
+	$route->delete("deals","SupervisorController@deleteDeal")->name("supervisor-deleteDeal");
+});
+
+
+
+
+/*
+* Routes for role manager
+*
+*/
+
+Route::group(['prefix'=>'/api/manager'],function($route){
+	$route->get("self","ManagerController@self")->name("manager-self");
+
+	$route->get("deals","ManagerController@getDeals")->name("manager-getDeals");
+
+	$route->put("deals","ManagerController@createDeal")->name("manager-createDeal");
+
+	$route->get("deals/{id}","ManagerController@getDeal")->name("manager-getDeal");
+
+	$route->post("deals","ManagerController@updateDeal")->name("manager-updateDeal");
+
+	$route->delete("deals","ManagerController@deleteDeal")->name("manager-deleteDeal");
+});
+
+
+/*
+* Routes for ApiPublicController
+*
+*/
+
+Route::group(['prefix'=>'/api/public'],function($route){
+	$route->put("deals","ApiPublicController@createDeal")->name("public-createDeal");
+
+	$route->put("calls","ApiPublicController@addCall")->name("public-addCall");
+});

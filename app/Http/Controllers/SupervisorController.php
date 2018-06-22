@@ -18,6 +18,11 @@ class SupervisorController extends Controller
        $this->middleware("role:supervisor");
     }
 
+
+
+
+
+
     /**
      * Show the application dashboard.
      *
@@ -29,9 +34,87 @@ class SupervisorController extends Controller
 
 
 
-    public function selectrole(){
 
-        return view('auth.selectrole',['_user'=>Auth::user()]);
+
+
+
+
+
+    /*
+    *
+    * GET <baseUrl>/api/<role_name>/self
+    *
+    */
+    public function self(){
+        return response()->json(['result'=>1]);
     }
+
+
+
+
+
+
+    /*
+    * 
+    * GET <baseUrl>/api/<role_name>/deals
+    *
+    */
+    public function getDeals(){
+        return response()->json(['result'=>1]);
+    }
+
+
+
+
+
+
+    /*
+    * PUT <baseUrl>/api/<role_name>/deals
+    */
+    public function createDeals(){
+        return response()->json(['result'=>1]);
+    }
+
+
+
+
+
+
+    /*
+    *
+    * GET <baseUrl>/api/<role_name>/deals/<id>
+    *
+    */
+    public function getDeal($id){
+        return response()->json(['result'=>1]);
+    }
+
+
+
+
+
+    /*
+    *
+    * POST <baseUrl>/api/<role_name>/deals/<id>
+    *
+    */
+    public function updateDeal($id){
+        return response()->json(['result'=>1]);
+    }
+
+
+
+
+
+
+    /*
+    *
+    * DELETE <baseUrl>/api/<role_name>/deals/<id>
+    *
+    */
+    public function deleteDeal($id){
+        return response()->json(['result'=>1]);
+    }
+
 
 }
