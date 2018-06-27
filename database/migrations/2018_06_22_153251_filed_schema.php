@@ -18,9 +18,9 @@ class FiledSchema extends Migration
             
             $table->string('table',64);
             $table->string('name',64);
-            $table->string('model_type',32); //Enum
+            $table->enum('model_type',['Array','Boolean','Integer','Number','Object','String','$ref']); //Enum
             $table->string('data_type',64);
-            $table->string('alias',255);
+            $table->string('alias',255)->default("");
             
             $table->unsignedTinyInteger('auto_increment')->default(0);
             $table->unsignedTinyInteger('is_nullable')->default(0);
@@ -39,6 +39,7 @@ class FiledSchema extends Migration
             $table->string('key',3)->default("");
 
             $table->string('title',64)->default("");
+            
             $table->text('description')->nullable();
             
             $table->bigInteger('minimum')->unsigned()->nullable()->default(null);
@@ -52,6 +53,8 @@ class FiledSchema extends Migration
             $table->string('character_collation',32)->nullable();
             $table->unsignedTinyInteger('is_required')->default(0);
             $table->string('pattern',255)->default("");
+
+            $table->unique(['table', 'name'],'table_name_unique_index');
 
             $table->engine = 'MyISAM';
             $table->collation = 'utf8_general_ci';

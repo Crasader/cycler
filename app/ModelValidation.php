@@ -8,20 +8,20 @@ trait ModelValidation{
 
 
 
-	public function rules(){
-
-		return [];
-	}
-
-
-
-
+	protected $rules = array();
+	
 
 	protected $errors = array();
 
 
+	public function rules(){
 
-	public function fill($data,$validate = true){
+		return $this->rules;
+	}
+
+
+
+	public function fill($data,$validate = false){
 
 		
 		if($validate && !$this->validate($data)){

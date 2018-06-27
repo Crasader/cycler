@@ -17,6 +17,8 @@ Route::middleware(["auth","hasntRole:supervisor|manager"])->get('/norole', funct
     return view('auth.norole',['user'=>Auth::guard()->user()]);
 })->name('norole');
 
+$regex = "^([0-9A-Za-z\-_\.]*)";
+
 
 Route::get('/selectrole',"HomeController@selectrole")->name('selectrole');
 
@@ -31,6 +33,7 @@ Auth::routes();
 * Routes for role supervisor
 *
 */
+Route::get('/supervisor/dashboard/{regex}',"SupervisorController@index")->where("regex",$regex)->name('supervisor');
 Route::get('/supervisor/dashboard',"SupervisorController@index")->name('supervisor');
 
 
@@ -39,6 +42,7 @@ Route::get('/supervisor/dashboard',"SupervisorController@index")->name('supervis
 * Routes for role manager
 *
 */
+Route::get('/manager/dashboard/{regex}',"ManagerController@index")->where("regex",$regex)->name('manager');
 Route::get('/manager/dashboard',"ManagerController@index")->name('manager');
 
 
@@ -85,13 +89,3 @@ Route::group(['prefix'=>'/api/manager'],function($route){
 });
 
 
-/*
-* Routes for ApiPublicController
-*
-*/
-
-Route::group(['prefix'=>'/api/public'],function($route){
-	$route->put("deals","ApiPublicController@createDeal")->name("public-createDeal");
-
-	$route->put("calls","ApiPublicController@addCall")->name("public-addCall");
-});

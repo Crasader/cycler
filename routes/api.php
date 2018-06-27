@@ -18,4 +18,28 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
+/*
+* Routes for ApiPublicController
+*
+*/
+Route::group(['prefix'=>'/public'],function($route){
+	
+	$route->put("deals","ApiPublicController@createDeal")->name("public-createDeal");
 
+	$route->put("calls","ApiPublicController@addCall")->name("public-addCall");
+});
+
+
+// Route::group(['prefix'=>'/supervisor'],function($route){
+// 	$route->get("self","SupervisorController@self")->name("supervisor-self");
+
+// 	$route->get("deals","SupervisorController@getDeals")->name("supervisor-getDeals");
+
+// 	$route->put("deals","SupervisorController@createDeal")->name("supervisor-createDeal");
+
+// 	$route->get("deals/{id}","SupervisorController@getDeal")->name("supervisor-getDeal");
+
+// 	$route->post("deals","SupervisorController@updateDeal")->name("supervisor-updateDeal");
+
+// 	$route->delete("deals","SupervisorController@deleteDeal")->name("supervisor-deleteDeal");
+// });

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Deals extends Migration
+class Events extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,15 @@ class Deals extends Migration
      */
     public function up()
     {
-        Schema::create('deals', function (Blueprint $table) {
-            $table->increments("id");
+        Schema::create('events', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('table',64);
+            $table->bigInteger('row_id')->unsigned();
+            $table->text("fields");
+            $table->bigInteger("user_id");
+            $table->enum("action",['created','updated','deleted']);
+            $table->timestamp("created");
+
             $table->engine = 'MyISAM';
             $table->collation = 'utf8_general_ci';
             $table->charset = 'utf8';
@@ -28,6 +35,6 @@ class Deals extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('deals');
+       Schema::dropIfExists('events');
     }
 }
