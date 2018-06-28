@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\{Role,Permissions,User,Deals,Field};
+use App\{Role,Permissions,User,Deals,Field,Currency,Pipeline,Stage};
 
 class SupervisorController extends Controller
 {
@@ -15,8 +15,8 @@ class SupervisorController extends Controller
      */
     public function __construct()
     {
-       //$this->middleware("auth");
-       //$this->middleware("role:supervisor");
+       $this->middleware("auth");
+       $this->middleware("role:supervisor");
     }
 
 
@@ -153,6 +153,17 @@ class SupervisorController extends Controller
     */
     public function deleteDeal($id){
         return response()->json(['result'=>1]);
+    }
+
+
+
+
+
+
+    public function getCurrencies(Request $request){
+
+        
+        return response()->json($request->toArray()); 
     }
 
 

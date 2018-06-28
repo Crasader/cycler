@@ -2,9 +2,10 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Validation\Validator;
 
-trait ModelValidation{
+class ModelValidation extends Model{
 
 
 

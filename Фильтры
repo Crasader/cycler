@@ -1,0 +1,63 @@
+Фильтры делаются так
+/api/supervisor/nomenclature?
+ exclude[]=updated_at
+ &
+ exlude[]=created_at
+ &
+ index=id
+ &
+ rules[ncategory_id][equal]=2
+ &
+ rules[title][like]=%Раств%
+ &
+ rules[article][~like]=%Раст%
+ &
+ limit = 20
+Что это значит:
+/api/supervisor - API только для роли пользователя "supervisor", у кого нет такой роли будет HTTP_Exception_403("Forbidden. You do not have the right role").
+/nomenclature - ресурс "номенклатура"
+
+exclude[]=updated_at&exlude[]=created_at -> "exclude"=>["updated_at", "created_at"] исключить из выдачи поля "обновлено" и "создано"
+
+index=id - выдача в виде ассоциативного массива, где ключ "id", например {"1": {id: 1, title: "hello"}, "2": {id: 2, title: "world"}}
+
+limit = 20 - пагинация, связанный параметр page
+
+rules  - фильтры
+rules[ncategory_id][equal]=2 -> WHERE ncategory_id = 2
+rules[title][like]=%Раств% -> WHERE title LIKE %Раств%
+rules[article][~like]=%Раст% -> OR WHERE article LIKE %Раств%
+
+Реализованы эти параметры
+protected static $_select_operators = [
+ "equal" => "=",
+ "!equal" => "<>",
+ "more" => ">",
+ "!more" => "<=",
+ "less" => "<",
+ "!less" => ">=",
+ "more~equal" => ">=",
+ "!more~equal"=> "<",
+ "less~equal" => "<=",
+ "!less~equal" => ">",
+ "like" => "LIKE",
+ "!like" => "NOT LIKE",
+
+ "in" => "IN",
+ "!in" => "NOT IN"
+];
+т.е. rules[id][~!in] = "1,2,3" означает, .. OR WHERE id NOT IN [1,2,3]
+Короч, такая простая системка, позволяющая задавать большинство фильтров.
+ фильтр rules[updated_at][more~equal] = "09.06.2018" -> т.е. где дата обновления больше или равен 09.06.2018
+ну ты понял идею. На предыдущем проекте работало замечательно.
+А параметры возможны следующие:
+ const QueryField_Rules = "rules"; // правила фильтрации
+ const QueryField_Include = "include"; // включить поля
+ const QueryField_Exclude = "exclude"; // исключить поля (include и exclude достаточно умны, чтобы не выдавать бред при пересечении множеств)
+ const QueryField_Limit = "limit"; // лимит записей на страницу
+ const QueryField_Page = "page"; // переход на страницу 
+ const QueryField_Group = "group"; // группировка
+ const QueryField_Index = "index"; // выдать как ассоциативный массив по указанному ключу
+ const QueryField_Order = "order"; // сортировка
+У ресурса по спецификации OpenAPI может быть указаны какие он принимает параметры запроса. Т.е. например, для api/manager/users отсутвует параметр QueryField_Include, он просто будет проигнорирован, дабы не выдать кому не следует расширенную информацию о пользователе. А вот  api/admin/users - уже может получить такую.
+Это описывается в схеме, вот так у меня описано.

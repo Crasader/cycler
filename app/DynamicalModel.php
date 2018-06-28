@@ -7,7 +7,4 @@ use Illuminate\Validation\Validator;
 trait DynamicalModel{
 
 
-
-	
-
 }

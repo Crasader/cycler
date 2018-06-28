@@ -1,11 +1,10 @@
 <?php 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 
-class Field extends Model
+
+class Field extends ModelValidation
 {	
-	use ModelValidation;
 	
 
 	/*
@@ -41,6 +40,8 @@ class Field extends Model
         'numeric_precision',
         'numeric_scale',
         'key',
+        'fk_table',
+        'fk_table_column',
         'title',
         'description',
         'minimum',
@@ -71,6 +72,8 @@ class Field extends Model
             'numeric_precision'     =>  ['integer','nullable'],
             'numeric_scale'         =>  ['integer','nullable'],
             'key'                   =>  ['string','max:3','in:PRI,MUL,UNI'],
+            'fk_table'              =>  ['string','max:64'],
+            'fk_table_column'       =>  ['string','max:64'],
             'title'                 =>  ['string','max:64'],
             'description'           =>  ['string','nullable'],
             'minimum'               =>  ['integer','nullable'],
@@ -95,7 +98,7 @@ class Field extends Model
 
 
 
-    public static function getSchema(Model $model){
+    public static function getSchema(ModelValidation $model){
         return Field::where('table','=',$model->getTable())->orderBy('id')->get(['name','model_type','alias'])->toArray();
     }
 

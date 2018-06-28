@@ -1,11 +1,9 @@
 <?php 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 
-class Deals extends Model
+class Deals extends ModelValidation
 {
-	use ModelValidation;
 
 
 	

@@ -64,6 +64,8 @@ Route::group(['prefix'=>'/api/supervisor'],function($route){
 	$route->post("deals","SupervisorController@updateDeal")->name("supervisor-updateDeal");
 
 	$route->delete("deals","SupervisorController@deleteDeal")->name("supervisor-deleteDeal");
+
+	$route->get("currencies","SupervisorController@getCurrencies")->name("supervisor-getCurrencies");
 });
 
 

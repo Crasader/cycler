@@ -37,6 +37,8 @@ class FiledSchema extends Migration
             $table->bigInteger('numeric_scale')->unsigned()->nullable()->default(null);
             
             $table->string('key',3)->default("");
+            $table->string('fk_table',64)->nullable();
+            $table->string('fk_table_column',64)->nullable();
 
             $table->string('title',64)->default("");
             
