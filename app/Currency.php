@@ -20,12 +20,21 @@ class Currency extends ModelValidation
         'is_custom_flag'
     ];
 
+
+    protected $visible = [
+        'code',
+        'name'
+        'decimal_points',
+        'symbol',
+    ];
+
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
     protected $hidden = [
-        
+        'active_flag',
+        'is_custom_flag'
     ];
 }

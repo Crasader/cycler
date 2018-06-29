@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\{Role,Permissions,User,Deals,Field,Currency,Pipeline,Stage};
+use App\Helpers\ApiHelper;
 
 class SupervisorController extends Controller
 {
@@ -162,7 +163,12 @@ class SupervisorController extends Controller
 
     public function getCurrencies(Request $request){
 
+        $api = new ApiHelper;
         
+        $api->parseRequest($request);
+        
+        $
+        exit;
         return response()->json($request->toArray()); 
     }
 
