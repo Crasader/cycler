@@ -15,7 +15,7 @@ class SettingsController extends Controller
      */
     public function __construct()
     {
-       $this->middleware(["auth","role:supervisor"]);
+       $this->middleware(["auth","role:".config("defines.roles.SUPERVISOR")]);
     }
 
    
@@ -40,7 +40,7 @@ class SettingsController extends Controller
 			$user->attachRole($role);
 		}
 
-		return redirect()->route('home');
+		return redirect()->route(config("defines.roles.SUPERVISOR"));
 	}
 
 

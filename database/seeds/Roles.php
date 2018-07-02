@@ -12,9 +12,9 @@ class Roles extends Seeder
     public function run()
     {
         DB::table('roles')->insert([
-        	['name' => 'supervisor'],
-        	['name' => 'administrator'],
-        	['name' => 'manager']
+        	['name' => 'admin','display_name'=>"Администратор", 'description'=>"Управление системными настройками"],
+        	['name' => 'manager','display_name'=>"Менеджер", 'description'=>"Менеджер-логист: детальная проработка логистики, расчёт стоимости, подготовка документации"],
+        	['name' => 'operator','display_name'=>"Оператор", 'description'=>"Оператор: первичная обработка звонков и заявок"]
         ]);
     }
 }

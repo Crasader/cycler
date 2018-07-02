@@ -51,7 +51,7 @@
                             </li>
                         @else
 
-                            @role('supervisor')
+                            @role(config('defines.roles.SUPERVISOR'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('roleUserForm') }}">{{ __('m.User settings') }}</a>
                                 </li>

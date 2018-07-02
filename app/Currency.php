@@ -2,10 +2,11 @@
 
 namespace App;
 
+use App\Helpers\ApiHelper;
 
-class Currency extends ModelValidation
+class Currency extends ApiModel
 {
-
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -13,17 +14,25 @@ class Currency extends ModelValidation
      */
     protected $fillable = [
         'code',
-        'name'
+        'name',
         'decimal_points',
         'symbol',
         'active_flag',
         'is_custom_flag'
     ];
 
+    
+    protected $available = [
+        'code',
+        'name',
+        'symbol',
+    ];
+
+
 
     protected $visible = [
         'code',
-        'name'
+        'name',
         'decimal_points',
         'symbol',
     ];
@@ -35,6 +44,6 @@ class Currency extends ModelValidation
      */
     protected $hidden = [
         'active_flag',
-        'is_custom_flag'
+        'is_custom_flag',
     ];
 }

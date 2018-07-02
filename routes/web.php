@@ -12,13 +12,14 @@
 */
 
 Route::get('/',"HomeController@index")->name('home');
+Route::get('/home',"HomeController@index")->name('home');
 
-Route::middleware(["auth","hasntRole:supervisor|manager"])->get('/norole', function () {
+
+Route::middleware(["hasntRole"])->get('/norole', function () {
     return view('auth.norole',['user'=>Auth::guard()->user()]);
 })->name('norole');
 
 $regex = "^([0-9A-Za-z\-_\.]*)";
-
 
 Route::get('/selectrole',"HomeController@selectrole")->name('selectrole');
 
@@ -30,11 +31,11 @@ Auth::routes();
 
 
 /*
-* Routes for role supervisor
+* Routes for role admin
 *
 */
-Route::get('/supervisor/dashboard/{regex}',"SupervisorController@index")->where("regex",$regex)->name('supervisor');
-Route::get('/supervisor/dashboard',"SupervisorController@index")->name('supervisor');
+Route::prefix("view/".config('defines.roles.SUPERVISOR'))->get('/dashboard/{regex}',"AdminController@index")->where("regex",$regex)->name(config('defines.roles.SUPERVISOR'));
+Route::prefix("view/".config('defines.roles.SUPERVISOR'))->get('/dashboard',"AdminController@index")->name(config('defines.roles.SUPERVISOR'));
 
 
 
@@ -42,30 +43,38 @@ Route::get('/supervisor/dashboard',"SupervisorController@index")->name('supervis
 * Routes for role manager
 *
 */
-Route::get('/manager/dashboard/{regex}',"ManagerController@index")->where("regex",$regex)->name('manager');
-Route::get('/manager/dashboard',"ManagerController@index")->name('manager');
+Route::prefix("view/".config('defines.roles.MANAGER'))->get('/dashboard/{regex}',"ManagerController@index")->where("regex",$regex)->name(config('defines.roles.MANAGER'));
+Route::prefix("view/".config('defines.roles.MANAGER'))->get('/dashboard',"ManagerController@index")->name(config('defines.roles.MANAGER'));
+
+
+/*
+* Routes for role manager
+*
+*/
+Route::prefix("view/".config('defines.roles.OPERATOR'))->get('/dashboard/{regex}',"ManagerController@index")->where("regex",$regex)->name(config('defines.roles.OPERATOR'));
+Route::prefix("view/".config('defines.roles.OPERATOR'))->get('/dashboard',"ManagerController@index")->name(config('defines.roles.OPERATOR'));
 
 
 
 /*
-* Routes for role supervisor
+* Routes for role admin
 *
 */
 
-Route::group(['prefix'=>'/api/supervisor'],function($route){
-	$route->get("self","SupervisorController@self")->name("supervisor-self");
+Route::group(['prefix'=>'/api/'.config('defines.roles.SUPERVISOR')],function($route){
+	$route->get("self","AdminController@self")->name("admin-self");
 
-	$route->get("deals","SupervisorController@getDeals")->name("supervisor-getDeals");
+	$route->get("deals","AdminController@getDeals")->name("admin-getDeals");
 
-	$route->put("deals","SupervisorController@createDeal")->name("supervisor-createDeal");
+	$route->put("deals","AdminController@createDeal")->name("admin-createDeal");
 
-	$route->get("deals/{id}","SupervisorController@getDeal")->name("supervisor-getDeal");
+	$route->get("deals/{id}","AdminController@getDeal")->name("admin-getDeal");
 
-	$route->post("deals","SupervisorController@updateDeal")->name("supervisor-updateDeal");
+	$route->post("deals","AdminController@updateDeal")->name("admin-updateDeal");
 
-	$route->delete("deals","SupervisorController@deleteDeal")->name("supervisor-deleteDeal");
+	$route->delete("deals","AdminController@deleteDeal")->name("admin-deleteDeal");
 
-	$route->get("currencies","SupervisorController@getCurrencies")->name("supervisor-getCurrencies");
+	$route->get("currencies","AdminController@getCurrencies")->name("admin-getCurrencies");
 });
 
 
@@ -76,7 +85,7 @@ Route::group(['prefix'=>'/api/supervisor'],function($route){
 *
 */
 
-Route::group(['prefix'=>'/api/manager'],function($route){
+Route::group(['prefix'=>'/api/'.config('defines.roles.MANAGER')],function($route){
 	$route->get("self","ManagerController@self")->name("manager-self");
 
 	$route->get("deals","ManagerController@getDeals")->name("manager-getDeals");
@@ -88,6 +97,28 @@ Route::group(['prefix'=>'/api/manager'],function($route){
 	$route->post("deals","ManagerController@updateDeal")->name("manager-updateDeal");
 
 	$route->delete("deals","ManagerController@deleteDeal")->name("manager-deleteDeal");
+});
+
+
+
+
+/*
+* Routes for role operator
+*
+*/
+
+Route::group(['prefix'=>'/api/'.config('defines.roles.OPERATOR')],function($route){
+	$route->get("self","ManagerController@self")->name("operator-self");
+
+	$route->get("deals","ManagerController@getDeals")->name("operator-getDeals");
+
+	$route->put("deals","ManagerController@createDeal")->name("operator-createDeal");
+
+	$route->get("deals/{id}","ManagerController@getDeal")->name("operator-getDeal");
+
+	$route->post("deals","ManagerController@updateDeal")->name("operator-updateDeal");
+
+	$route->delete("deals","ManagerController@deleteDeal")->name("operator-deleteDeal");
 });
 
 

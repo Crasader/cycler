@@ -12,7 +12,7 @@
 		<ul class="list-group list-group-unbordered">
 			@foreach ($_user->roles()->get() as $role)
 			<li class="list-group-item">
-				<a href="{{route($role->name)}}"><strong>{{$role->name}}</strong> <span class="pull-right">{{$role->displayName}}</span></a>
+				<a href="{{route($role->name)}}"><strong>{{$role->name}}</strong> <span class="pull-right">{{$role->display_name}}</span></a>
 			</li>
 			@endforeach
 		</ul>

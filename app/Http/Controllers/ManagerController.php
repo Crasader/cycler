@@ -15,7 +15,7 @@ class ManagerController extends Controller
     public function __construct()
     {
        $this->middleware("auth");
-       $this->middleware("role:manager");
+       $this->middleware("role:".config('defines.roles.MANAGER'));
        
     }
 

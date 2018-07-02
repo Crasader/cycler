@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\{Role,Permissions,User,Deals,Field,Currency,Pipeline,Stage};
 use App\Helpers\ApiHelper;
 
-class SupervisorController extends Controller
+class AdminController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -17,7 +17,7 @@ class SupervisorController extends Controller
     public function __construct()
     {
        $this->middleware("auth");
-       $this->middleware("role:supervisor");
+       $this->middleware("role:".config('defines.roles.SUPERVISOR'));
     }
 
 
@@ -163,12 +163,12 @@ class SupervisorController extends Controller
 
     public function getCurrencies(Request $request){
 
-        $api = new ApiHelper;
+        $api = new Currency;
         
         $api->parseRequest($request);
         
-        $
-        exit;
+        print_r($api->getExclude());
+        print_r($api->getInclude());
         return response()->json($request->toArray()); 
     }
 

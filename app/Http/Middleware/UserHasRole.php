@@ -37,20 +37,31 @@ class UserHasRole
 	 * @param  $roles
 	 * @return mixed
 	 */
-	public function handle($request, Closure $next, $roles)
+	public function handle($request, Closure $next, $roles = null)
 	{
-		if (!is_array($roles)) {
-			$roles = explode(self::DELIMITER, $roles);
-		}
+		
 
 		if($this->auth->guest()){
 			return redirect("login");
 		}
 
-		if (!$request->user()->hasRole($roles)) {
+		if($roles){
+			if (!is_array($roles)) {
+				$roles = explode(self::DELIMITER, $roles);
+			}
+			
+			if (!$request->user()->hasRole($roles)) {
+				return redirect("norole");
+			}
+			
+		}else{
+			$user_roles = $request->user()->roles()->get()->toArray();
 
-			return redirect("norole");
+			if(!count($user_roles)){
+				return redirect("norole");
+			}
 		}
+		
 
 		return $next($request);
 	}

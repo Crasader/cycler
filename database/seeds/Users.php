@@ -14,7 +14,7 @@ class Users extends Seeder
         
 
         $id = DB::table('users')->insertGetId([
-            'name' => "administrator",
+            'name' => "default",
             'email' => 'admin@admin.ru',
             'password' => bcrypt('secret'),
         ]);
@@ -23,13 +23,19 @@ class Users extends Seeder
 
         if($id){
         
-        	$role = DB::table('roles')->where('name', 'supervisor')->first();
-        	
+        	$role = DB::table('roles')->where('name', 'admin')->first();
         	if($role->id){
         		DB::table('role_user')->insert([
 		        	['user_id' => $id,'role_id'=>$role->id]
         		]);
         	}
+
+            $role = DB::table('roles')->where('name', 'manager')->first();
+            if($role->id){
+                DB::table('role_user')->insert([
+                    ['user_id' => $id,'role_id'=>$role->id]
+                ]);
+            }
         	
         }
 

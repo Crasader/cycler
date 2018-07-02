@@ -1,20 +1,25 @@
 <?php
 
-namespace App\Helpers;
+namespace App;
 
 use Illuminate\Http\Request;
 
-class ApiHelper{
 
-	const QueryField_Rules = "rules"; // правила фильтрации
-	const QueryField_Include = "include"; // включить поля
-	const QueryField_Exclude = "exclude"; // исключить поля
-	const QueryField_Limit = "limit"; // лимит записей на страницу
-	const QueryField_Page = "page"; // переход на страницу 
-	const QueryField_Group = "group"; // группировка
-	const QueryField_Index = "index"; // выдать как ассоциативный массив по указанному ключу
-	const QueryField_Order = "order"; // сортировка
 
+class ApiModel extends ModelValidation{
+
+
+
+	protected static $apiParams = [
+		"QueryField_Rules" =>  "rules", // правила фильтрации
+		"QueryField_Include" =>  "include", // включить поля
+		"QueryField_Exclude" =>   "exclude", // исключить поля
+		"QueryField_Limit" =>  "limit", // лимит записей на страницу
+		"QueryField_Page" => "page", // переход на страницу 
+		"QueryField_Group" =>  "group", // группировка
+		"QueryField_Index" =>  "index", // выдать как ассоциативный массив по указанному ключу
+		"QueryField_Order" =>  "order", // сортировка
+	];
 
 	protected static $condOperators = [
 		"equal" => "=",
@@ -51,11 +56,8 @@ class ApiHelper{
 	public function setInclude(array $include)
     {
         $this->include = $include;
-
         return $this;
     }
-
-
 
 
 
@@ -69,7 +71,25 @@ class ApiHelper{
 	public function setExclude(array $exclude)
     {
         $this->exclude = $exclude;
+        return $this;
+    }
 
+
+
+
+    protected $available = array();
+
+
+
+    public function getAvailable(){
+		return $this->available;
+	}
+
+
+
+	public function setAvailable(array $available)
+    {
+        $this->available = $available;
         return $this;
     }
 
