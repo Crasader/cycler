@@ -166,6 +166,13 @@ return [
          * 
          */
         Zizaco\Entrust\EntrustServiceProvider::class,
+
+
+        /*
+         * oAuth2
+         *
+         */
+        Laravel\Passport\PassportServiceProvider::class,
     ],
 
     /*

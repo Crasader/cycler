@@ -1,9 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 
-class Stage extends ModelValidation
+class Pipeline extends ModelValidation
 {
 
     /**
@@ -13,14 +13,12 @@ class Stage extends ModelValidation
      */
     protected $fillable = [
         'name',
+        'url_title',
         'order_nr',
-        'active_flag',
+        'active',
         'deal_probability',
-        'pipeline_id',
-        'rotten_flag',
-        'rotten_days',
         'update_time',
-        'pipeline_name'
+        'selected'
     ];
 
     /**

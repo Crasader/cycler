@@ -11,114 +11,78 @@
 |
 */
 
-Route::get('/',"HomeController@index")->name('home');
-Route::get('/home',"HomeController@index")->name('home');
+
+
+
+	Route::get('/test', function () {
+	    $query = http_build_query([
+	            'client_id' => 6, // Replace with Client ID
+	            'redirect_uri' => 'http://laracrm:8082/callback',
+	            'response_type' => 'code',
+	            'scope' => ''
+	    ]);
+
+	    return redirect('http://laracrm:8082/oauth/authorize?'.$query);
+	});
+
+	Route::get('/callback', function (\Illuminate\Http\Request $request) {
+        $response = (new GuzzleHttp\Client)->post('http://laracrm:8082/oauth/token', [
+            'form_params' => [
+                'grant_type' => 'authorization_code',
+                'client_id' => 6, // Replace with Client ID
+                'client_secret' => 'K1htqtsMsGcJxsnnVuwlPhYEHtUgLd0KZKA1XJE1', // Replace with client secret
+                'redirect_uri' => 'http://laracrm:8082/callback',
+                'code' => $request->code,
+            ]
+        ]);
+
+        session()->put('token', json_decode((string) $response->getBody(), true));
+
+        return redirect('/todos');
+    });
+
+    Route::get('/todos', function () {
+        $response = (new GuzzleHttp\Client)->get('http://laracrm:8082/api/todos', [
+            'headers' => [
+                'Authorization' => 'Bearer '.session()->get('token.access_token')
+            ]
+        ]);
+
+
+        return json_decode((string) $response->getBody(), true);
+    });
+
+
+
+
 
 
 Route::middleware(["hasntRole"])->get('/norole', function () {
     return view('auth.norole',['user'=>Auth::guard()->user()]);
 })->name('norole');
 
-$regex = "^([0-9A-Za-z\-_\.]*)";
 
-Route::get('/selectrole',"HomeController@selectrole")->name('selectrole');
 
-Route::get('/roleuser',"SettingsController@showRoleForm")->name('roleUserForm');
-
-Route::post('/roleuser',"SettingsController@saveRoleForm")->name('roleUserFormSubmit');
+//Route::get('/selectrole',"HomeController@selectrole")->name('selectrole');
 
 Auth::routes();
 
+Route::group(['prefix'=>'/admin/'],function($route){
+	
+	Route::get('/', 'SettingsController@index')->name('admin');
 
-/*
-* Routes for role admin
-*
-*/
-Route::prefix("view/".config('defines.roles.SUPERVISOR'))->get('/dashboard/{regex}',"AdminController@index")->where("regex",$regex)->name(config('defines.roles.SUPERVISOR'));
-Route::prefix("view/".config('defines.roles.SUPERVISOR'))->get('/dashboard',"AdminController@index")->name(config('defines.roles.SUPERVISOR'));
+	Route::get('settings', 'SettingsController@index')->name('settings');
 
+	Route::get('roleuser',"SettingsController@showRoleForm")->name('roleUserForm');
 
-
-/*
-* Routes for role manager
-*
-*/
-Route::prefix("view/".config('defines.roles.MANAGER'))->get('/dashboard/{regex}',"ManagerController@index")->where("regex",$regex)->name(config('defines.roles.MANAGER'));
-Route::prefix("view/".config('defines.roles.MANAGER'))->get('/dashboard',"ManagerController@index")->name(config('defines.roles.MANAGER'));
-
-
-/*
-* Routes for role manager
-*
-*/
-Route::prefix("view/".config('defines.roles.OPERATOR'))->get('/dashboard/{regex}',"ManagerController@index")->where("regex",$regex)->name(config('defines.roles.OPERATOR'));
-Route::prefix("view/".config('defines.roles.OPERATOR'))->get('/dashboard',"ManagerController@index")->name(config('defines.roles.OPERATOR'));
-
-
-
-/*
-* Routes for role admin
-*
-*/
-
-Route::group(['prefix'=>'/api/'.config('defines.roles.SUPERVISOR')],function($route){
-	$route->get("self","AdminController@self")->name("admin-self");
-
-	$route->get("deals","AdminController@getDeals")->name("admin-getDeals");
-
-	$route->put("deals","AdminController@createDeal")->name("admin-createDeal");
-
-	$route->get("deals/{id}","AdminController@getDeal")->name("admin-getDeal");
-
-	$route->post("deals","AdminController@updateDeal")->name("admin-updateDeal");
-
-	$route->delete("deals","AdminController@deleteDeal")->name("admin-deleteDeal");
-
-	$route->get("currencies","AdminController@getCurrencies")->name("admin-getCurrencies");
+	Route::post('roleuser',"SettingsController@saveRoleForm")->name('roleUserFormSubmit');
 });
 
 
 
 
-/*
-* Routes for role manager
-*
-*/
 
-Route::group(['prefix'=>'/api/'.config('defines.roles.MANAGER')],function($route){
-	$route->get("self","ManagerController@self")->name("manager-self");
+$regex = "^([0-9A-Za-z\-_\.]*)";
 
-	$route->get("deals","ManagerController@getDeals")->name("manager-getDeals");
-
-	$route->put("deals","ManagerController@createDeal")->name("manager-createDeal");
-
-	$route->get("deals/{id}","ManagerController@getDeal")->name("manager-getDeal");
-
-	$route->post("deals","ManagerController@updateDeal")->name("manager-updateDeal");
-
-	$route->delete("deals","ManagerController@deleteDeal")->name("manager-deleteDeal");
-});
-
-
-
-
-/*
-* Routes for role operator
-*
-*/
-
-Route::group(['prefix'=>'/api/'.config('defines.roles.OPERATOR')],function($route){
-	$route->get("self","ManagerController@self")->name("operator-self");
-
-	$route->get("deals","ManagerController@getDeals")->name("operator-getDeals");
-
-	$route->put("deals","ManagerController@createDeal")->name("operator-createDeal");
-
-	$route->get("deals/{id}","ManagerController@getDeal")->name("operator-getDeal");
-
-	$route->post("deals","ManagerController@updateDeal")->name("operator-updateDeal");
-
-	$route->delete("deals","ManagerController@deleteDeal")->name("operator-deleteDeal");
-});
-
-
+Route::get('/',"HomeController@index")->name('home');
+Route::get('/home',"HomeController@index")->name('home');

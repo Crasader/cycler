@@ -16,7 +16,7 @@ class HomeController extends Controller
     {
        $this->middleware("auth");
        $this->middleware("hasRole");
-       $this->middleware('hasSomeRoles')->except('selectrole');
+       //$this->middleware('hasSomeRoles')->except('selectrole');
     }
 
     /**
@@ -25,6 +25,7 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
+
         return view('dashboard');
     }
 

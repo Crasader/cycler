@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\{Role,Permissions,User,Deals,Field,Currency,Pipeline,Stage};
 use App\Helpers\ApiHelper;
 
-class AdminController extends Controller
+class ApiController extends Controller
 {
     /**
      * Create a new controller instance.

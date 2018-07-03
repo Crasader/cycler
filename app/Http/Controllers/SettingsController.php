@@ -15,10 +15,16 @@ class SettingsController extends Controller
      */
     public function __construct()
     {
+       
        $this->middleware(["auth","role:".config("defines.roles.SUPERVISOR")]);
+    
     }
 
-   
+   	
+    public function index(){
+    	return view('admin.settings.dashboard');
+    }
+
 
     public function usersettings(Request $request) {
     	
@@ -40,14 +46,14 @@ class SettingsController extends Controller
 			$user->attachRole($role);
 		}
 
-		return redirect()->route(config("defines.roles.SUPERVISOR"));
+		return redirect()->route("admin");
 	}
 
 
 	public  function showRoleForm(){
 		$users = User::all();
     	$roles = Role::all();
-    	return view('settings.users',['users'=>$users,'roles'=>$roles]);
+    	return view('admin.settings.users',['users'=>$users,'roles'=>$roles]);
 	}
 
 }

@@ -18,6 +18,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
+Route::middleware('auth:api')->get('/todos', function (Request $request) {
+    return ["res"=>'test'];
+});
+
+
 /*
 * Routes for ApiPublicController
 *
@@ -30,16 +35,24 @@ Route::group(['prefix'=>'/public'],function($route){
 });
 
 
-// Route::group(['prefix'=>'/supervisor'],function($route){
-// 	$route->get("self","SupervisorController@self")->name("supervisor-self");
 
-// 	$route->get("deals","SupervisorController@getDeals")->name("supervisor-getDeals");
+/*
+* Routes for role admin
+*
+*/
 
-// 	$route->put("deals","SupervisorController@createDeal")->name("supervisor-createDeal");
+Route::group(['prefix'=>'/api/'.config('defines.roles.SUPERVISOR')],function($route){
+	$route->get("self","ApiController@self")->name("self");
 
-// 	$route->get("deals/{id}","SupervisorController@getDeal")->name("supervisor-getDeal");
+	$route->get("deals","ApiController@getDeals")->name("getDeals");
 
-// 	$route->post("deals","SupervisorController@updateDeal")->name("supervisor-updateDeal");
+	$route->put("deals","ApiController@createDeal")->name("createDeal");
 
-// 	$route->delete("deals","SupervisorController@deleteDeal")->name("supervisor-deleteDeal");
-// });
+	$route->get("deals/{id}","ApiController@getDeal")->name("getDeal");
+
+	$route->post("deals","ApiController@updateDeal")->name("updateDeal");
+
+	$route->delete("deals","ApiController@deleteDeal")->name("deleteDeal");
+
+	$route->get("currencies","ApiController@getCurrencies")->name("getCurrencies");
+});
