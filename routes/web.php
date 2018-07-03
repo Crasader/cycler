@@ -71,7 +71,7 @@ Route::group(['prefix'=>'/admin/'],function($route){
 	
 	Route::get('/', 'SettingsController@index')->name('admin');
 
-	Route::get('settings', 'SettingsController@index')->name('settings');
+	Route::get('settings', 'SettingsController@settings')->name('settings');
 
 	Route::get('roleuser',"SettingsController@showRoleForm")->name('roleUserForm');
 

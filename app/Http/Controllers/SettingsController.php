@@ -26,12 +26,13 @@ class SettingsController extends Controller
     }
 
 
+
+    public function settings(){
+        return view('admin.settings.settings');
+    }
+
+
     public function usersettings(Request $request) {
-    	
-
-
-
-
     	
 	}
 
@@ -48,6 +49,8 @@ class SettingsController extends Controller
 
 		return redirect()->route("admin");
 	}
+
+
 
 
 	public  function showRoleForm(){
