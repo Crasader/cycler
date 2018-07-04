@@ -74,6 +74,5 @@ class RegisterController extends Controller
     protected function registered(Request $request, $user)
     {   
 
-        
     }
 }

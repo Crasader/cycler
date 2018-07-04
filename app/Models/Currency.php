@@ -7,6 +7,8 @@ use App\Helpers\ApiHelper;
 class Currency extends ApiModel
 {
     
+    protected $table = "currency";
+
     /**
      * The attributes that are mass assignable.
      *
@@ -31,7 +33,7 @@ class Currency extends ApiModel
 
 
     protected $visible = [
-        'code',
+        'id',
         'name',
         'decimal_points',
         'symbol',

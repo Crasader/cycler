@@ -41,4 +41,25 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+
+
+    protected function authenticated(Request $request, $user)
+    {
+        
+        // $clients = $user->clients->toArray();
+
+        // if(is_array($clients) && count($clients)){
+        //     $query = http_build_query([
+        //             'client_id' => $clients[0]['id'], // Replace with Client ID
+        //             'redirect_uri' => $clients[0]['redirect'],
+        //             'response_type' => 'code',
+        //             'scope' => ''
+        //     ]);
+            
+
+        //     return redirect('http://laracrm:8082/oauth/authorize?'.$query);
+        // }
+        
+    }
+
 }

@@ -41,7 +41,7 @@ Route::group(['prefix'=>'/public'],function($route){
 *
 */
 
-Route::group(['prefix'=>'/api/'.config('defines.roles.SUPERVISOR')],function($route){
+Route::group([],function($route){
 	$route->get("self","ApiController@self")->name("self");
 
 	$route->get("deals","ApiController@getDeals")->name("getDeals");

@@ -16,7 +16,7 @@
 
 	Route::get('/test', function () {
 	    $query = http_build_query([
-	            'client_id' => 6, // Replace with Client ID
+	            'client_id' => 13, // Replace with Client ID
 	            'redirect_uri' => 'http://laracrm:8082/callback',
 	            'response_type' => 'code',
 	            'scope' => ''
@@ -25,12 +25,18 @@
 	    return redirect('http://laracrm:8082/oauth/authorize?'.$query);
 	});
 
+
 	Route::get('/callback', function (\Illuminate\Http\Request $request) {
+        
+        
+
+
+
         $response = (new GuzzleHttp\Client)->post('http://laracrm:8082/oauth/token', [
             'form_params' => [
                 'grant_type' => 'authorization_code',
-                'client_id' => 6, // Replace with Client ID
-                'client_secret' => 'K1htqtsMsGcJxsnnVuwlPhYEHtUgLd0KZKA1XJE1', // Replace with client secret
+                'client_id' => 13, // Replace with Client ID
+                'client_secret' => 'DvVxcbENj5iWTtJiGZScWiBZpG3YHgL5zqlatyzK', // Replace with client secret
                 'redirect_uri' => 'http://laracrm:8082/callback',
                 'code' => $request->code,
             ]
@@ -41,16 +47,18 @@
         return redirect('/todos');
     });
 
+
+
     Route::get('/todos', function () {
         $response = (new GuzzleHttp\Client)->get('http://laracrm:8082/api/todos', [
             'headers' => [
                 'Authorization' => 'Bearer '.session()->get('token.access_token')
             ]
         ]);
-
-
         return json_decode((string) $response->getBody(), true);
     });
+
+
 
 
 
@@ -86,3 +94,23 @@ $regex = "^([0-9A-Za-z\-_\.]*)";
 
 Route::get('/',"HomeController@index")->name('home');
 Route::get('/home',"HomeController@index")->name('home');
+
+
+
+//Временно для разработки
+
+Route::group([],function($route){
+    $route->get("self","ApiController@self")->name("self");
+
+    $route->get("deals","ApiController@getDeals")->name("getDeals");
+
+    $route->put("deals","ApiController@createDeal")->name("createDeal");
+
+    $route->get("deals/{id}","ApiController@getDeal")->name("getDeal");
+
+    $route->post("deals","ApiController@updateDeal")->name("updateDeal");
+
+    $route->delete("deals","ApiController@deleteDeal")->name("deleteDeal");
+
+    $route->get("currencies","ApiController@getCurrencies")->name("getCurrencies");
+});

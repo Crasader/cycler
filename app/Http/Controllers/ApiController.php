@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\{Role,Permissions,User,Deals,Field,Currency,Pipeline,Stage};
-use App\Helpers\ApiHelper;
+use App\Models\{Deals,Field,Currency,Pipeline,Stage};
+use App\{Role,Permissions,User};
 
 class ApiController extends Controller
 {
@@ -16,8 +16,8 @@ class ApiController extends Controller
      */
     public function __construct()
     {
-       $this->middleware("auth");
-       $this->middleware("role:".config('defines.roles.SUPERVISOR'));
+       //$this->middleware("auth");
+       //$this->middleware("role:".config('defines.roles.SUPERVISOR'));
     }
 
 
@@ -57,26 +57,26 @@ class ApiController extends Controller
             $answer['roles'][$role->name]['permissions'] = $role->perms()->get(['name','display_name'])->toArray();
         }
         
-        $user = Auth::user();
-        $answer['current_user']['name'] = $user->name;
-        $answer['current_user']['email'] = $user->email;
+        // $user = Auth::user();
+        // $answer['current_user']['name'] = $user->name;
+        // $answer['current_user']['email'] = $user->email;
 
-        //Настройки пользователя
-        $answer['current_user']['settings'] = array();
+        // //Настройки пользователя
+        // $answer['current_user']['settings'] = array();
 
-        //Роли пользователя
-        $answer['current_user']['roles'] = $user->roles()->get(['name','display_name'])->toArray();
+        // //Роли пользователя
+        // $answer['current_user']['roles'] = $user->roles()->get(['name','display_name'])->toArray();
 
-        //Справочники
-        $answer['app_settings'] = array();
+        // //Справочники
+        // $answer['app_settings'] = array();
 
-        //Справочники
-        $answer['dictionaries'] = array();
+        // //Справочники
+        // $answer['dictionaries'] = array();
 
 
-        //схема таблиц
-        $deals = new Deals();
-        $answer['fields_schema'][$deals->getTable()] = Field::getSchema($deals); 
+        // //схема таблиц
+        // $deals = new Deals();
+        // $answer['fields_schema'][$deals->getTable()] = Field::getSchema($deals); 
         
 
         return response()->json($answer);
@@ -94,9 +94,11 @@ class ApiController extends Controller
     */
     public function getDeals(Request $request){
 
-        $deals = Deals::all(['*'])->toArray();
+        $api = new Deals;
+
+        $result = $api->getByRequest($request->all());
         
-        return response()->json($deals);
+        return response()->json($result);
     }
 
 
@@ -162,14 +164,11 @@ class ApiController extends Controller
 
 
     public function getCurrencies(Request $request){
-
         $api = new Currency;
+
+        $result = $api->getByRequest($request->all());
         
-        $api->parseRequest($request);
-        
-        print_r($api->getExclude());
-        print_r($api->getInclude());
-        return response()->json($request->toArray()); 
+        return response()->json($result); 
     }
 
 
