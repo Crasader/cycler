@@ -99,18 +99,18 @@ Route::get('/home',"HomeController@index")->name('home');
 
 //Временно для разработки
 
-Route::group([],function($route){
-    $route->get("self","ApiController@self")->name("self");
+Route::group(['namespace'=>'Api'],function($route){
+    $route->get("self","ApiDealController@self")->name("self");
 
-    $route->get("deals","ApiController@getDeals")->name("getDeals");
+    $route->get("deals","ApiDealController@getDeals")->name("getDeals");
 
-    $route->put("deals","ApiController@createDeal")->name("createDeal");
+    $route->put("deals","ApiDealController@createDeal")->name("createDeal");
 
-    $route->get("deals/{id}","ApiController@getDeal")->name("getDeal");
+    $route->get("deals/{id}","ApiDealController@getDeal")->name("getDeal");
 
-    $route->post("deals","ApiController@updateDeal")->name("updateDeal");
+    $route->post("deals/{id}","ApiDealController@updateDeal")->name("updateDeal");
 
-    $route->delete("deals","ApiController@deleteDeal")->name("deleteDeal");
+    $route->delete("deals/{id}","ApiDealController@deleteDeal")->name("deleteDeal");
 
-    $route->get("currencies","ApiController@getCurrencies")->name("getCurrencies");
+    $route->get("currencies","ApiCurrencyController@getCurrencies")->name("getCurrencies");
 });

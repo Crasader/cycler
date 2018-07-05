@@ -1,23 +1,21 @@
 <?php
 
-namespace App\Models;
+namespace App\Helpers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\ModelValidation;
 
-class ApiModel extends ModelValidation{
+class ApiHelper{
 
-	
-
-	
-		const QueryField_Rules 		= "rules";   // правила фильтрации
-		const QueryField_Include	= "include"; // включить поля
-		const QueryField_Exclude	= "exclude"; // исключить поля
-		const QueryField_Limit 		= "limit";   // лимит записей на страницу
-		const QueryField_Page  		= "page";    // переход на страницу 
-		const QueryField_Group		= "group";   // группировка
-		const QueryField_Index 		= "index";   // выдать как ассоциативный массив по указанному ключу
-		const QueryField_Order 		= "order";   // сортировка
+	const QueryField_Rules 		= "rules";   // правила фильтрации
+	const QueryField_Include	= "include"; // включить поля
+	const QueryField_Exclude	= "exclude"; // исключить поля
+	const QueryField_Limit 		= "limit";   // лимит записей на страницу
+	const QueryField_Page  		= "page";    // переход на страницу 
+	const QueryField_Group		= "group";   // группировка
+	const QueryField_Index 		= "index";   // выдать как ассоциативный массив по указанному ключу
+	const QueryField_Order 		= "order";   // сортировка
 	
 
 	protected static $condOperators = [
@@ -33,9 +31,8 @@ class ApiModel extends ModelValidation{
 		"!less~equal" 	=> ">",
 		"like" 			=> "LIKE",
 		"!like" 		=> "NOT LIKE",
-
 		"in" 			=> "IN",
-		"!in" 			=> "NOT IN"
+		"!in" 			=> "NOT IN",
 	];
 
 
@@ -75,40 +72,22 @@ class ApiModel extends ModelValidation{
 
 
 
-    protected $available = array();
 
-
-
-    public function getAvailable(){
-		return $this->available;
-	}
-
-
-
-	public function setAvailable(array $available)
-    {
-        $this->available = $available;
-        return $this;
-    }
-
-
-
-
-	public function getByRequest($params = array()){
+	public function getByRequest(ModelValidation $model, $params = array()){
 
 		 
 		$this->setExclude(isset($params[self::QueryField_Exclude]) && is_array($params[self::QueryField_Exclude]) ? $params[self::QueryField_Exclude] : array());
 
 		$this->setInclude(isset($params[self::QueryField_Include]) && is_array($params[self::QueryField_Include]) ? $params[self::QueryField_Include] : array());
 		
-		$select = array_diff($this->visible,$this->exclude);
+		$select = array_diff($model->getVisible(),$this->exclude);
 		
-		$canIncluded = array_intersect($this->available,$this->include);
+		$canIncluded = array_intersect($model->getAvailable(),$this->include);
 		
 		$select = array_unique(array_merge($select,$canIncluded));
 
 		
-		$q = DB::table($this->getTable());
+		$q = DB::table($model->getTable());
 		$q->select($select);
 
 		//Group

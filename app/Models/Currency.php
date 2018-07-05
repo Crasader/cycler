@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\Helpers\ApiHelper;
 
-class Currency extends ApiModel
+
+class Currency extends ModelValidation
 {
     
     protected $table = "currency";

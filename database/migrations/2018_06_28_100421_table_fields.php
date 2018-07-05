@@ -60,8 +60,8 @@ class TableFields extends Migration
            $table->integer("pipeline_id");
            $table->foreign('pipeline_id','deals_pipeline_id')->references('id')->on('pipelines');
 
-           $table->string("value");
-           $table->string("currency");
+           $table->string("value")->nullable()->default(null);
+           $table->string("currency")->nullable()->default(null);
 
 
            $table->enum("person_type",["pt1","pt2","pt3"])->nullable();
@@ -97,7 +97,7 @@ class TableFields extends Migration
                 'data_type'=>'varchar',
                 'alias'=>'Наименование',
                 'is_required'=>true,
-                'is_nullable'=>false
+                'is_nullable'=>false,
           ],
           "user_id"=>[
                 'table' => 'deals',
@@ -107,7 +107,8 @@ class TableFields extends Migration
                 'alias'=>'Пользователь',
                 'key'=>'FK',
                 'fk_table'=>"users",
-                'fk_table_column'=>"id"
+                'fk_table_column'=>"id",
+                'is_required'=>true,
           ],
           "creator_id"=>[
                 'table' => 'deals',
@@ -117,7 +118,8 @@ class TableFields extends Migration
                 'alias'=>'Создатель',
                 'key'=>'FK',
                 'fk_table'=>"users",
-                'fk_table_column'=>"id"
+                'fk_table_column'=>"id",
+                'is_required'=>true,
           ],
           "status"=>[
                 'table' => 'deals',
@@ -125,7 +127,8 @@ class TableFields extends Migration
                 'model_type'=>'Array',
                 'data_type'=>'enum',
                 'alias'=>'Статус',
-                'values'=>json_encode(['Open','Won','Lost','Deleted'])
+                'values'=>json_encode(['Open','Won','Lost','Deleted']),
+                'is_required'=>true,
           ],
           "lost_reason"=>[
                 'table' => 'deals',
@@ -133,7 +136,8 @@ class TableFields extends Migration
                 'model_type'=>'Array',
                 'data_type'=>'enum',
                 'alias'=>'Статус',
-                'values'=>json_encode(['reason1','reason2','reason3'])
+                'values'=>json_encode(['reason1','reason2','reason3']),
+                'is_required'=>true,
           ],
 
           "stage_id"=>[
@@ -144,7 +148,8 @@ class TableFields extends Migration
                 'alias'=>'Стадия',
                 'key'=>'FK',
                 'fk_table'=>"stages",
-                'fk_table_column'=>"id"
+                'fk_table_column'=>"id",
+                'is_required'=>true,
           ],
           "pipeline_id"=>[
                 'table' => 'deals',
@@ -154,7 +159,8 @@ class TableFields extends Migration
                 'alias'=>'Pipeline',
                 'key'=>'FK',
                 'fk_table'=>"pipelines",
-                'fk_table_column'=>"id"
+                'fk_table_column'=>"id",
+                'is_required'=>true,
           ],
 
           "value"=>[
@@ -163,6 +169,7 @@ class TableFields extends Migration
                 'model_type'=>'String',
                 'data_type'=>'varchar',
                 'alias'=>'Значение',
+                'is_nullable'=>false,
           ],
 
           "currency"=>[
@@ -171,6 +178,7 @@ class TableFields extends Migration
                 'model_type'=>'String',
                 'data_type'=>'varchar',
                 'alias'=>'Валюта',
+                'is_nullable'=>false,
           ],
 
           "person_type"=>[

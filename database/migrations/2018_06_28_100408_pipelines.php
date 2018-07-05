@@ -17,7 +17,7 @@ class Pipelines extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('url_title')->default("default");
-            $table->integer('order_nr');
+            $table->integer('order_nr')->default(1);
             $table->unsignedTinyInteger("active")->default(true);
             $table->unsignedTinyInteger("deal_probability")->nullable()->default(null);
 

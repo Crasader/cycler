@@ -1,17 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\{Deals,Field,Currency,Pipeline,Stage};
 use App\{Role,Permissions,User};
+use App\Helpers\ApiHelper;
 
-class ApiController extends Controller
+class ApiSelfController extends Controller
 {
+
+
     /**
-     * Create a new controller instance.
-     *
+     * 
      * @return void
      */
     public function __construct()
@@ -19,27 +22,6 @@ class ApiController extends Controller
        //$this->middleware("auth");
        //$this->middleware("role:".config('defines.roles.SUPERVISOR'));
     }
-
-
-
-
-
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(){
-        return view('dashboard');
-    }
-
-
-
-
-
-
-
 
 
     /*
@@ -82,94 +64,7 @@ class ApiController extends Controller
         return response()->json($answer);
     }
 
-
-
-
-
-
-    /*
-    * 
-    * GET <baseUrl>/api/<role_name>/deals
-    *
-    */
-    public function getDeals(Request $request){
-
-        $api = new Deals;
-
-        $result = $api->getByRequest($request->all());
-        
-        return response()->json($result);
-    }
-
-
-
-
-
-
-    /*
-    * PUT <baseUrl>/api/<role_name>/deals
-    */
-    public function createDeal(Request $request){
-
-        $answer['result'] = $request->toArray();
-        return response()->json($answer);
-    }
-
-
-
-
-
-
-    /*
-    *
-    * GET <baseUrl>/api/<role_name>/deals/<id>
-    *
-    */
-    public function getDeal($id){
-        return response()->json(['result'=>1]);
-    }
-
-
-
-
-
-    /*
-    *
-    * POST <baseUrl>/api/<role_name>/deals/<id>
-    *
-    */
-    public function updateDeal($id,Request $request){
-
-
-        return response()->json(['result'=>1]);
-    }
-
-
-
-
-
-
-    /*
-    *
-    * DELETE <baseUrl>/api/<role_name>/deals/<id>
-    *
-    */
-    public function deleteDeal($id){
-        return response()->json(['result'=>1]);
-    }
-
-
-
-
-
-
-    public function getCurrencies(Request $request){
-        $api = new Currency;
-
-        $result = $api->getByRequest($request->all());
-        
-        return response()->json($result); 
-    }
+    
 
 
 }

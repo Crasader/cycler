@@ -3,7 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Validation\Validator;
+// use Illuminate\Validation\Validator;
+use Illuminate\Support\Facades\Validator;
 
 class ModelValidation extends Model{
 
@@ -20,16 +21,25 @@ class ModelValidation extends Model{
 		return $this->rules;
 	}
 
+	public function getRules(){
+		return $this->rules;
+	}
+
 
 
 	public function fill($data,$validate = false){
 
-		
-		if($validate && !$this->validate($data)){
+		parent::fill($data);
+
+		// if($validate && !$this->validate($data)){
+		// 	return false;
+		// }
+
+		if($validate && !$this->validate($this->getAttributes())){
 			return false;
 		}
 
-		return parent::fill($data);
+		return $this;
 	}
 
 
@@ -60,5 +70,22 @@ class ModelValidation extends Model{
 	public function hasErrors(){
 		return count($this->errors) && 1;
 	}
+
+
+	protected $available = array();
+
+
+
+    public function getAvailable(){
+		return $this->available;
+	}
+
+
+
+	public function setAvailable(array $available)
+    {
+        $this->available = $available;
+        return $this;
+    }
 
 }
