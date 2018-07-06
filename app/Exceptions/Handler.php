@@ -5,8 +5,18 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
+use App\Traits\RestTrait;
+use App\Traits\RestExceptionHandlerTrait;
+
 class Handler extends ExceptionHandler
-{
+{   
+
+
+    use RestTrait;
+    use RestExceptionHandlerTrait;
+
+
+
     /**
      * A list of the exception types that are not reported.
      *
@@ -15,6 +25,8 @@ class Handler extends ExceptionHandler
     protected $dontReport = [
         //
     ];
+
+
 
     /**
      * A list of the inputs that are never flashed for validation exceptions.
@@ -25,6 +37,9 @@ class Handler extends ExceptionHandler
         'password',
         'password_confirmation',
     ];
+
+
+
 
     /**
      * Report or log an exception.
@@ -37,6 +52,8 @@ class Handler extends ExceptionHandler
         parent::report($exception);
     }
 
+
+
     /**
      * Render an exception into an HTTP response.
      *
@@ -45,7 +62,16 @@ class Handler extends ExceptionHandler
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $exception)
-    {
+    {   
+        //для теста
         return parent::render($request, $exception);
+
+        if(!$this->isApiCall($request)) {
+            $retval = parent::render($request, $exception);
+        } else {
+            $retval = $this->getJsonResponseForException($request, $exception);
+        }
+
+        return $retval;
     }
 }

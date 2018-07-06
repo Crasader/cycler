@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 class ModelValidation extends Model{
 
 
+	public $timestamps = false;
 
 	protected $rules = array();
 	
@@ -27,13 +28,10 @@ class ModelValidation extends Model{
 
 
 
+
 	public function fill($data,$validate = false){
 
 		parent::fill($data);
-
-		// if($validate && !$this->validate($data)){
-		// 	return false;
-		// }
 
 		if($validate && !$this->validate($this->getAttributes())){
 			return false;
@@ -43,10 +41,11 @@ class ModelValidation extends Model{
 	}
 
 
+
+
 	public function validate($data = array()){
 
 		$v = Validator::make($data,$this->rules);
-
 
 		if($v->fails()){
 			$this->errors = $v->errors();

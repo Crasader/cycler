@@ -38,7 +38,7 @@ class ApiDealController extends Controller
 
         $result = $api->getByRequest(Deals::init(),$request->all());
         
-        return response()->json($result);
+        return $result;
     }
 
 
@@ -52,8 +52,7 @@ class ApiDealController extends Controller
         
         $deal = Deals::init($id);
 
-        
-        return response()->json($deal->getAttributes());
+        return response()->json([$deal->getAttributes()]);
     }
 
 
@@ -74,7 +73,7 @@ class ApiDealController extends Controller
         
         $answer['errors'] = $deal->errors();
         
-        return response()->json($answer);
+        return $answer;
     }
 
 
@@ -104,7 +103,7 @@ class ApiDealController extends Controller
         }
         
 
-        return response()->json($answer);
+        return $answer;
     }
 
 
@@ -125,21 +124,7 @@ class ApiDealController extends Controller
             $answer['result'] = $deal->delete();
         }
 
-        return response()->json($answer);
+        return $answer;
     }
-
-
-
-
-
-
-    public function getCurrencies(Request $request){
-        $api = new ApiHelper;
-        
-        $result = $api->getByRequest(new Currency,$request->all());
-        
-        return response()->json($result); 
-    }
-
 
 }

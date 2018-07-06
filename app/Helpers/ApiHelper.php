@@ -82,13 +82,15 @@ class ApiHelper{
 		
 		$select = array_diff($model->getVisible(),$this->exclude);
 		
+		
+
 		$canIncluded = array_intersect($model->getAvailable(),$this->include);
 		
 		$select = array_unique(array_merge($select,$canIncluded));
 
 		
 		$q = DB::table($model->getTable());
-		$q->select($select);
+		$q->select(count($select) ? $select : ['*']);
 
 		//Group
 		if(isset($params[self::QueryField_Group])){
@@ -123,38 +125,39 @@ class ApiHelper{
 
 		if(isset($params[self::QueryField_Rules]) && is_array($params[self::QueryField_Rules])){
 			foreach ($params[self::QueryField_Rules] as $property => $rule) {
-				$cond = key($rule);
-
 				
-				//Проверка на содержания ~ в начале
-				if(substr($cond, 0,1) === '~'){
-					$cond_key = substr($cond, 1);
-					if(array_key_exists($cond_key, self::$condOperators)){
-						
-						if($cond_key == "in" || $cond_key == "!in"){
-							$q->orWhereRaw($property." ".self::$condOperators[$cond_key]. " (".$rule[$cond].")");
-						}else{
-							$q->orWhere($property,self::$condOperators[$cond_key],$rule[$cond]);
+				if(is_array($rule) && count($rule)){
+					
+					foreach ($rule as $cond => $value) {
+						//$cond = key($rule);
+
+						//Проверка на содержания ~ в начале
+						if(substr($cond, 0,1) === '~'){
+							$cond_key = substr($cond, 1);
+							if(array_key_exists($cond_key, self::$condOperators)){
+								
+								if($cond_key == "in" || $cond_key == "!in"){
+									$q->orWhereRaw($property." ".self::$condOperators[$cond_key]. " (".$value.")");
+								}else{
+									$q->orWhere($property,self::$condOperators[$cond_key],$value);
+								}
+							}
+
+						}elseif(array_key_exists($cond, self::$condOperators)){
+							
+							if($cond == "in" || $cond == "!in"){
+								$q->whereRaw($property." ".self::$condOperators[$cond]. " (".$value.")");
+							}else{
+								$q->where($property,self::$condOperators[$cond],$value);
+							}
 						}
 					}
-
-				}elseif(array_key_exists($cond, self::$condOperators)){
 					
-					
-
-					if($cond == "in" || $cond == "!in"){
-						
-						$q->whereRaw($property." ".self::$condOperators[$cond]. " (".$rule[$cond].")");
-					}else{
-
-						$q->where($property,self::$condOperators[$cond],$rule[$cond]);
-					}
 				}
+
 			}
 		}
 
-		// print_r($q->toSql());
-		// exit;
 
 		$data = $q->get()->toArray();
 		$result = [];

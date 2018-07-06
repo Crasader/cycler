@@ -48,4 +48,13 @@ class Currency extends ModelValidation
         'active_flag',
         'is_custom_flag',
     ];
+
+
+
+
+    protected $rules = array(
+        'code'=>['required'],
+        'name'=>['required'],
+        'symbol'=>['required'],
+    );
 }

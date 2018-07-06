@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\{Role,Permissions,User};
 use App\Helpers\ApiHelper;
-use App\Models\{Pipeline};
+use App\Models\{Stage};
 
-class ApiPipelinesController extends Controller
+class ApiStageController extends Controller
 {
 
     /**
@@ -27,10 +27,10 @@ class ApiPipelinesController extends Controller
     * GET <baseUrl>/api/pipelines
     *
     */
-    public function getPipelines(Request $request){
+    public function getStages(Request $request){
         $api = new ApiHelper;
         
-        $result = $api->getByRequest(new Pipeline,$request->all());
+        $result = $api->getByRequest(new Stage,$request->all());
         
         return response()->json($result); 
     }
@@ -44,9 +44,9 @@ class ApiPipelinesController extends Controller
     * GET <baseUrl>/api/pipelines/<id>
     *
     */
-    public function getPipeline($id){
+    public function getStage($id){
         
-        $model = Pipeline::find($id);
+        $model = Stage::find($id);
 
         return response()->json([$model->getAttributes()]);
     }
@@ -57,13 +57,13 @@ class ApiPipelinesController extends Controller
     /*
     * PUT <baseUrl>/api/pipelines
     */
-    public function createPipeline(Request $request){
+    public function createStage(Request $request){
 
         $answer = array();
 
         $answer['parameters'] = $request->toArray();
 
-        $model =  new Pipeline;
+        $model =  new Stage;
         
         $answer['result'] = $model->fill($request->toArray(),true) && $model->save() ? true : false;
         
@@ -82,20 +82,20 @@ class ApiPipelinesController extends Controller
     * POST <baseUrl>/api/pipelines/<id>
     *
     */
-    public function updatePipeline($id,Request $request){
+    public function updateStage($id,Request $request){
         $answer = array();
         
-        $model = Pipeline::find($id);
+        $model = Stage::find($id);
         
         if(isset($model->id)){
             $answer['result'] = $model->fill($request->toArray(),true) && $model->save() ? true : false;
             
-            $answer['pipeline']=$model->getAttributes();
+            $answer['stage']=$model->getAttributes();
         
             $answer['errors'] = $model->errors();
         }else{
             $answer['error'] = 404;
-            $answer['error_message'] = "not found Pipeline";
+            $answer['error_message'] = "not found Stage";
         }
         
 
@@ -112,9 +112,9 @@ class ApiPipelinesController extends Controller
     * DELETE <baseUrl>/api/pipelines/<id>
     *
     */
-    public function deletePipeline($id){
+    public function deleteStage($id){
         
-        $model = Pipeline::find($id);
+        $model = Stage::find($id);
         $answer['result'] = false;
         if(isset($model->id)){
             $answer['result'] = $model->delete();
