@@ -36,7 +36,7 @@ trait DynamicalModel{
 
 
 	public function getSchema(){
-		return DB::table($this->fields_table)->where('table',$this->getTable())->orderBy('id')->get()->toArray();
+		return DB::table($this->fields_table)->where('dbtable',$this->getTable())->orderBy('id')->get()->toArray();
 	}
 
 

@@ -28,6 +28,8 @@ class ApiFieldsSchemaController extends Controller
     *
     */
     public function getFields(Request $request){
+        
+        
         $api = new ApiHelper;
         
         $result = $api->getByRequest(new Field,$request->all());
@@ -59,14 +61,29 @@ class ApiFieldsSchemaController extends Controller
     */
     public function createField(Request $request){
 
+        //Создание новой колонки
+
+        /*
+        * 1) Проверка существования таблицы
+        * 2) Проверка отсутствии колонки
+        * 3) Определить тип колонки
+        * 4) Определить nullable
+        * 5) Определить index
+        * 6) Определить default
+        */
+        
         $answer = array();
 
         $answer['parameters'] = $request->toArray();
 
         $model =  new Field;
         
-        $answer['result'] = $model->fill($request->toArray(),true) && $model->save() ? true : false;
-        
+        if($model->fill($request->toArray(),true) && $model->save()){
+
+            $model->addColumn();
+            $answer['result'] = 1;
+        }
+
         $answer['errors'] = $model->errors();
         
         return $answer;

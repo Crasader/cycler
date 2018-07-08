@@ -1,7 +1,9 @@
 <?php 
 namespace App\Models;
 
-
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class Field extends ModelValidation
 {	
@@ -24,7 +26,7 @@ class Field extends ModelValidation
 	* Fillable model properties
 	*/
 	protected $fillable = [
-        'table', 
+        'dbtable', 
         'name', 
         'model_type',
         'data_type',
@@ -58,7 +60,7 @@ class Field extends ModelValidation
 
 
     protected $available = [
-        'table', 
+        'dbtable', 
         'name', 
         'model_type',
         'data_type',
@@ -92,7 +94,7 @@ class Field extends ModelValidation
 
 
     protected $visible = [
-        'table', 
+        'dbtable', 
         'name', 
         'model_type',
         'data_type',
@@ -124,10 +126,15 @@ class Field extends ModelValidation
     ];
 
     protected $rules = array(
-            'table'                 =>  ['required','string','max:64'],
+            'dbtable'                 =>  ['required','string','max:64'],
             'name'                  =>  ['required','string','max:64'],
             'model_type'            =>  ['required','string','max:32','in:Array,Boolean,Integer,Number,Object,String,$ref'],
-            'data_type'             =>  ['required','string','max64'],
+            'data_type'             =>  [
+                                        'required',
+                                        'string',
+                                        'max64',
+                                        'in:varchar,int,datetime,time,enum,tinyint,boolean,text,timestamp'
+                                    ],
             'alias'                 =>  ['max:255', 'string','nullable'],
             'auto_increment'        =>  ['boolean'],
             'is_nullable'           =>  ['boolean'],
@@ -167,8 +174,94 @@ class Field extends ModelValidation
 
 
     public static function getSchema(ModelValidation $model){
-        return Field::where('table','=',$model->getTable())->orderBy('id')->get(['name','model_type','alias'])->toArray();
+        return Field::where('dbtable','=',$model->getTable())->orderBy('id')->get(['name','model_type','alias'])->toArray();
     }
 
+
+
+
+
+    public static function hasTable($table){
+        if(!$table) return false;
+
+        return Schema::hasTable($table);
+
+    }
+
+
+
+    public static function hasColumn($table,$column){
+        return Schema::hasColumn($table,$column);
+    }
+
+
+
+
+
+    public function addColumn(){
+        
+        if(self::hasTable($this->dbtable) && !self::hasColumn($this->dbtable,$this->name)){
+            $column = $this;
+            Schema::table($this->dbtable, function($table) use($column) {
+                
+                if($column->auto_increment && $column->data_type == "int"){
+                    
+                    //Проверить есть ли в таблице колонка с автоинкрементом
+                    $table->increments($column->name);
+                }else{
+                    $table_column = null;
+                    switch ($column->data_type) {
+                        case 'int':
+                            $table_column = $table->integer($column->name);
+                            break;
+
+                        case 'varchar':
+                            $table_column = $table->string($column->name);
+                            break;
+                        
+                        case 'text':
+                            $table_column = $table->text($column->name);
+                            break;
+
+                        case 'boolean':
+                            $table_column = $table->boolean($column->name);
+                            break;
+
+                        case 'tinyint':
+                            $table_column = $table->unsignedTinyInteger($column->name);
+                            break;
+
+                        case 'datetime':
+                            $table_column = $table->dateTime($column->name);
+                            break;
+                        case 'date':
+                            $table_column = $table->date($column->name);
+                            break;
+                        case 'timestamp':
+                            $table_column = $table->timestamp($column->name);
+                            break;
+                        case 'enum':
+                            $table_column = $table->enum($column->name, json_decode($column->values));
+                            break;
+                    }
+
+                    if($column->is_nullable){
+                        $table_column->nullable();   
+                    }
+
+                    if($column->default){
+                        $table_column->default($column->default);   
+                    }
+
+                }
+
+                
+            });
+
+            return true;
+        }
+
+        return false;
+    }
 
 }
