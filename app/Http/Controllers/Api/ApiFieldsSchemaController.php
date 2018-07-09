@@ -50,7 +50,13 @@ class ApiFieldsSchemaController extends Controller
         
         $model = Field::find($id);
 
-        return response()->json([$model->getAttributes()]);
+        if(isset($model->id)){
+            return response()->json([$model->getAttributes()]);
+        }else{
+            throw new \Exception("Not found field",404);
+        }
+
+        
     }
 
 
@@ -62,26 +68,23 @@ class ApiFieldsSchemaController extends Controller
     public function createField(Request $request){
 
         //Создание новой колонки
-
-        /*
-        * 1) Проверка существования таблицы
-        * 2) Проверка отсутствии колонки
-        * 3) Определить тип колонки
-        * 4) Определить nullable
-        * 5) Определить index
-        * 6) Определить default
-        */
-        
         $answer = array();
 
-        $answer['parameters'] = $request->toArray();
+        $params = $request->toArray();
 
         $model =  new Field;
+        if(isset($params['name'])){
+            $params['name'] = str_replace(" ", "_", trim($params['name']));
+        }
         
-        if($model->fill($request->toArray(),true) && $model->save()){
+        if($model->fill($params,true) && $model->save()){
+            
+            if($model->addColumn()){
+                $answer['result'] = true;    
+            }else{
+                $model->delete();
+            }
 
-            $model->addColumn();
-            $answer['result'] = 1;
         }
 
         $answer['errors'] = $model->errors();
@@ -134,7 +137,11 @@ class ApiFieldsSchemaController extends Controller
         $model = Field::find($id);
         $answer['result'] = false;
         if(isset($model->id)){
-            $answer['result'] = $model->delete();
+            
+            if($model->delete()){
+               $model->dropColumn();
+               $answer['result'] =  true;
+            }
         }
 
         return $answer;

@@ -60,6 +60,7 @@ class Field extends ModelValidation
 
 
     protected $available = [
+        'id',
         'dbtable', 
         'name', 
         'model_type',
@@ -94,6 +95,7 @@ class Field extends ModelValidation
 
 
     protected $visible = [
+        'id',
         'dbtable', 
         'name', 
         'model_type',
@@ -132,7 +134,7 @@ class Field extends ModelValidation
             'data_type'             =>  [
                                         'required',
                                         'string',
-                                        'max64',
+                                        'max:64',
                                         'in:varchar,int,datetime,time,enum,tinyint,boolean,text,timestamp'
                                     ],
             'alias'                 =>  ['max:255', 'string','nullable'],
@@ -195,6 +197,15 @@ class Field extends ModelValidation
     }
 
 
+    public function dropColumn(){
+        if(self::hasTable($this->dbtable) && self::hasColumn($this->dbtable,$this->name)){
+            $column = $this->name;
+            Schema::table($this->dbtable, function (Blueprint $table) use($column){
+                $table->dropColumn($column);
+            });
+        }
+    }
+
 
 
 
@@ -205,7 +216,6 @@ class Field extends ModelValidation
             Schema::table($this->dbtable, function($table) use($column) {
                 
                 if($column->auto_increment && $column->data_type == "int"){
-                    
                     //Проверить есть ли в таблице колонка с автоинкрементом
                     $table->increments($column->name);
                 }else{
@@ -243,6 +253,11 @@ class Field extends ModelValidation
                         case 'enum':
                             $table_column = $table->enum($column->name, json_decode($column->values));
                             break;
+                    }
+
+
+                    if(!$column->is_required){
+                        $table_column->nullable()->default(null);
                     }
 
                     if($column->is_nullable){
