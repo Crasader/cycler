@@ -79,11 +79,11 @@ class ApiFieldsSchemaController extends Controller
         
         if($model->fill($params,true) && $model->save()){
             
-            if($model->addColumn()){
+            //if($model->addColumn()){
                 $answer['result'] = true;    
-            }else{
-                $model->delete();
-            }
+            //}else{
+            //    $model->delete();
+            //}
 
         }
 

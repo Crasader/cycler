@@ -4,6 +4,7 @@ namespace App\Models;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 
 class Field extends ModelValidation
 {	
@@ -128,7 +129,7 @@ class Field extends ModelValidation
     ];
 
     protected $rules = array(
-            'dbtable'                 =>  ['required','string','max:64'],
+            'dbtable'               =>  ['required','string','max:64'],
             'name'                  =>  ['required','string','max:64'],
             'model_type'            =>  ['required','string','max:32','in:Array,Boolean,Integer,Number,Object,String,$ref'],
             'data_type'             =>  [
@@ -166,11 +167,31 @@ class Field extends ModelValidation
 
 
 
-    public function rules(){
-    	return $this->rules;
+    
+
+
+    public function validate($data = array()){
+
+        if(!parent::validate($data)){
+            return false;
+        }
+        
+        //Check unique pair dbname and name
+        $query = DB::table($this->getTable())
+                            ->where('dbtable', '=', $data['dbtable'])
+                            ->where('name','=',$data['name']);
+        if($this->exists && isset($this->id) && $this->id){
+            $query->where("id","!=",$this->id);
+        }
+
+        $result = $query->first();
+        if($result){
+            $this->errors = array('dbtable'=>['This column already exsist in the table']);
+            return false;
+        }
+
+        return true;
     }
-
-
 
 
 

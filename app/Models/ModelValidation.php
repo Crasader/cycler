@@ -16,9 +16,7 @@ class ModelValidation extends Model{
 
 	protected $errors = array();
 
-
 	public function rules(){
-
 		return $this->rules;
 	}
 
@@ -54,6 +52,7 @@ class ModelValidation extends Model{
 
 		return true;
 	}
+
 
 
 
