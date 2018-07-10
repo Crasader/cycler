@@ -150,8 +150,8 @@ class Field extends ModelValidation
             'numeric_precision'     =>  ['integer','nullable'],
             'numeric_scale'         =>  ['integer','nullable'],
             'key'                   =>  ['string','max:3','in:PRI,MUL,UNI'],
-            'fk_table'              =>  ['string','max:64'],
-            'fk_table_column'       =>  ['string','max:64'],
+            'fk_table'              =>  ['string','max:64','nullable'],
+            'fk_table_column'       =>  ['string','max:64','nullable'],
             'title'                 =>  ['string','max:64'],
             'description'           =>  ['string','nullable'],
             'minimum'               =>  ['integer','nullable'],
@@ -234,8 +234,16 @@ class Field extends ModelValidation
         
         if(self::hasTable($this->dbtable) && !self::hasColumn($this->dbtable,$this->name)){
             $column = $this;
+
+            if($column->data_type  == "enum" && !json_decode($column->values)){
+                //Если варианты значения отсутствуют или неправильного формата
+                return false;
+            }
+
             Schema::table($this->dbtable, function($table) use($column) {
                 
+
+
                 if($column->auto_increment && $column->data_type == "int"){
                     //Проверить есть ли в таблице колонка с автоинкрементом
                     $table->increments($column->name);
@@ -303,6 +311,27 @@ class Field extends ModelValidation
         }
 
         return false;
+    }
+
+
+
+
+
+
+    public function renameColumn($new_name){
+        //На стадии реализаций
+        if($new_name && self::hasTable($this->dbtable) && self::hasColumn($this->dbtable,$this->name)){
+            if($this->name == $new_name) return false;
+
+            Schema::rename($this->name,$new_name);
+            if(self::hasColumn($this->dbtable,$new_name)){
+                $this->name = $new_name;
+                return $this->save();
+            }
+        }
+
+        return false;
+        
     }
 
 }

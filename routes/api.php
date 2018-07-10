@@ -121,7 +121,7 @@ Route::group(['namespace'=>'Api'],function($route){
 
 	$route->put("fields","ApiFieldsSchemaController@createField")->name("createField");
 
-	$route->post("fields/{id}","ApiFieldsSchemaController@updateField")->name("updateField");
+	//$route->post("fields/{id}/rename","ApiFieldsSchemaController@updateField")->name("updateField");
 
 	$route->delete("fields/{id}","ApiFieldsSchemaController@deleteField")->name("deleteField");
 });

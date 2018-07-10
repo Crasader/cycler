@@ -46,7 +46,7 @@ class ApiFieldsSchemaController extends Controller
     * GET <baseUrl>/api/field/<id>
     *
     */
-    public function getField($id){
+    public function getField($id,Request $request){
         
         $model = Field::find($id);
 
@@ -77,6 +77,8 @@ class ApiFieldsSchemaController extends Controller
             $params['name'] = str_replace(" ", "_", trim($params['name']));
         }
         
+        $answer['result'] = false;
+
         if($model->fill($params,true) && $model->save()){
             
             if($model->addColumn()){
@@ -99,7 +101,7 @@ class ApiFieldsSchemaController extends Controller
 
     /*
     *
-    * POST <baseUrl>/api/field/<id>
+    * POST <baseUrl>/api/field/<id>/rename
     *
     */
     public function updateField($id,Request $request){
@@ -107,9 +109,24 @@ class ApiFieldsSchemaController extends Controller
         
         $model = Field::find($id);
         
+        $answer['result'] = false;
+
         if(isset($model->id)){
-            $answer['result'] = $model->fill($request->toArray(),true) && $model->save() ? true : false;
-            
+
+            $old_name = $model->name;
+            $params =  $request->toArray();
+            $name = isset($params['name']) ? str_replace(" ", "_", trim($params['name'])) : null;
+            $attr = $model->getAttributes();
+            $attr['name']=$name;
+            if($model->validate($attr)){
+                if($model->renameColumn($name)){
+                    $answer['result'] =  true;
+                }
+            }
+
+            $a['errors']= $model->errors();
+            return $a;
+
             $answer['field']=$model->getAttributes();
         
             $answer['errors'] = $model->errors();
