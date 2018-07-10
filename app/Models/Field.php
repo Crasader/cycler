@@ -268,6 +268,9 @@ class Field extends ModelValidation
                         case 'date':
                             $table_column = $table->date($column->name);
                             break;
+                        case 'time':
+                            $table_column = $table->time($column->name);
+                            break;
                         case 'timestamp':
                             $table_column = $table->timestamp($column->name);
                             break;
@@ -276,18 +279,20 @@ class Field extends ModelValidation
                             break;
                     }
 
+                    if($table_column){
+                        if(!$column->is_required){
+                            $table_column->nullable()->default(null);
+                        }
 
-                    if(!$column->is_required){
-                        $table_column->nullable()->default(null);
-                    }
+                        if($column->is_nullable){
+                            $table_column->nullable();   
+                        }
 
-                    if($column->is_nullable){
-                        $table_column->nullable();   
+                        if($column->default){
+                            $table_column->default($column->default);   
+                        }
                     }
-
-                    if($column->default){
-                        $table_column->default($column->default);   
-                    }
+                    
 
                 }
 
