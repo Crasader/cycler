@@ -67,7 +67,7 @@ Route::group(['namespace'=>'Api'],function($route){
 	* Currencies
 	* 
 	*/
-	$route->get("currency","ApiCurrencyController@getCurrencies")->name("getCurrencies");
+	$route->get("currencies","ApiCurrencyController@getCurrencies")->name("getCurrencies");
 
 	$route->get("currency/{id}","ApiCurrencyController@getCurrency")->name("getCurrency");
 
@@ -103,15 +103,15 @@ Route::group(['namespace'=>'Api'],function($route){
 	* Pipelines
 	* 
 	*/
-	$route->get("stages","ApiPipelinesController@getStages")->name("getStages");
+	$route->get("stages","ApiStageController@getStages")->name("getStages");
 
-	$route->get("stage/{id}","ApiPipelinesController@getStage")->name("getStage");
+	$route->get("stages/{id}","ApiStageController@getStage")->name("getStage");
 
-	$route->put("stage","ApiPipelinesController@createStage")->name("createStage");
+	$route->put("stages","ApiStageController@createStage")->name("createStage");
 
-	$route->post("stage/{id}","ApiPipelinesController@updateStage")->name("updateStage");
+	$route->post("stages/{id}","ApiStageController@updateStage")->name("updateStage");
 
-	$route->delete("stage/{id}","ApiPipelinesController@deleteStage")->name("deleteStage");
+	$route->delete("stages/{id}","ApiStageController@deleteStage")->name("deleteStage");
 
 
 
@@ -122,11 +122,11 @@ Route::group(['namespace'=>'Api'],function($route){
 	*/
 	$route->get("fields","ApiFieldsSchemaController@getFields")->name("getFields");
 
-	$route->get("field/{id}","ApiFieldsSchemaController@getField")->name("getField");
+	$route->get("fields/{id}","ApiFieldsSchemaController@getField")->name("getField");
 
-	$route->put("field","ApiFieldsSchemaController@createField")->name("createField");
+	$route->put("fields","ApiFieldsSchemaController@createField")->name("createField");
 
-	$route->post("field/{id}","ApiFieldsSchemaController@updateField")->name("updateField");
+	//$route->post("fields/{id}/rename","ApiFieldsSchemaController@updateField")->name("updateField");
 
-	$route->delete("field/{id}","ApiFieldsSchemaController@deleteField")->name("deleteField");
+	$route->delete("fields/{id}","ApiFieldsSchemaController@deleteField")->name("deleteField");
 });

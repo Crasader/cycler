@@ -82,7 +82,7 @@ class TableFields extends Migration
 
       return [
           "id"=>[
-                'table' => 'deals',
+                'dbtable' => 'deals',
                 'name' => 'id',
                 'model_type'=>'Integer',
                 'data_type'=>'int',
@@ -91,7 +91,7 @@ class TableFields extends Migration
                 'title'=>'ID'
           ],
           "title"=>[
-                'table' => 'deals',
+                'dbtable' => 'deals',
                 'name' => 'title',
                 'model_type'=>'String',
                 'data_type'=>'varchar',
@@ -100,7 +100,7 @@ class TableFields extends Migration
                 'is_nullable'=>false,
           ],
           "user_id"=>[
-                'table' => 'deals',
+                'dbtable' => 'deals',
                 'name' => 'user_id',
                 'model_type'=>'Object',
                 'data_type'=>'int',
@@ -111,7 +111,7 @@ class TableFields extends Migration
                 'is_required'=>true,
           ],
           "creator_id"=>[
-                'table' => 'deals',
+                'dbtable' => 'deals',
                 'name' => 'creator_id',
                 'model_type'=>'Object',
                 'data_type'=>'int',
@@ -122,7 +122,7 @@ class TableFields extends Migration
                 'is_required'=>true,
           ],
           "status"=>[
-                'table' => 'deals',
+                'dbtable' => 'deals',
                 'name' => 'status',
                 'model_type'=>'Array',
                 'data_type'=>'enum',
@@ -131,7 +131,7 @@ class TableFields extends Migration
                 'is_required'=>true,
           ],
           "lost_reason"=>[
-                'table' => 'deals',
+                'dbtable' => 'deals',
                 'name' => 'lost_reason',
                 'model_type'=>'Array',
                 'data_type'=>'enum',
@@ -141,7 +141,7 @@ class TableFields extends Migration
           ],
 
           "stage_id"=>[
-                'table' => 'deals',
+                'dbtable' => 'deals',
                 'name' => 'stage_id',
                 'model_type'=>'Object',
                 'data_type'=>'int',
@@ -152,7 +152,7 @@ class TableFields extends Migration
                 'is_required'=>true,
           ],
           "pipeline_id"=>[
-                'table' => 'deals',
+                'dbtable' => 'deals',
                 'name' => 'pipeline_id',
                 'model_type'=>'Object',
                 'data_type'=>'int',
@@ -164,7 +164,7 @@ class TableFields extends Migration
           ],
 
           "value"=>[
-                'table' => 'deals',
+                'dbtable' => 'deals',
                 'name' => 'value',
                 'model_type'=>'String',
                 'data_type'=>'varchar',
@@ -173,7 +173,7 @@ class TableFields extends Migration
           ],
 
           "currency"=>[
-                'table' => 'deals',
+                'dbtable' => 'deals',
                 'name' => 'currency',
                 'model_type'=>'String',
                 'data_type'=>'varchar',
@@ -182,7 +182,7 @@ class TableFields extends Migration
           ],
 
           "person_type"=>[
-                'table' => 'deals',
+                'dbtable' => 'deals',
                 'name' => 'person_type',
                 'model_type'=>'Array',
                 'data_type'=>'enum',
@@ -192,7 +192,7 @@ class TableFields extends Migration
           ],
 
           "person_name"=>[
-                'table' => 'deals',
+                'dbtable' => 'deals',
                 'name' => 'person_name',
                 'model_type'=>'String',
                 'data_type'=>'varchar',
@@ -201,7 +201,7 @@ class TableFields extends Migration
           ],
 
           "person_phone"=>[
-                'table' => 'deals',
+                'dbtable' => 'deals',
                 'name' => 'person_phone',
                 'model_type'=>'String',
                 'data_type'=>'varchar',
@@ -210,7 +210,7 @@ class TableFields extends Migration
           ],
 
           "person_email"=>[
-                'table' => 'deals',
+                'dbtable' => 'deals',
                 'name' => 'person_email',
                 'model_type'=>'String',
                 'data_type'=>'varchar',
@@ -219,13 +219,13 @@ class TableFields extends Migration
           ],
 
           "dts_created"=>[
-                'table' => 'deals',
+                'dbtable' => 'deals',
                 'name' => 'dts_created',
                 'model_type'=>'Integer',
                 'data_type'=>'timestamp',
           ],
           "dts_updated"=>[
-                'table' => 'deals',
+                'dbtable' => 'deals',
                 'name' => 'dts_updated',
                 'model_type'=>'Integer',
                 'data_type'=>'timestamp',

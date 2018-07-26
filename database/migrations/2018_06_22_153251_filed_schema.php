@@ -16,7 +16,7 @@ class FiledSchema extends Migration
         Schema::create('fields_schema', function (Blueprint $table) {
             $table->increments('id');
             
-            $table->string('table',64);
+            $table->string('dbtable',64);
             $table->string('name',64);
             $table->enum('model_type',['Array','Boolean','Integer','Number','Object','String','$ref']); //Enum
             $table->string('data_type',64);
@@ -56,7 +56,7 @@ class FiledSchema extends Migration
             $table->unsignedTinyInteger('is_required')->default(0);
             $table->string('pattern',255)->default("");
 
-            $table->unique(['table', 'name'],'table_name_unique_index');
+            $table->unique(['dbtable', 'name'],'table_name_unique_index');
 
             $table->engine = 'MyISAM';
             $table->collation = 'utf8_general_ci';
