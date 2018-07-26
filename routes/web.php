@@ -12,51 +12,78 @@
 */
 
 
-
-
-	Route::get('/test', function () {
-	    $query = http_build_query([
-	            'client_id' => 13, // Replace with Client ID
-	            'redirect_uri' => 'http://laracrm:8082/callback',
-	            'response_type' => 'code',
-	            'scope' => ''
-	    ]);
-
-	    return redirect('http://laracrm:8082/oauth/authorize?'.$query);
-	});
-
-
-	Route::get('/callback', function (\Illuminate\Http\Request $request) {
-        
-        
-
-
-
+    Route::get('gettoken',function(){
         $response = (new GuzzleHttp\Client)->post('http://laracrm:8082/oauth/token', [
             'form_params' => [
-                'grant_type' => 'authorization_code',
-                'client_id' => 13, // Replace with Client ID
-                'client_secret' => 'DvVxcbENj5iWTtJiGZScWiBZpG3YHgL5zqlatyzK', // Replace with client secret
-                'redirect_uri' => 'http://laracrm:8082/callback',
-                'code' => $request->code,
+                'grant_type' => 'password',
+                'client_id' => 2, // Replace with Client ID
+                'client_secret' => 'RD9nCmCKfCzFpvOSWrX5JvrKseTEMUAlyyph96z5', // Replace with client secret
+                'username' => 'admin@admin.ru',
+                'password' => 'secret',
+                'scope' => '',
             ]
         ]);
 
-        session()->put('token', json_decode((string) $response->getBody(), true));
-
-        return redirect('/todos');
-    });
-
-
-
-    Route::get('/todos', function () {
-        $response = (new GuzzleHttp\Client)->get('http://laracrm:8082/api/todos', [
-            'headers' => [
-                'Authorization' => 'Bearer '.session()->get('token.access_token')
-            ]
-        ]);
         return json_decode((string) $response->getBody(), true);
     });
+
+
+
+
+    Route::get('auth',function(){
+        $response = (new GuzzleHttp\Client)->post('http://laracrm:8082/api/auth', [
+            'form_params' => [
+                'email' => 'admin@admin.ru',
+                'password' => 'secret'
+            ]
+        ]);
+
+        return json_decode((string) $response->getBody(), true);
+    });
+
+	// Route::get('/test', function () {
+	//     $query = http_build_query([
+	//             'client_id' => 13, // Replace with Client ID
+	//             'redirect_uri' => 'http://laracrm:8082/callback',
+	//             'response_type' => 'code',
+	//             'scope' => ''
+	//     ]);
+
+	//     return redirect('http://laracrm:8082/oauth/authorize?'.$query);
+	// });
+
+
+	// Route::get('/callback', function (\Illuminate\Http\Request $request) {
+        
+        
+
+
+
+ //        $response = (new GuzzleHttp\Client)->post('http://laracrm:8082/oauth/token', [
+ //            'form_params' => [
+ //                'grant_type' => 'authorization_code',
+ //                'client_id' => 13, // Replace with Client ID
+ //                'client_secret' => 'DvVxcbENj5iWTtJiGZScWiBZpG3YHgL5zqlatyzK', // Replace with client secret
+ //                'redirect_uri' => 'http://laracrm:8082/callback',
+ //                'code' => $request->code,
+ //            ]
+ //        ]);
+
+ //        session()->put('token', json_decode((string) $response->getBody(), true));
+
+ //        return redirect('/todos');
+ //    });
+
+
+
+ //    Route::get('/todos', function () {
+ //        $response = (new GuzzleHttp\Client)->get('http://laracrm:8082/api/todos', [
+ //            'headers' => [
+ //                'Authorization' => 'Bearer '.session()->get('token.access_token')
+ //            ]
+ //        ]);
+ //        return json_decode((string) $response->getBody(), true);
+ //    });
 
 
 

@@ -23,6 +23,11 @@ Route::middleware('auth:api')->get('/todos', function (Request $request) {
 });
 
 
+Route::post('auth', 'Auth\AuthController@auth');
+
+
+
+
 /*
 * Routes for ApiPublicController
 *
