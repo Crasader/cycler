@@ -69,13 +69,13 @@ Route::group(['namespace'=>'Api'],function($route){
 	*/
 	$route->get("currencies","ApiCurrencyController@getCurrencies")->name("getCurrencies");
 
-	$route->get("currency/{id}","ApiCurrencyController@getCurrency")->name("getCurrency");
+	$route->get("currencies/{id}","ApiCurrencyController@getCurrency")->name("getCurrency");
 
-	$route->put("currency","ApiCurrencyController@createCurrency")->name("createCurrency");
+	$route->put("currencies","ApiCurrencyController@createCurrency")->name("createCurrency");
 
-	$route->post("currency/{id}","ApiCurrencyController@updateCurrency")->name("updateCurrency");
+	$route->post("currencies/{id}","ApiCurrencyController@updateCurrency")->name("updateCurrency");
 
-	$route->delete("currency/{id}","ApiCurrencyController@deleteCurrency")->name("deleteCurrency");
+	$route->delete("currencies/{id}","ApiCurrencyController@deleteCurrency")->name("deleteCurrency");
 
 
 
