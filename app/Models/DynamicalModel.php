@@ -95,22 +95,24 @@ trait DynamicalModel{
 
 
 
-	public function createRule(Object $field){
+	public function createRule($field){
 		
-		if(!$field->auto_increment && $field->is_required){
+		if(is_object($field)){
+			if(!$field->auto_increment && $field->is_required){
 			$this->setRule($field->name,'required');
-		}
-
-		if($field->data_type == "enum"){
-			$values = json_decode($field->values);
-			if(is_array($values) && count($values)){
-				$rule = "in:".implode(",", $values);
-				$this->setRule($field->name, $rule);
 			}
-		}
 
-		if($field->is_nullable){
-			$this->setRule($field->name, "nullable");
+			if($field->data_type == "enum"){
+				$values = json_decode($field->values);
+				if(is_array($values) && count($values)){
+					$rule = "in:".implode(",", $values);
+					$this->setRule($field->name, $rule);
+				}
+			}
+
+			if($field->is_nullable){
+				$this->setRule($field->name, "nullable");
+			}
 		}
 
 	}

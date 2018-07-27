@@ -27,7 +27,7 @@ class ModelValidation extends Model{
 
 
 
-	public function fill($data,$validate = false){
+	public function fill(array $data,$validate = false){
 
 		parent::fill($data);
 
