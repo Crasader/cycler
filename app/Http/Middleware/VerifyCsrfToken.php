@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as Middleware;
+use Illuminate\Session\TokenMismatchException;
+use Closure;
 
 class VerifyCsrfToken extends Middleware
 {
@@ -12,6 +14,21 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        'api/supervisor/deals',
+        
     ];
+
+
+
+    public function handle($request, Closure $next){
+        try {
+            return parent::handle($request, $next);
+        } catch (TokenMismatchException $e) {
+            
+            if ($request->ajax() || strpos($request->getUri(), '/api') !== false) {
+                return response()->json(['message' => 'Надо залогиниться'], 418);
+            }
+
+            return redirect()->route('login');
+        }
+    }
 }
