@@ -4,9 +4,11 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-
 use App\Traits\RestTrait;
 use App\Traits\RestExceptionHandlerTrait;
+use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Handler extends ExceptionHandler
 {   
@@ -63,15 +65,54 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {   
-        //для теста
-        return parent::render($request, $exception);
+        
 
         if(!$this->isApiCall($request)) {
-            $retval = parent::render($request, $exception);
+            $retval=parent::render($request, $exception);
         } else {
-            $retval = $this->getJsonResponseForException($request, $exception);
+            $retval=$this->getJsonResponseForException($request, $exception);
         }
 
+
+        
         return $retval;
+    }
+
+
+
+
+    protected function getStatusCode(\Exception $e){
+
+        if ($e instanceof HttpException) {
+            return $e->getStatusCode();
+        }
+
+        // данное исключение не является потомком \Symfony\Component\HttpKernel\Exception\HttpException,
+        // поэтому небольшой хак
+        if ($e instanceof ModelNotFoundException) {
+            return 404;
+        }
+
+        return 500;
+    }
+
+
+
+    public function getMessage(\Exception $e){
+        
+
+        // это исключение я создал сам и использую в моделях,
+        // у него человекопонятные сообщения типа «Не удалось сохранить запись»
+        // if ($e instanceof DatabaseException) {
+        //     return $e->getMessage();
+        // }
+
+
+        if ($e instanceof ModelNotFoundException) {
+            return "Record not found";
+            //return trans('main.model_not_found');
+        }
+
+        return $e->getMessage();
     }
 }

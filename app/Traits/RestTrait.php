@@ -17,7 +17,7 @@ trait RestTrait
      */
     protected function isApiCall(Request $request)
     {
-        return strpos($request->getUri(), '/api/') !== false;
+        return $request->ajax() || strpos($request->getUri(), '/api') !== false;
     }
 
 }

@@ -39,7 +39,6 @@ class UserHasSomeRoles
 	public function handle($request, Closure $next)
 	{
 		
-		
 		if($this->auth->guest()){
 			return redirect("login");
 		}

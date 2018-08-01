@@ -166,6 +166,7 @@ class ApiHelper{
 			foreach ($data as $r) {
 				$key = $r->{$params[self::QueryField_Index]};
 				$result[$key] = $r;
+				
 			}
 		}else{
 			$result = $data;

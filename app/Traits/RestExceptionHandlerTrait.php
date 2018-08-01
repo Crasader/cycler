@@ -5,9 +5,13 @@ namespace App\Traits;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 trait RestExceptionHandlerTrait
 {
+
+
+
 
     /**
      * Creates a new JSON response based on exception type.
@@ -17,17 +21,24 @@ trait RestExceptionHandlerTrait
      * @return \Illuminate\Http\JsonResponse
      */
     protected function getJsonResponseForException(Request $request, Exception $e)
-    {
+    {   
         switch(true) {
+            
             case $this->isModelNotFoundException($e):
-                $retval = $this->modelNotFound();
+                $retval = $this->modelNotFound($this->getMessage($e),$this->getStatusCode($e));
+                break;
+            case $this->isHttpException($e):
+                $retval = $this->httpException($this->getMessage($e),$this->getStatusCode($e));
                 break;
             default:
-                $retval = $this->badRequest($e->getMessage(),$e->getCode());
+                $retval = $this->badRequest($this->getMessage($e),$this->getStatusCode($e));
         }
 
         return $retval;
     }
+
+
+
 
     /**
      * Returns json response for generic bad request.
@@ -37,9 +48,13 @@ trait RestExceptionHandlerTrait
      * @return \Illuminate\Http\JsonResponse
      */
     protected function badRequest($message='Bad request', $statusCode=400)
-    {
+    {   
         return $this->jsonResponse(['error' => $message, 'error_code'=>$statusCode], $statusCode);
     }
+
+
+
+
 
     /**
      * Returns json response for Eloquent model not found exception.
@@ -49,9 +64,30 @@ trait RestExceptionHandlerTrait
      * @return \Illuminate\Http\JsonResponse
      */
     protected function modelNotFound($message='Record not found', $statusCode=404)
-    {
+    {   
         return $this->jsonResponse(['error' => $message], $statusCode);
     }
+
+
+
+
+
+    /**
+     * Returns json response for Eloquent model not found exception.
+     *
+     * @param string $message
+     * @param int $statusCode
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function httpException($message='Http found', $statusCode=500)
+    {   
+        return $this->jsonResponse(['error' => $message], $statusCode);
+    }
+    
+
+
+
+
 
     /**
      * Returns json response.
@@ -67,15 +103,27 @@ trait RestExceptionHandlerTrait
         return response()->json($payload, $statusCode);
     }
 
+
+
+
     /**
      * Determines if the given exception is an Eloquent model not found.
      *
      * @param Exception $e
      * @return bool
      */
-    protected function isModelNotFoundException(Exception $e)
-    {
+    protected function isModelNotFoundException(Exception $e){
         return $e instanceof ModelNotFoundException;
+    }
+
+    /**
+     * если это потомок \Symfony\Component\HttpKernel\Exception\HttpException
+     *
+     * @param Exception $e
+     * @return bool
+     */
+    protected function isHttpException(Exception $e){
+        return $e instanceof HttpException;
     }
 
 }

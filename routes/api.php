@@ -13,6 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
+
+
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -23,6 +26,7 @@ Route::middleware('auth:api')->get('/todos', function (Request $request) {
 });
 
 
+
 Route::post('auth', 'Auth\AuthController@auth');
 
 
@@ -30,16 +34,16 @@ Route::put('auth/register', 'Auth\AuthController@register');
 
 
 
-
 /*
 * Routes for ApiPublicController
 *
 */
-Route::group(['prefix'=>'/public','namespace'=>'Api'],function($route){
+Route::group(['prefix'=>'/public','namespace'=>'Api','middleware'=>'auth:api'],function($route){
 	
 	$route->put("deals","ApiPublicController@createDeal")->name("public-createDeal");
 
 	$route->put("calls","ApiPublicController@addCall")->name("public-addCall");
+
 });
 
 
@@ -49,10 +53,9 @@ Route::group(['prefix'=>'/public','namespace'=>'Api'],function($route){
 *
 */
 
-Route::group(['namespace'=>'Api'],function($route){
+Route::group(['namespace'=>'Api','middleware'=>'auth:api'],function($route){
 	$route->get("self","ApiSelfController@self")->name("self");
 
-	
 	
 	$route->get("deals","ApiDealController@getDeals")->name("getDeals");
 
