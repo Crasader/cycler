@@ -26,6 +26,9 @@ Route::middleware('auth:api')->get('/todos', function (Request $request) {
 Route::post('auth', 'Auth\AuthController@auth');
 
 
+Route::put('auth/register', 'Auth\AuthController@register');
+
+
 
 
 /*
