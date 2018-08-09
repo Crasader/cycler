@@ -5,12 +5,13 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
+use App\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
     use Notifiable;
     use EntrustUserTrait;
-    use \Laravel\Passport\HasApiTokens;
+    use HasApiTokens;
 
     /**
      * The attributes that are mass assignable.

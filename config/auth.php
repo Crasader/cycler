@@ -100,4 +100,10 @@ return [
         ],
     ],
 
+
+
+
+
+    'access_token_expires' => env("ACCESS_TOKEN_EXPIRES",3600)
+
 ];

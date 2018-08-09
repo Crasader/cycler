@@ -33,8 +33,13 @@ class AuthController extends Controller
       $email = $params['email'] ?? "admin@admin.ru";
       $password = $params['password'] ?? "secret";
 
+      
       if(\Auth::attempt(['email' => $email, 'password' => $password])){
-        return \Auth::user()->createToken('token_user', []);
+        
+        $token = \Auth::user()->createToken('token_user', [],config('auth.access_token_expires'));
+        $json['token'] = $token->accessToken;
+        $json['expires_at'] = $token->token->expires_at;
+        return $json;
       }
 
       return response()->json(['error' => 'Invalid email or Password']);
