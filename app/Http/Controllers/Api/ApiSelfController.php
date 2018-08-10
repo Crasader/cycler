@@ -19,8 +19,7 @@ class ApiSelfController extends Controller
      */
     public function __construct()
     {
-       //$this->middleware("auth");
-       //$this->middleware("role:".config('defines.roles.SUPERVISOR'));
+       
     }
 
 

@@ -15,7 +15,9 @@ class AppSettings extends Migration
     {
         Schema::create('app_settings', function (Blueprint $table) {
             $table->increments('id');
-            
+            $table->string("name");
+            $table->unique("name","app_settings_unique_name");
+            $table->text("values");
         });
     }
 
