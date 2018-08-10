@@ -36,7 +36,8 @@ class AuthController extends Controller
       
       if(\Auth::attempt(['email' => $email, 'password' => $password])){
         
-        $token = \Auth::user()->createToken('token_user', [],config('auth.access_token_expires'));
+        
+        $token = \Auth::user()->createToken('token_user', [],time()+config('auth.access_token_expires'));
         $json['token'] = $token->accessToken;
         $json['expires_at'] = $token->token->expires_at;
         return $json;
