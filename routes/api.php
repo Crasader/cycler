@@ -126,6 +126,31 @@ Route::group(['namespace'=>'Api','middleware'=>'auth:api'],function($route){
 
 
 	/*
+	* Settings
+	* 
+	*/
+	$route->get("settings","ApiSettingController@getSettings")->name("getSettings");
+
+	$route->get("settings/{id}","ApiSettingController@getSetting")->name("getSetting");
+
+	$route->put("settings","ApiSettingController@createSetting")->name("createSetting");
+
+	$route->post("settings/{id}","ApiSettingController@updateSetting")->name("updateSetting");
+
+	$route->delete("settings/{id}","ApiSettingController@deleteSetting")->name("deleteSetting");
+
+
+	/*
+	* Events
+	* 
+	*/
+	$route->get("events","ApiEventsController@getEvents")->name("getEvents");
+
+
+
+
+
+	/*
 	* Custom Fields
 	* 
 	*/

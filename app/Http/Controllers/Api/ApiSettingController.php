@@ -7,10 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\{Role,Permissions,User};
 use App\Helpers\ApiHelper;
-use App\Models\{Stage};
+use App\Models\{Settings};
 
-class ApiStageController extends Controller
+class ApiSettingController extends Controller
 {
+
+
 
     /**
      * 
@@ -22,15 +24,17 @@ class ApiStageController extends Controller
     }
 
 
+
+
     /*
     *
-    * GET <baseUrl>/api/pipelines
+    * GET <baseUrl>/api/settings
     *
     */
-    public function getStages(Request $request){
+    public function getSettings(Request $request){
         $api = new ApiHelper;
         
-        $result = $api->getByRequest(new Stage,$request->all());
+        $result = $api->getByRequest(new Settings,$request->all());
         
         return response()->json($result); 
     }
@@ -41,12 +45,12 @@ class ApiStageController extends Controller
 
     /*
     *
-    * GET <baseUrl>/api/pipelines/<id>
+    * GET <baseUrl>/api/settings/<id>
     *
     */
-    public function getStage($id){
+    public function getSetting($id){
         
-        $model = Stage::findOrFail($id);
+        $model = Settings::findOrFail($id);
 
         return response()->json([$model->getAttributes()]);
     }
@@ -55,15 +59,15 @@ class ApiStageController extends Controller
 
 
     /*
-    * PUT <baseUrl>/api/pipelines
+    * PUT <baseUrl>/api/settings
     */
-    public function createStage(Request $request){
+    public function createSetting(Request $request){
 
         $answer = array();
 
         $answer['parameters'] = $request->toArray();
 
-        $model =  new Stage;
+        $model =  new Settings;
         
         $answer['result'] = $model->fill($request->toArray(),true) && $model->save() ? true : false;
         
@@ -79,23 +83,23 @@ class ApiStageController extends Controller
 
     /*
     *
-    * POST <baseUrl>/api/pipelines/<id>
+    * POST <baseUrl>/api/settings/<id>
     *
     */
-    public function updateStage($id,Request $request){
+    public function updateSetting($id,Request $request){
         $answer = array();
         
-        $model = Stage::findOrFail($id);
+        $model = Settings::findOrFail($id);
         
         if(isset($model->id)){
             $answer['result'] = $model->fill($request->toArray(),true) && $model->save() ? true : false;
             
-            $answer['stage']=$model->getAttributes();
+            $answer['setting']=$model->getAttributes();
         
             $answer['errors'] = $model->errors();
         }else{
             $answer['error'] = 404;
-            $answer['error_message'] = "not found Stage";
+            $answer['error_message'] = "not found Setting";
         }
         
 
@@ -109,12 +113,12 @@ class ApiStageController extends Controller
 
     /*
     *
-    * DELETE <baseUrl>/api/pipelines/<id>
+    * DELETE <baseUrl>/api/settings/<id>
     *
     */
-    public function deleteStage($id){
+    public function deleteSetting($id){
         
-        $model = Stage::findOrFail($id);
+        $model = Settings::findOrFail($id);
         $answer['result'] = false;
         if(isset($model->id)){
             $answer['result'] = $model->delete();

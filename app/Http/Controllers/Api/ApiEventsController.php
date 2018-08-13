@@ -19,4 +19,16 @@ class ApiEventsController extends Controller
     {
       
     }
+
+
+    /*
+    *
+    * GET <baseUrl>/api/events
+    *
+    */
+    public function getEvents(Request $request){
+       
+        
+        return response()->json([]); 
+    }
 }

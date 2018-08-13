@@ -46,7 +46,7 @@ class ApiCurrencyController extends Controller
     */
     public function getCurrency($id){
         
-        $model = Currency::find($id);
+        $model = Currency::findOrFail($id);
 
         return response()->json([$model->getAttributes()]);
     }
@@ -85,7 +85,7 @@ class ApiCurrencyController extends Controller
     public function updateCurrency($id,Request $request){
         $answer = array();
         
-        $model = Currency::find($id);
+        $model = Currency::findOrFail($id);
         
         if(isset($model->id)){
             $answer['result'] = $model->fill($request->toArray(),true) && $model->save() ? true : false;
@@ -114,7 +114,7 @@ class ApiCurrencyController extends Controller
     */
     public function deleteCurrency($id){
         
-        $model = Currency::find($id);
+        $model = Currency::findOrFail($id);
         $answer['result'] = false;
         if(isset($model->id)){
             $answer['result'] = $model->delete();

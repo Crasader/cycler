@@ -3,13 +3,29 @@
 namespace App\Models;
 
 
-class Pipeline extends ModelValidation
+class Settings extends ModelValidation
 {
+
+    /*
+    * Table name in the BD
+    */
+    protected $table = "app_settings";
+
+
+    /*
+    * including created_at and updated_at columns in the table
+    */
+    public $timestamps = false;
+
+
 
 
     protected $rules = array(
-        'name'=>['required'],
+        'name'=>['required','unique:app_settings'],
     );
+
+
+
 
     /**
      * The attributes that are mass assignable.
@@ -18,12 +34,7 @@ class Pipeline extends ModelValidation
      */
     protected $fillable = [
         'name',
-        'url_title',
-        'order_nr',
-        'active',
-        'deal_probability',
-        'update_time',
-        'selected'
+        'value'
     ];
 
 
@@ -35,12 +46,7 @@ class Pipeline extends ModelValidation
     protected $visible = [
         'id',
         'name',
-        'url_title',
-        'order_nr',
-        'active',
-        'deal_probability',
-        'update_time',
-        'selected'
+        'value'
     ];
 
 
@@ -54,12 +60,7 @@ class Pipeline extends ModelValidation
     protected $available = [
         'id',
         'name',
-        'url_title',
-        'order_nr',
-        'active',
-        'deal_probability',
-        'update_time',
-        'selected'
+        'value'
     ];
 
 

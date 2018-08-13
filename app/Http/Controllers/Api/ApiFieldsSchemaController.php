@@ -48,7 +48,7 @@ class ApiFieldsSchemaController extends Controller
     */
     public function getField($id,Request $request){
         
-        $model = Field::find($id);
+        $model = Field::findOrFail($id);
 
         if(isset($model->id)){
             return response()->json([$model->getAttributes()]);
@@ -107,7 +107,7 @@ class ApiFieldsSchemaController extends Controller
     public function updateField($id,Request $request){
         $answer = array();
         
-        $model = Field::find($id);
+        $model = Field::findOrFail($id);
         
         $answer['result'] = false;
 
@@ -151,7 +151,7 @@ class ApiFieldsSchemaController extends Controller
     */
     public function deleteField($id){
         
-        $model = Field::find($id);
+        $model = Field::findOrFail($id);
         $answer['result'] = false;
         if(isset($model->id)){
             

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\{Role,Permissions,User};
 use App\Helpers\ApiHelper;
 use App\Models\{Pipeline};
+use App\Events\UpdatedModels;
 
 class ApiPipelinesController extends Controller
 {
@@ -46,7 +47,7 @@ class ApiPipelinesController extends Controller
     */
     public function getPipeline($id){
         
-        $model = Pipeline::find($id);
+        $model = Pipeline::findOrFail($id);
 
         return response()->json([$model->getAttributes()]);
     }
@@ -67,6 +68,10 @@ class ApiPipelinesController extends Controller
         
         $answer['result'] = $model->fill($request->toArray(),true) && $model->save() ? true : false;
         
+        if($answer['result']){
+            event(new UpdatedModels($model),UpdatedModels::CREATED);
+        }
+
         $answer['errors'] = $model->errors();
         
         return $answer;
@@ -85,11 +90,15 @@ class ApiPipelinesController extends Controller
     public function updatePipeline($id,Request $request){
         $answer = array();
         
-        $model = Pipeline::find($id);
+        $model = Pipeline::findOrFail($id);
         
         if(isset($model->id)){
             $answer['result'] = $model->fill($request->toArray(),true) && $model->save() ? true : false;
             
+            if($answer['result']){
+                event(new UpdatedModels($model),UpdatedModels::UPDATED);
+            }
+
             $answer['pipeline']=$model->getAttributes();
         
             $answer['errors'] = $model->errors();
@@ -114,12 +123,18 @@ class ApiPipelinesController extends Controller
     */
     public function deletePipeline($id){
         
-        $model = Pipeline::find($id);
-        $answer['result'] = false;
+        $model = Pipeline::findOrFail($id);
+        $result = false;
         if(isset($model->id)){
-            $answer['result'] = $model->delete();
+            $result = $model->delete();
+
+            if($result){
+                event(new UpdatedModels($model,UpdatedModels::DELETED));
+            }
         }
 
-        return $answer;
+        return [
+            'success'=>$result
+        ];
     }
 }
