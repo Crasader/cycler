@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\{Deals,Field,Currency,Pipeline,Stage};
 use App\{Role,Permissions,User};
 use App\Helpers\ApiHelper;
+use App\Events\UpdatedModels;
+use Exception;
 
 class ApiCurrencyController extends Controller
 {
@@ -61,15 +63,23 @@ class ApiCurrencyController extends Controller
 
         $answer = array();
 
-        $answer['parameters'] = $request->toArray();
+        $parameters = $request->toArray();
 
         $model =  new Currency;
         
-        $answer['result'] = $model->fill($request->toArray(),true) && $model->save() ? true : false;
+        $success = $model->fill($request->toArray(),true) && $model->save() ? true : false;
         
-        $answer['errors'] = $model->errors();
+        if($success){
+            event(new UpdatedModels($model,UpdatedModels::CREATED));
+        }
+
+        $errors = $model->errors();
         
-        return $answer;
+        return [
+            'success'=>$success,
+            'errors'=>$errors,
+            'requestData'=>$parameters
+        ];
     }
 
 
@@ -85,21 +95,28 @@ class ApiCurrencyController extends Controller
     public function updateCurrency($id,Request $request){
         $answer = array();
         
-        $model = Currency::findOrFail($id);
+        $model = Currency::find($id);
         
         if(isset($model->id)){
-            $answer['result'] = $model->fill($request->toArray(),true) && $model->save() ? true : false;
+            $success = $model->fill($request->toArray(),true) && $model->save() ? true : false;
             
-            $answer['currency']=$model->getAttributes();
-        
-            $answer['errors'] = $model->errors();
+            $currency=$model->getAttributes();
+            
+            if($success){
+                event(new UpdatedModels($model,UpdatedModels::UPDATED));
+            }
+
+            $errors = $model->errors();
         }else{
-            $answer['error'] = 404;
-            $answer['error_message'] = "not found currency";
+            throw new \Exception("Currency not found",404);
         }
         
 
-        return $answer;
+        return [
+            'success'=>$success,
+            'currency'=>$currency,
+            'errors'=>$errors
+        ];
     }
 
 
@@ -114,13 +131,23 @@ class ApiCurrencyController extends Controller
     */
     public function deleteCurrency($id){
         
-        $model = Currency::findOrFail($id);
-        $answer['result'] = false;
+        $model = Currency::find($id);
+        $success = false;
         if(isset($model->id)){
-            $answer['result'] = $model->delete();
+            
+            $success = $model->delete();
+            
+            if($success){
+                event(new UpdatedModels($model,UpdatedModels::DELETED));
+            }
+
+        }else{
+            throw new Exception("Currency not found",404);
         }
 
-        return $answer;
+        return [
+            'success'=>$success
+        ];
     }
 
 

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\{Deals,Field,Currency,Pipeline,Stage};
 use App\{Role,Permissions,User};
 use App\Helpers\ApiHelper;
+use App\Events\UpdatedModels;
 
 class ApiDealController extends Controller
 {
@@ -64,15 +65,23 @@ class ApiDealController extends Controller
 
         $answer = array();
 
-        $answer['parameters'] = $request->toArray();
+        $parameters = $request->toArray();
 
         $deal = Deals::init();
         
-        $answer['result'] = $deal->fill($request->toArray(),true) && $deal->save() ? true : false;
+        $success = $deal->fill($request->toArray(),true) && $deal->save() ? true : false;
         
-        $answer['errors'] = $deal->errors();
+        if($success){
+            event(new UpdatedModels($deal,UpdatedModels::CREATED));
+        }
+
+        $errors = $deal->errors();
         
-        return $answer;
+        return [
+            'success'=>$success,
+            'errors'=>$errors,
+            'requestData'=>$parameters
+        ];
     }
 
 
@@ -91,18 +100,25 @@ class ApiDealController extends Controller
         $deal = Deals::init($id);
         
         if(isset($deal->{$deal->getKeyName()})){
-            $answer['result'] = $deal->fill($request->toArray(),true) && $deal->save() ? true : false;
+            $success = $deal->fill($request->toArray(),true) && $deal->save() ? true : false;
             
-            $answer['deal']=$deal->getAttributes();
-        
-            $answer['errors'] = $deal->errors();
+            if($success){
+                event(new UpdatedModels($deal,UpdatedModels::UPDATED));
+            }
+
+            $errors = $deal->errors();
+
+            $deal = $deal->getAttributes();
         }else{
-            $answer['error'] = 404;
-            $answer['error_message'] = "not found deal";
+            throw new \Exception("Deal not found",404);
         }
         
 
-        return $answer;
+        return [
+            'success'=>$success,
+            'deal'=>$deal,
+            'errors'=>$errors
+        ];
     }
 
 
@@ -118,12 +134,17 @@ class ApiDealController extends Controller
     public function deleteDeal($id){
         
         $deal = Deals::init($id);
-        $answer['result'] = false;
+        $success = false;
         if(isset($deal->{$deal->getKeyName()})){
-            $answer['result'] = $deal->delete();
+            $success = $deal->delete();
+            if($success){
+                event(new UpdatedModels($deal,UpdatedModels::DELETED));
+            }
         }
 
-        return $answer;
+        return [
+            'success'=>$success
+        ];
     }
 
 }

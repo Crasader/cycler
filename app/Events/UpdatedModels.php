@@ -42,7 +42,7 @@ class UpdatedModels
     public function __construct(Model $model,$action = "created")
     {
         $this->model = $model;
-        $this->action = in_array($action,self::$actions) ? $action : self::CREATED ;
+        $this->action = in_array($action,self::$actions) !== false ? $action : self::DELETED ;
     }
 
 

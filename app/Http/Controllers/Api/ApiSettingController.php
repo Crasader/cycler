@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use App\{Role,Permissions,User};
 use App\Helpers\ApiHelper;
 use App\Models\{Settings};
+use App\Events\UpdatedModels;
+use Exception;
 
 class ApiSettingController extends Controller
 {
@@ -63,17 +65,24 @@ class ApiSettingController extends Controller
     */
     public function createSetting(Request $request){
 
-        $answer = array();
 
-        $answer['parameters'] = $request->toArray();
+        $parameters = $request->toArray();
 
         $model =  new Settings;
         
-        $answer['result'] = $model->fill($request->toArray(),true) && $model->save() ? true : false;
+        $success = $model->fill($request->toArray(),true) && $model->save() ? true : false;
         
-        $answer['errors'] = $model->errors();
+        if($success){
+            event(new UpdatedModels($model,UpdatedModels::CREATED));
+        }
+
+        $errors = $model->errors();
         
-        return $answer;
+        return [
+            'success'=>$success,
+            'errors'=>$errors,
+            'requestData'=>$parameters
+        ];
     }
 
 
@@ -89,21 +98,28 @@ class ApiSettingController extends Controller
     public function updateSetting($id,Request $request){
         $answer = array();
         
-        $model = Settings::findOrFail($id);
+        $model = Settings::find($id);
         
         if(isset($model->id)){
-            $answer['result'] = $model->fill($request->toArray(),true) && $model->save() ? true : false;
+            $success = $model->fill($request->toArray(),true) && $model->save() ? true : false;
             
-            $answer['setting']=$model->getAttributes();
+            if($success){
+                event(new UpdatedModels($model,UpdatedModels::UPDATED));
+            }
+
+            $setting=$model->getAttributes();
         
-            $answer['errors'] = $model->errors();
+            $errors = $model->errors();
         }else{
-            $answer['error'] = 404;
-            $answer['error_message'] = "not found Setting";
+            throw new Exception("Setting not found",404);
         }
         
 
-        return $answer;
+        return [
+            'success'=>$success,
+            'setting'=>$setting,
+            'errors'=>$errors
+        ];
     }
 
 
@@ -118,12 +134,19 @@ class ApiSettingController extends Controller
     */
     public function deleteSetting($id){
         
-        $model = Settings::findOrFail($id);
-        $answer['result'] = false;
+        $model = Settings::find($id);
+        $success = false;
         if(isset($model->id)){
-            $answer['result'] = $model->delete();
+            $success = $model->delete();
+            if($success){
+                event(new UpdatedModels($model,UpdatedModels::DELETED));
+            }
+        }else{
+            throw new Exception("Setting not found",404);
         }
 
-        return $answer;
+        return [
+            'success'=>$success
+        ];
     }
 }

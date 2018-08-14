@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use App\{Role,Permissions,User};
 use App\Helpers\ApiHelper;
 use App\Models\{Stage};
+use App\Events\UpdatedModels;
+use Exception;
 
 class ApiStageController extends Controller
 {
@@ -59,17 +61,24 @@ class ApiStageController extends Controller
     */
     public function createStage(Request $request){
 
-        $answer = array();
 
-        $answer['parameters'] = $request->toArray();
+        $parameters = $request->toArray();
 
         $model =  new Stage;
         
-        $answer['result'] = $model->fill($request->toArray(),true) && $model->save() ? true : false;
+        $success = $model->fill($request->toArray(),true) && $model->save() ? true : false;
         
-        $answer['errors'] = $model->errors();
+        if($success){
+            event(new UpdatedModels($model,UpdatedModels::CREATED));
+        }
+
+        $errors = $model->errors();
         
-        return $answer;
+        return [
+            'success'=>$success,
+            'errors'=>$errors,
+            'requestData'=>$parameters
+        ];
     }
 
 
@@ -83,23 +92,30 @@ class ApiStageController extends Controller
     *
     */
     public function updateStage($id,Request $request){
-        $answer = array();
         
-        $model = Stage::findOrFail($id);
+        
+        $model = Stage::find($id);
         
         if(isset($model->id)){
-            $answer['result'] = $model->fill($request->toArray(),true) && $model->save() ? true : false;
+            $success = $model->fill($request->toArray(),true) && $model->save() ? true : false;
             
-            $answer['stage']=$model->getAttributes();
-        
-            $answer['errors'] = $model->errors();
+            if($success){
+                event(new UpdatedModels($model,UpdatedModels::UPDATED));
+            }
+
+            $stage=$model->getAttributes();
+            
+            $errors = $model->errors();
         }else{
-            $answer['error'] = 404;
-            $answer['error_message'] = "not found Stage";
+            throw new Exception("Stage not found",404);
         }
         
 
-        return $answer;
+        return [
+            'success'=>$success,
+            'stage'=>$stage,
+            'errors'=>$errors
+        ];
     }
 
 
@@ -114,12 +130,21 @@ class ApiStageController extends Controller
     */
     public function deleteStage($id){
         
-        $model = Stage::findOrFail($id);
-        $answer['result'] = false;
+        $model = Stage::find($id);
+        
+        $success = false;
+
         if(isset($model->id)){
-            $answer['result'] = $model->delete();
+            $success = $model->delete();
+            if($success){
+                event(new UpdatedModels($model,UpdatedModels::DELETED));
+            }
+        }else{
+            throw new Exception("Stage not found",404);
         }
 
-        return $answer;
+        return [
+            'success'=>$success
+        ];
     }
 }

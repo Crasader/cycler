@@ -38,29 +38,28 @@ class ApiSelfController extends Controller
             $answer['roles'][$role->name]['permissions'] = $role->perms()->get(['name','display_name'])->toArray();
         }
         
-        // $user = Auth::user();
-        // $answer['current_user']['name'] = $user->name;
-        // $answer['current_user']['email'] = $user->email;
+        $user = Auth::user();
+        $answer['current_user']['name'] = $user->name;
+        $answer['current_user']['email'] = $user->email;
 
-        // //Настройки пользователя
-        // $answer['current_user']['settings'] = array();
+        //Настройки пользователя
+        $answer['current_user']['settings'] = array();
 
-        // //Роли пользователя
-        // $answer['current_user']['roles'] = $user->roles()->get(['name','display_name'])->toArray();
+        //Роли пользователя
+        $answer['current_user']['roles'] = $user->roles()->get(['name','display_name'])->toArray();
 
-        // //Справочники
-        // $answer['app_settings'] = array();
+        //Справочники
+        $answer['app_settings'] = array();
 
-        // //Справочники
-        // $answer['dictionaries'] = array();
+        //Справочники
+        $answer['dictionaries'] = array();
 
-
-        // //схема таблиц
-        // $deals = new Deals();
-        // $answer['fields_schema'][$deals->getTable()] = Field::getSchema($deals); 
+        //схема таблиц
+        $deals = new Deals();
+        $answer['fields_schema'][$deals->getTable()] = Field::getSchema($deals); 
         
 
-        return response()->json($answer);
+        return $answer;
     }
 
     
