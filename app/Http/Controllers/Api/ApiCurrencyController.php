@@ -34,7 +34,7 @@ class ApiCurrencyController extends Controller
         
         $result = $api->getByRequest(new Currency,$request->all());
         
-        return response()->json($result); 
+        return $result; 
     }
 
 
@@ -50,7 +50,7 @@ class ApiCurrencyController extends Controller
         
         $model = Currency::findOrFail($id);
 
-        return response()->json([$model->getAttributes()]);
+        return $model->getAttributes();
     }
 
 

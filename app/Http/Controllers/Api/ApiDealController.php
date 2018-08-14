@@ -52,7 +52,10 @@ class ApiDealController extends Controller
         
         $deal = Deals::init($id);
 
-        return response()->json([$deal->getAttributes()]);
+        return [
+            'status'=>200,
+            'data'=>$deal->getAttributes()
+        ];
     }
 
 
