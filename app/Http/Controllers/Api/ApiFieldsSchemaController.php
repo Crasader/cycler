@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use App\{Role,Permissions,User};
 use App\Helpers\ApiHelper;
 use App\Models\{Field};
+use App\Events\UpdatedModels;
+use Exception;
 
 class ApiFieldsSchemaController extends Controller
 {
@@ -48,7 +50,7 @@ class ApiFieldsSchemaController extends Controller
     */
     public function getField($id,Request $request){
         
-        $model = Field::find($id);
+        $model = Field::findOrFail($id);
 
         if(isset($model->id)){
             return response()->json([$model->getAttributes()]);
@@ -66,10 +68,8 @@ class ApiFieldsSchemaController extends Controller
     * PUT <baseUrl>/api/field
     */
     public function createField(Request $request){
-
         //Создание новой колонки
-        $answer = array();
-
+        
         $params = $request->toArray();
 
         $model =  new Field;
@@ -77,21 +77,33 @@ class ApiFieldsSchemaController extends Controller
             $params['name'] = str_replace(" ", "_", trim($params['name']));
         }
         
-        $answer['result'] = false;
+        $success = false;
 
         if($model->fill($params,true) && $model->save()){
             
-            if($model->addColumn()){
-                $answer['result'] = true;    
-            }else{
-                $model->delete();
+            try {
+                if($model->addColumn()){
+                    $success = true;    
+                }else{
+                    $model->delete();
+                }
+            } catch (\Exception $e) {
+                throw new \Exception("Error Processing add new field", 500);
             }
 
         }
 
-        $answer['errors'] = $model->errors();
+        if($success){
+            event(new UpdatedModels($model,UpdatedModels::CREATED));
+        }
+
+        $errors = $model->errors();
         
-        return $answer;
+        return [
+            'success'=>$success,
+            'errors'=>$errors,
+            'requestData'=>$params
+        ];
     }
 
 
@@ -105,11 +117,11 @@ class ApiFieldsSchemaController extends Controller
     *
     */
     public function updateField($id,Request $request){
-        $answer = array();
+        //Переименование столбца
         
         $model = Field::find($id);
         
-        $answer['result'] = false;
+        $success = false;
 
         if(isset($model->id)){
 
@@ -118,25 +130,36 @@ class ApiFieldsSchemaController extends Controller
             $name = isset($params['name']) ? str_replace(" ", "_", trim($params['name'])) : null;
             $attr = $model->getAttributes();
             $attr['name']=$name;
+            
             if($model->validate($attr)){
-                if($model->renameColumn($name)){
-                    $answer['result'] =  true;
+                try {
+                    if($model->renameColumn($name)){
+                        $success =  true;
+                    }
+                } catch (Exception $e) {
+                    throw new \Exception("Error Processing rename field", 500);
+                    
                 }
             }
 
-            $a['errors']= $model->errors();
-            return $a;
-
-            $answer['field']=$model->getAttributes();
+            $field=$model->getAttributes();
         
-            $answer['errors'] = $model->errors();
+            $errors = $model->errors();
+
+            if($success){
+                event(new UpdatedModels($model,UpdatedModels::UPDATED));
+            }
         }else{
-            $answer['error'] = 404;
-            $answer['error_message'] = "not found Field";
+            throw new \Exception("Field not found",404);
         }
         
+        
 
-        return $answer;
+        return [
+            'success'=>$success,
+            'field'=>$field,
+            'errors'=>$errors
+        ];
     }
 
 
@@ -151,17 +174,25 @@ class ApiFieldsSchemaController extends Controller
     */
     public function deleteField($id){
         
-        $model = Field::find($id);
-        $answer['result'] = false;
-        if(isset($model->id)){
-            
+        $model = Field::findOrFail($id);
+        $success = false;
+        try{
             if($model->delete()){
-               $model->dropColumn();
-               $answer['result'] =  true;
-            }
-        }
 
-        return $answer;
+                $model->dropColumn();
+
+                $success =  true;
+
+                event(new UpdatedModels($model,UpdatedModels::DELETED));
+            }
+        }catch (Exception $e) {
+            throw new Exception("Error processing delete field", 500);
+                
+        }
+        
+        return [
+            'success'=>$success
+        ];
     }
 
 

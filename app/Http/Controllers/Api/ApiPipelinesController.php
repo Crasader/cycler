@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use App\{Role,Permissions,User};
 use App\Helpers\ApiHelper;
 use App\Models\{Pipeline};
-
+use App\Events\UpdatedModels;
+use \Exception;
 class ApiPipelinesController extends Controller
 {
 
@@ -46,7 +47,7 @@ class ApiPipelinesController extends Controller
     */
     public function getPipeline($id){
         
-        $model = Pipeline::find($id);
+        $model = Pipeline::findOrFail($id);
 
         return response()->json([$model->getAttributes()]);
     }
@@ -61,15 +62,23 @@ class ApiPipelinesController extends Controller
 
         $answer = array();
 
-        $answer['parameters'] = $request->toArray();
+        $parameters = $request->toArray();
 
         $model =  new Pipeline;
         
-        $answer['result'] = $model->fill($request->toArray(),true) && $model->save() ? true : false;
+        $success = $model->fill($request->toArray(),true) && $model->save() ? true : false;
         
-        $answer['errors'] = $model->errors();
+        if($success){
+            event(new UpdatedModels($model,UpdatedModels::CREATED));
+        }
+
+        $errors = $model->errors();
         
-        return $answer;
+        return [
+            'success'=>$success,
+            'requestData'=>$parameters,
+            'errors'=>$errors
+        ];
     }
 
 
@@ -88,18 +97,25 @@ class ApiPipelinesController extends Controller
         $model = Pipeline::find($id);
         
         if(isset($model->id)){
-            $answer['result'] = $model->fill($request->toArray(),true) && $model->save() ? true : false;
+            $success = $model->fill($request->toArray(),true) && $model->save() ? true : false;
             
-            $answer['pipeline']=$model->getAttributes();
+            if($success){
+                event(new UpdatedModels($model,UpdatedModels::UPDATED));
+            }
+
+            $pipeline=$model->getAttributes();
         
-            $answer['errors'] = $model->errors();
+            $errors = $model->errors();
         }else{
-            $answer['error'] = 404;
-            $answer['error_message'] = "not found Pipeline";
+            throw new Exception("Pipeline not found", 404);
         }
         
 
-        return $answer;
+        return [
+            'success'=>$success,
+            'pipeline'=>$pipeline,
+            'errors'=>$errors
+        ];
     }
 
 
@@ -114,12 +130,18 @@ class ApiPipelinesController extends Controller
     */
     public function deletePipeline($id){
         
-        $model = Pipeline::find($id);
-        $answer['result'] = false;
+        $model = Pipeline::findOrFail($id);
+        $success = false;
         if(isset($model->id)){
-            $answer['result'] = $model->delete();
+            $success = $model->delete();
+
+            if($success){
+                event(new UpdatedModels($model,UpdatedModels::DELETED));
+            }
         }
 
-        return $answer;
+        return [
+            'success'=>$success
+        ];
     }
 }

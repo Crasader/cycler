@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\{Role,Permissions,User};
 use App\Helpers\ApiHelper;
+use App\Models\AppEvents;
 
 class ApiEventsController extends Controller
 {
@@ -18,5 +19,20 @@ class ApiEventsController extends Controller
     public function __construct()
     {
       
+    }
+
+
+    /*
+    *
+    * GET <baseUrl>/api/events
+    *
+    */
+    public function getEvents(Request $request){
+       
+        $api = new ApiHelper;
+        
+        $result = $api->getByRequest(new AppEvents,$request->all());
+        
+        return $result;
     }
 }

@@ -15,7 +15,13 @@ class AppSettings extends Migration
     {
         Schema::create('app_settings', function (Blueprint $table) {
             $table->increments('id');
-            
+            $table->string("name");
+            $table->unique("name","app_settings_unique_name");
+            $table->longText('value')->nullable()->default(null);
+
+            $table->engine = 'MyISAM';
+            $table->collation = 'utf8_general_ci';
+            $table->charset = 'utf8';
         });
     }
 

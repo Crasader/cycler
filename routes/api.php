@@ -14,10 +14,12 @@ use Illuminate\Http\Request;
 */
 
 
-Route::post('auth', 'Auth\AuthController@auth');
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
+    
+
+
     return $request->user();
 });
 
@@ -25,6 +27,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::middleware('auth:api')->get('/todos', function (Request $request) {
     return ["res"=>'test'];
 });
+
+
+
+Route::post('auth', 'Auth\AuthController@auth');
+
+
+Route::post('auth/register', 'Auth\AuthController@register');
+
+
 
 /*
 * Routes for ApiPublicController
@@ -110,6 +121,31 @@ Route::group(['namespace'=>'Api','middleware'=>'auth:api'],function($route){
 	$route->post("stages/{id}","ApiStageController@updateStage")->name("updateStage");
 
 	$route->delete("stages/{id}","ApiStageController@deleteStage")->name("deleteStage");
+
+
+
+
+	/*
+	* Settings
+	* 
+	*/
+	$route->get("settings","ApiSettingController@getSettings")->name("getSettings");
+
+	$route->get("settings/{id}","ApiSettingController@getSetting")->name("getSetting");
+
+	$route->put("settings","ApiSettingController@createSetting")->name("createSetting");
+
+	$route->post("settings/{id}","ApiSettingController@updateSetting")->name("updateSetting");
+
+	$route->delete("settings/{id}","ApiSettingController@deleteSetting")->name("deleteSetting");
+
+
+	/*
+	* Events
+	* 
+	*/
+	$route->get("events","ApiEventsController@getEvents")->name("getEvents");
+
 
 
 
