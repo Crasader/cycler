@@ -30,8 +30,8 @@ class AuthController extends Controller
 
       $params = $request->only('email', 'password');
 
-      $email = $params['email'] ?? "admin@admin.ru";
-      $password = $params['password'] ?? "secret";
+      $email = $params['email'] ?? "";
+      $password = $params['password'] ?? "";
 
       
       if(\Auth::attempt(['email' => $email, 'password' => $password])){
@@ -39,11 +39,15 @@ class AuthController extends Controller
         
         $token = \Auth::user()->createToken('token_user', [],time()+config('auth.access_token_expires'));
         $json['token'] = $token->accessToken;
-        $json['expires_at'] = $token->token->expires_at;
+        $exp = $token->token->expires_at;
+        
+        $exp_date = $token->token->expires_at->toArray();
+        $json['expires_at'] = $exp_date['timestamp'];
+        
         return $json;
       }
 
-      return response()->json(['error' => 'Invalid email or Password']);
+      return response()->json(['error' => 'Invalid email or Password'],400);
     }
 
 
@@ -54,7 +58,7 @@ class AuthController extends Controller
         
 
         if($v->fails()){
-          return response()->json($v->errors(),310);
+          return response()->json($v->errors(),400);
         }
 
         $user = $this->create($request->all());
