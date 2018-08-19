@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 
 
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware(['auth:api','cors'])->get('/user', function (Request $request) {
     
 
 
@@ -24,16 +24,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::middleware('auth:api')->get('/todos', function (Request $request) {
+Route::middleware(['auth:api','cors'])->get('/todos', function (Request $request) {
     return ["res"=>'test'];
 });
 
 
 
-Route::post('auth', 'Auth\AuthController@auth');
+Route::middleware(['cors'])->post('auth', 'Auth\AuthController@auth');
 
 
-Route::post('auth/register', 'Auth\AuthController@register');
+Route::middleware(['cors'])->post('auth/register', 'Auth\AuthController@register');
 
 
 
@@ -41,7 +41,7 @@ Route::post('auth/register', 'Auth\AuthController@register');
 * Routes for ApiPublicController
 *
 */
-Route::group(['prefix'=>'/public','namespace'=>'Api','middleware'=>'auth:api'],function($route){
+Route::group(['prefix'=>'/public','namespace'=>'Api','middleware'=>['auth:api','cors']],function($route){
 	
 	$route->put("deals","ApiPublicController@createDeal")->name("public-createDeal");
 
@@ -56,7 +56,7 @@ Route::group(['prefix'=>'/public','namespace'=>'Api','middleware'=>'auth:api'],f
 *
 */
 
-Route::group(['namespace'=>'Api','middleware'=>'auth:api'],function($route){
+Route::group(['namespace'=>'Api','middleware'=>['auth:api','cors']],function($route){
 	$route->get("self","ApiSelfController@self")->name("self");
 
 	
