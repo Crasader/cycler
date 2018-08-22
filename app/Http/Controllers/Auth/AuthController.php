@@ -29,7 +29,7 @@ class AuthController extends Controller
     public function auth(Request $request){
 
       $params = $request->only('email', 'password');
-
+      
       $email = $params['email'] ?? "";
       $password = $params['password'] ?? "";
 

@@ -93,6 +93,11 @@ class Handler extends ExceptionHandler
             return 404;
         }
 
+
+        if ($e instanceof ModelValidateException) {
+            return 401;
+        }
+
         return 500;
     }
 
@@ -111,6 +116,11 @@ class Handler extends ExceptionHandler
         if ($e instanceof ModelNotFoundException) {
             return "Record not found";
             //return trans('main.model_not_found');
+        }
+
+
+        if ($e instanceof ModelValidateException) {
+            return "Invalid attributes";
         }
 
         return $e->getMessage();

@@ -8,7 +8,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\{Deals,Field,Currency,Pipeline,Stage};
 use App\{Role,Permissions,User};
 use App\Helpers\ApiHelper;
+
 use App\Events\UpdatedModels;
+
+use App\Exceptions\ModelValidateException;
 use Exception;
 
 class ApiCurrencyController extends Controller
@@ -75,10 +78,13 @@ class ApiCurrencyController extends Controller
 
         $errors = $model->errors();
         
+        if(count($errors))
+            throw new ModelValidateException($model);
+        
+
         return [
             'success'=>$success,
             'errors'=>$errors,
-            'requestData'=>$parameters
         ];
     }
 
@@ -111,6 +117,8 @@ class ApiCurrencyController extends Controller
             throw new \Exception("Currency not found",404);
         }
         
+        if(count($errors))
+            throw new ModelValidateException($model);
 
         return [
             'success'=>$success,

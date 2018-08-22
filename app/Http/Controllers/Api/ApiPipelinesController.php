@@ -74,6 +74,9 @@ class ApiPipelinesController extends Controller
 
         $errors = $model->errors();
         
+        if(count($errors))
+                throw new ModelValidateException($model);
+
         return [
             'success'=>$success,
             'requestData'=>$parameters,
@@ -110,6 +113,8 @@ class ApiPipelinesController extends Controller
             throw new Exception("Pipeline not found", 404);
         }
         
+        if(count($errors))
+            throw new ModelValidateException($model);
 
         return [
             'success'=>$success,

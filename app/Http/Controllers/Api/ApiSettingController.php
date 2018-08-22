@@ -78,6 +78,9 @@ class ApiSettingController extends Controller
 
         $errors = $model->errors();
         
+        if(count($errors))
+                throw new ModelValidateException($model);
+
         return [
             'success'=>$success,
             'errors'=>$errors,
@@ -114,6 +117,8 @@ class ApiSettingController extends Controller
             throw new Exception("Setting not found",404);
         }
         
+        if(count($errors))
+            throw new ModelValidateException($model);
 
         return [
             'success'=>$success,

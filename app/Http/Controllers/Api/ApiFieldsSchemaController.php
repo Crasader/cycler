@@ -98,7 +98,9 @@ class ApiFieldsSchemaController extends Controller
         }
 
         $errors = $model->errors();
-        
+        if(count($errors))
+            throw new ModelValidateException($model);
+
         return [
             'success'=>$success,
             'errors'=>$errors,
@@ -145,15 +147,18 @@ class ApiFieldsSchemaController extends Controller
             $field=$model->getAttributes();
         
             $errors = $model->errors();
+            
 
             if($success){
                 event(new UpdatedModels($model,UpdatedModels::UPDATED));
             }
+            
         }else{
             throw new \Exception("Field not found",404);
         }
         
-        
+        if(count($errors))
+                throw new ModelValidateException($model);
 
         return [
             'success'=>$success,

@@ -74,6 +74,9 @@ class ApiStageController extends Controller
 
         $errors = $model->errors();
         
+        if(count($errors))
+            throw new ModelValidateException($model);
+
         return [
             'success'=>$success,
             'errors'=>$errors,
@@ -110,6 +113,8 @@ class ApiStageController extends Controller
             throw new Exception("Stage not found",404);
         }
         
+        if(count($errors))
+            throw new ModelValidateException($model);
 
         return [
             'success'=>$success,

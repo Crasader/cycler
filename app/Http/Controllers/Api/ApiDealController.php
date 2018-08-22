@@ -80,6 +80,9 @@ class ApiDealController extends Controller
 
         $errors = $deal->errors();
         
+        if(count($errors))
+            throw new ModelValidateException($model);
+
         return [
             'success'=>$success,
             'errors'=>$errors,
@@ -116,6 +119,8 @@ class ApiDealController extends Controller
             throw new \Exception("Deal not found",404);
         }
         
+        if(count($errors))
+            throw new ModelValidateException($model);
 
         return [
             'success'=>$success,
