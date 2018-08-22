@@ -57,7 +57,7 @@ class JWTAuthenticate extends lAuthenticate
                 
                 
             if(!isset($tokenModel['id']) || !$tokenModel['id'])
-                throw new \Exception('Token is invalid');
+                throw new AuthenticationException('Token is invalid');
             
         }else{
             throw new AuthenticationException('Unauthenticated.', $guards);

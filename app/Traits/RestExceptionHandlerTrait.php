@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Illuminate\Auth\AuthenticationException;
 
 trait RestExceptionHandlerTrait
 {
@@ -29,6 +30,9 @@ trait RestExceptionHandlerTrait
                 break;
             case $this->isHttpException($e):
                 $retval = $this->httpException($this->getMessage($e),$this->getStatusCode($e));
+                break;
+            case $this->isAuthenticationException($e):
+                $retval = $this->AuthenticationException($this->getMessage($e));
                 break;
             default:
                 $retval = $this->badRequest($this->getMessage($e),$this->getStatusCode($e));
@@ -116,6 +120,8 @@ trait RestExceptionHandlerTrait
         return $e instanceof ModelNotFoundException;
     }
 
+
+
     /**
      * если это потомок \Symfony\Component\HttpKernel\Exception\HttpException
      *
@@ -124,6 +130,22 @@ trait RestExceptionHandlerTrait
      */
     protected function isHttpException(Exception $e){
         return $e instanceof HttpException;
+    }
+    
+    
+    
+    
+    protected function isAuthenticationException(Exception $e){
+        return $e instanceof AuthenticationException; 
+    }
+    
+    
+    
+    protected function AuthenticationException($message='Unauthenticated', $statusCode=401){
+    
+        return $this->jsonResponse(['error' => $message], $statusCode);; 
+    
+        
     }
 
 }
