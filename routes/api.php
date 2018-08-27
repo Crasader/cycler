@@ -147,6 +147,12 @@ Route::group(['namespace'=>'Api','middleware'=>['auth:api','cors']],function($ro
 	$route->get("events","ApiEventsController@getEvents")->name("getEvents");
 
 
+	$route->get("roles","ApiRolesController@getRoles")->name("getRoles");
+
+
+	$route->get("permissions","ApiPermissionsController@getPerms")->name("getPerms");
+
+
 
 
 
