@@ -16,12 +16,7 @@ use Illuminate\Http\Request;
 
 
 
-Route::middleware(['auth:api','cors'])->get('/user', function (Request $request) {
-    
 
-
-    return $request->user();
-});
 
 
 Route::middleware(['auth:api','cors'])->get('/todos', function (Request $request) {
@@ -59,7 +54,23 @@ Route::group(['prefix'=>'/public','namespace'=>'Api','middleware'=>['auth:api','
 Route::group(['namespace'=>'Api','middleware'=>['auth:api','cors']],function($route){
 	$route->get("self","ApiSelfController@self")->name("self");
 
-	
+
+	/**
+	* Users
+	*/
+	$route->get('users',"ApiUserController@getUsers")->name("getUsers");
+
+	$route->get('users/{id}',"ApiUserController@getUser")->name("getUser");
+
+
+	$route->get('user',"ApiUserController@getMe")->name("getMe");
+
+
+
+
+	/**
+	* Deals
+	*/
 	$route->get("deals","ApiDealController@getDeals")->name("getDeals");
 
 	$route->put("deals","ApiDealController@createDeal")->name("createDeal");
@@ -109,7 +120,7 @@ Route::group(['namespace'=>'Api','middleware'=>['auth:api','cors']],function($ro
 
 
 	/*
-	* Pipelines
+	* Stages
 	* 
 	*/
 	$route->get("stages","ApiStageController@getStages")->name("getStages");
@@ -147,10 +158,33 @@ Route::group(['namespace'=>'Api','middleware'=>['auth:api','cors']],function($ro
 	$route->get("events","ApiEventsController@getEvents")->name("getEvents");
 
 
+
+
+
+
+	/*
+	* Roles
+	* 
+	*/
 	$route->get("roles","ApiRolesController@getRoles")->name("getRoles");
 
+	$route->get("roles/{id}","ApiRolesController@getRole")->name("getRole");
 
+	$route->put("roles","ApiRolesController@create")->name("create");
+	
+	$route->post("roles/{id}","ApiRolesController@update")->name("update");
+	
+	$route->delete("roles/{id}","ApiRolesController@delete")->name("delete");
+
+
+
+
+	/*
+	* Permissions
+	* 
+	*/
 	$route->get("permissions","ApiPermissionsController@getPerms")->name("getPerms");
+	$route->get("permissions/{id}","ApiPermissionsController@getPerm")->name("getPerm");
 
 
 
