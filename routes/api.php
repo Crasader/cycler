@@ -177,6 +177,13 @@ Route::group(['namespace'=>'Api','middleware'=>['auth:api','cors']],function($ro
 	$route->delete("roles/{id}","ApiRolesController@delete")->name("delete");
 
 
+	$route->post("roles/{role_id}/permissions","ApiRolesController@addPermissions")->name("role_add_permissions");
+	
+	$route->post("roles/{role_id}/permissions/{permission_id}","ApiRolesController@attachPermissions")->name("attachPermissions");
+
+	$route->delete("roles/{role_id}/permissions/{permission_id}","ApiRolesController@deletePermissions")->name("role_delete_permissions");
+
+
 
 
 	/*
