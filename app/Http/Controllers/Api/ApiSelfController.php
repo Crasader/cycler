@@ -33,28 +33,44 @@ class ApiSelfController extends Controller
 
         $answer = array();
         
-        $roles = Role::all();
+        // $roles = Role::all();
         
-        foreach ($roles as $role) {
-            $answer['roles'][$role->name]['title'] = $role->display_name;
-            $answer['roles'][$role->name]['permissions'] = $role->perms()->get(['name','display_name'])->toArray();
-        }
+        // foreach ($roles as $role) {
+        //     $answer['roles'][$role->name]['title'] = $role->display_name;
+        //     $answer['roles'][$role->name]['permissions'] = $role->perms()->get(['name','display_name'])->toArray();
+        // }
         
         $user = Auth::user();
-        $answer['current_user']['name'] = $user->name;
-        $answer['current_user']['email'] = $user->email;
+        $answer['account']['id']  = $user->id;
+        $answer['account']['name'] = $user->name;
+        $answer['account']['email'] = $user->email;
 
         //Настройки пользователя
-        $answer['current_user']['settings'] = array();
+        $answer['settings'] = array();
 
         //Роли пользователя
-        $answer['current_user']['roles'] = $user->roles()->get(['name','display_name'])->toArray();
+        $rolesObjects = $user->roles()->get(['id','name','display_name','description']);
 
+        $roles = array();
+        $allPerms = array();
+        foreach ($rolesObjects as $key => $r) {
+            $roles[$r->id]['id']=$r->id;
+            $roles[$r->id]['name']=$r->name;
+            $roles[$r->id]['title']=$r->display_name;
+            $roles[$r->id]['description']=$r->description;
+            
+            $perms = $r->perms()->get(['id','name','display_name','description'])->toArray();
+            array_push($allPerms, $perms);
+            
+            $roles[$r->id]['permissions']=array_map(function($p){return $p['id'];}, $perms);
+        }
         
+        $answer['roles']=$roles;
+        $answer['permissions']=$allPerms;
 
-        //схема таблиц
-        $deals = new Deals();
-        $answer['fields_schema'][$deals->getTable()] = Field::getSchema($deals); 
+        // //схема таблиц
+        // $deals = new Deals();
+        // $answer['fields_schema'][$deals->getTable()] = Field::getSchema($deals); 
         
 
         return $answer;

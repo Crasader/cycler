@@ -62,7 +62,6 @@ Route::group(['namespace'=>'Api','middleware'=>['auth:api','cors']],function($ro
 
 	$route->get('users/{id}',"ApiUserController@getUser")->name("getUser");
 
-
 	$route->get('user',"ApiUserController@getMe")->name("getMe");
 
 
