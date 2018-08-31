@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\{Deals,Field,Currency,Pipeline,Stage};
-use App\{Role,Permissions,User};
+use App\{Role,Permission,User};
 use App\Helpers\ApiHelper;
 
 class ApiSelfController extends Controller

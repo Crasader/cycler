@@ -65,6 +65,11 @@ Route::group(['namespace'=>'Api','middleware'=>['auth:api','cors']],function($ro
 	$route->get('user',"ApiUserController@getMe")->name("getMe");
 
 
+	$route->post('users/{user_id}/roles/{role_id}',"ApiUserController@attachRole")->name("attachRole");
+
+	$route->delete('users/{user_id}/roles/{role_id}',"ApiUserController@detachRole")->name("detachRole");
+
+
 
 
 	/**

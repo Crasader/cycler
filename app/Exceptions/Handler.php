@@ -98,7 +98,10 @@ class Handler extends ExceptionHandler
             return 401;
         }
 
-        return 500;
+
+        
+
+        return $e->getCode() ? $e->getCode() : 404 ;
     }
 
 
