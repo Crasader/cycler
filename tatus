@@ -1,0 +1,267 @@
+commit e10a960982854ccfffe7adaa6f604a5666ddc649
+Author: Магомедали <web-ali@yandex.ru>
+Date:   Thu Aug 23 13:24:33 2018 +0300
+
+    add cors headers
+
+commit dcbae15db90cc5b8a78d234fabf84db27dbc8dc9
+Author: Magomedali <web-ali@yandex.ru>
+Date:   Thu Aug 23 11:53:57 2018 +0300
+
+    changes
+
+commit 810c9034996aca2d9c536b6d602ef0c5126e4c55
+Author: Магомедали <web-ali@yandex.ru>
+Date:   Wed Aug 22 13:42:34 2018 +0300
+
+    add ModelValidateException
+
+commit 8a0ea0bd287d14829dc2f649390092c985b68853
+Author: Magomedali <web-ali@yandex.ru>
+Date:   Wed Aug 22 10:11:13 2018 +0300
+
+    handler exception
+
+commit c0de523fb8b9600f61e3a359cea0d0b8faa7b549
+Author: Magomedali <web-ali@yandex.ru>
+Date:   Mon Aug 20 01:07:43 2018 +0300
+
+    responce code 400
+
+commit 741ae2939bf612e51f4d07c1ef6a9baa77073f13
+Author: Magomedali <web-ali@yandex.ru>
+Date:   Sun Aug 19 14:52:19 2018 +0300
+
+    remove public
+
+commit 9182f3891b4770509ae52495c38a85ede8426b48
+Merge: 4b15bc1 00ff1b6
+Author: Magomedali <web-ali@yandex.ru>
+Date:   Sun Aug 19 14:46:59 2018 +0300
+
+    Merge branch 'master' of https://github.com/Magomedali/cycler
+
+commit 4b15bc100f76bca1433669d337c5c3dc000fa537
+Author: Magomedali <web-ali@yandex.ru>
+Date:   Sun Aug 19 14:45:07 2018 +0300
+
+    allow access
+
+commit 00ff1b6a6abcc1874495bcc6aafa17c9df83a48e
+Author: Магомедали <web-ali@yandex.ru>
+Date:   Thu Aug 16 11:32:38 2018 +0300
+
+    1.0.0
+
+commit 882836cdd3e78f03e84d007cbcf66d7b93409790
+Merge: 23222d5 c7fa9f6
+Author: Magomedali <web-ali@yandex.ru>
+Date:   Wed Aug 15 13:42:20 2018 +0300
+
+    Merge branch 'master' of https://github.com/Magomedali/cycler
+
+commit 23222d5be4ba5542acf2b18f8f87efd72dd749fe
+Author: Magomedali <web-ali@yandex.ru>
+Date:   Wed Aug 15 13:42:03 2018 +0300
+
+    public_html
+
+commit c7fa9f6bd7d4d67b4d75047b6c5afd12d59b4f8e
+Author: Magomedali <web-ali@yandex.ru>
+Date:   Wed Aug 15 02:20:30 2018 +0300
+
+    get events
+
+commit cf791b0d0ff7f610ea3ddc180954abc1a3cd5eb4
+Author: Магомедали <web-ali@yandex.ru>
+Date:   Tue Aug 14 16:15:28 2018 +0300
+
+    add events
+
+commit dd15e6671a237caf57df20c8970d765dca4d8139
+Author: Магомедали <web-ali@yandex.ru>
+Date:   Mon Aug 13 12:59:50 2018 +0300
+
+    add events handlers
+
+commit 67ac356b4fd9590c9fc3042b2ca021c18271c15e
+Author: Магомедали <web-ali@yandex.ru>
+Date:   Fri Aug 10 14:58:40 2018 +0300
+
+    JWT expires_at
+
+commit 7a8d58da82e874752a639cf33ccf8b41c1e0877b
+Author: Magomedali <web-ali@yandex.ru>
+Date:   Fri Aug 10 09:05:01 2018 +0300
+
+    app_settings
+
+commit 0d717b83a413b783e9e8a3fe360cb908a1c4ceeb
+Author: Магомедали <web-ali@yandex.ru>
+Date:   Thu Aug 9 14:02:42 2018 +0300
+
+    access_token_expires
+
+commit 3c98dac61e3ff6cb145ca03111e047f58355307f
+Merge: b15f91e ac80ffa
+Author: Magomedali <web-ali@yandex.ru>
+Date:   Wed Aug 1 10:13:04 2018 +0300
+
+    auth _register
+
+commit b15f91ea83ae8ce9e25d4e0a771bc0ecf4f29ab2
+Author: Magomedali <web-ali@yandex.ru>
+Date:   Wed Aug 1 10:08:52 2018 +0300
+
+    auth register
+
+commit ac80ffa7d98e45b88d6d71e9474a9bb87003202f
+Author: Магомедали <web-ali@yandex.ru>
+Date:   Fri Jul 27 16:16:00 2018 +0300
+
+    bug fix
+
+commit e246b02148aa502540fc829bc3e4ba0dd818a5b9
+Author: Магомедали <web-ali@yandex.ru>
+Date:   Fri Jul 27 15:28:51 2018 +0300
+
+    jwt and exceptions
+
+commit 2ea0ffee632f529c88ae9d264ac25e770714283f
+Author: Magomedali <web-ali@yandex.ru>
+Date:   Fri Jul 27 01:47:05 2018 +0300
+
+    jwt
+
+commit 8e57eadf97e3dbd1961271de60e3d79885582c5f
+Merge: 4958d6c 8c5731c
+Author: Magomedali <web-ali@yandex.ru>
+Date:   Fri Jul 27 01:46:09 2018 +0300
+
+    merge
+
+commit 4958d6c0bde9e17adc8acbc733fde124a3108729
+Author: Magomedali <web-ali@yandex.ru>
+Date:   Fri Jul 27 01:39:05 2018 +0300
+
+    jwt
+
+commit 8c5731c40bc4b3bc936383485785f9e64aa3ccaa
+Author: Magomedali <web-ali@yandex.ru>
+Date:   Tue Jul 10 23:28:21 2018 +0300
+
+    deadline
+
+commit a3dab540c08d7d5b86272845ac8f892ba83f0e18
+Author: Magomedali <web-ali@yandex.ru>
+Date:   Tue Jul 10 11:33:40 2018 +0300
+
+    bug fix
+
+commit c2556cafb2dbc92125fc22786d7ac7b4abd51089
+Author: Magomedali <web-ali@yandex.ru>
+Date:   Mon Jul 9 22:40:22 2018 +0300
+
+    validate unique two properties
+
+commit 834e34ca9920a46342aa41e5683321c0c613227b
+Author: Magomedali <web-ali@yandex.ru>
+Date:   Mon Jul 9 14:05:39 2018 +0300
+
+    add and drop  column
+
+commit de78a8832824acf0172a95ff60c91cc55a3bc0f4
+Author: Magomedali <web-ali@yandex.ru>
+Date:   Sun Jul 8 23:43:44 2018 +0300
+
+    add column
+
+commit e4aa0b4df4b600c39b8ef8614f38ed8ec82bc26f
+Author: Магомедали <web-ali@yandex.ru>
+Date:   Fri Jul 6 18:44:36 2018 +0300
+
+    20180706
+
+commit db9f69e7bc8bc1cbd9aa72c7e7cd42688eb0c1f4
+Author: Магомедали <web-ali@yandex.ru>
+Date:   Thu Jul 5 20:02:10 2018 +0300
+
+    new controllers
+
+commit c5159bd2ff7b99387d8ae0ce476e02deb23d2b0b
+Author: Магомедали <web-ali@yandex.ru>
+Date:   Thu Jul 5 19:24:38 2018 +0300
+
+    API adn dynamical models
+
+commit 61ee8001f2f836ce8cd76f2100cc551250a25be0
+Author: Магомедали <web-ali@yandex.ru>
+Date:   Wed Jul 4 18:46:16 2018 +0300
+
+    query
+
+commit 6b090e2d4bd01a9d8e058c961bfbc08cb8479cd2
+Author: Magomedali <web-ali@yandex.ru>
+Date:   Tue Jul 3 23:58:06 2018 +0300
+
+    oauth
+
+commit a9f2ad99b36236a9aa7d66c0aa5e3ec465d8fa27
+Author: Магомедали <web-ali@yandex.ru>
+Date:   Tue Jul 3 19:03:07 2018 +0300
+
+    oauth2
+
+commit 40e3fd1288dc5ca35c03e86c1d6c03fc2c1a2fb2
+Author: Магомедали <web-ali@yandex.ru>
+Date:   Mon Jul 2 18:58:48 2018 +0300
+
+    ApiModel
+
+commit 3bf7bdb49ac3ede07fda813cf3018cb21ed8f747
+Author: Магомедали <web-ali@yandex.ru>
+Date:   Fri Jun 29 19:02:36 2018 +0300
+
+    29062018
+
+commit 8376df0a1dfc1d81d1a460f449bcb1c0aacad880
+Author: Магомедали <web-ali@yandex.ru>
+Date:   Thu Jun 28 19:04:01 2018 +0300
+
+    database
+
+commit 75ddb56883968201ecb08f9d0c64862be1336492
+Author: Магомедали <web-ali@yandex.ru>
+Date:   Wed Jun 27 19:43:53 2018 +0300
+
+    27062018
+
+commit 83c63ac93b4ef046847f40580f405daaadaa61be
+Author: Магомедали <web-ali@yandex.ru>
+Date:   Fri Jun 22 19:37:30 2018 +0300
+
+    add API pattern
+
+commit 991572bfc0c95e076a92e1f8105ae986cad2acbf
+Author: Магомедали <web-ali@yandex.ru>
+Date:   Thu Jun 21 20:00:43 2018 +0300
+
+    add settings role
+
+commit 991047336a2a69504570266dc1bb537cc3c1993e
+Author: Магомедали <web-ali@yandex.ru>
+Date:   Wed Jun 20 20:14:30 2018 +0300
+
+     check has role
+
+commit bbe52b514e09832d02a0577edb81f05c0c5d615c
+Author: Магомедали <web-ali@yandex.ru>
+Date:   Wed Jun 20 18:14:54 2018 +0300
+
+    include RBAC and seeders
+
+commit a358557f335655beb37f26881dc28a5fb5fde843
+Author: Магомедали <web-ali@yandex.ru>
+Date:   Mon Jun 18 19:51:47 2018 +0300
+
+    start position

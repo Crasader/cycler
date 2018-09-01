@@ -5,8 +5,12 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\{Role,Permissions,User};
+use App\{Role,Permission,User};
 use App\Helpers\ApiHelper;
+
+use App\Events\UpdatedModels;
+use App\Exceptions\ModelValidateException;
+use Exception;
 
 class ApiUserController extends Controller
 {
@@ -21,4 +25,161 @@ class ApiUserController extends Controller
     }
 
 
+    
+
+    /*
+    *
+    * GET <baseUrl>/api/user
+    *
+    */
+    public function getMe(Request $request){
+        
+        
+        $answer = array();
+        $user = Auth::user();
+
+
+        $answer['account']['id']  = $user->id;
+        $answer['account']['name'] = $user->name;
+        $answer['account']['email'] = $user->email;
+
+       
+
+        //Роли пользователя
+        $rolesObjects = $user->roles()->get(['id','name','display_name','description']);
+
+        $roles = array();
+        $allPerms = array();
+        foreach ($rolesObjects as $key => $r) {
+            $roles[$r->id]['id']=$r->id;
+            $roles[$r->id]['name']=$r->name;
+            $roles[$r->id]['title']=$r->display_name;
+            $roles[$r->id]['description']=$r->description;
+            
+            $perms = $r->perms()->get(['id','name','display_name','description'])->toArray();
+            array_push($allPerms, $perms);
+            
+            $roles[$r->id]['permissions']=array_map(function($p){return $p['id'];}, $perms);
+        }
+        
+        $answer['roles']=$roles;
+        $answer['permissions']=$allPerms;
+
+
+        $answer['account']['roles'] = array_map(function($r){return $r['id'];}, $roles);
+        
+
+        //Настройки пользователя
+        $answer['settings'] = array();
+
+        return $answer;
+    }
+
+
+    /*
+    *
+    * GET <baseUrl>/api/users
+    *
+    */
+    public function getUsers(Request $request){
+        
+        $result = User::all();
+        
+        return $result; 
+    }
+
+
+
+    /*
+    *
+    * GET <baseUrl>/api/users/<id>
+    *
+    */
+    public function getUser($id){
+        
+        $model = User::findOrFail($id);
+
+        $roles = $model->roles()->get(['id'])->toArray();
+
+        return [
+            'id'=>$model->id,
+            'name'=>$model->name,
+            'email'=>$model->email,
+            'roles'=>array_map(function($r){return $r['id'];}, $roles)
+        ];
+    }
+
+
+
+
+
+    /*
+    *
+    * POST <baseUrl>/api/users/<user_id>/roles/<role_id>
+    *
+    */
+    public function attachRole($user_id,$role_id){
+        
+        $user = User::find($user_id);
+        $role = Role::find($role_id);
+        
+        $success = false;
+
+        if(isset($user->id) && isset($role->id)){
+            
+            if($user->hasRole($role->name))
+                throw new Exception("User already has this role",500);
+            
+
+            $user->attachRole($role);
+            
+            if(!$user->hasRole($role->name))
+                throw new Exception("Can`t attach role to this user",500);
+
+            $success = true;
+        }else{
+            throw new Exception("Role or User not found",404);
+        }
+
+        return [
+            'success'=>$success
+        ];
+    }
+
+
+
+
+
+
+    /*
+    *
+    * DELETE <baseUrl>/api/users/<user_id>/roles/<role_id>
+    *
+    */
+    public function detachRole($user_id,$role_id){
+        
+        $user = User::find($user_id);
+        $role = Role::find($role_id);
+        
+        $success = false;
+
+        if(isset($user->id) && isset($role->id)){
+            
+            if(!$user->hasRole($role->name))
+                throw new Exception("User hasn`t this role",500);
+        
+            $user->detachRole($role);
+            
+            if($user->hasRole($role->name))
+                throw new Exception("Can`t detach role from this user",500);
+
+            $success = true;
+        }else{
+            throw new Exception("Role or User not found",404);
+        }
+
+        return [
+            'success'=>$success
+        ];
+    }
 }

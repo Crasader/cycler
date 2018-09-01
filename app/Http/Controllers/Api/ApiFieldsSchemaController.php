@@ -10,6 +10,7 @@ use App\Helpers\ApiHelper;
 use App\Models\{Field};
 use App\Events\UpdatedModels;
 use Exception;
+use App\Exceptions\ModelValidateException;
 
 class ApiFieldsSchemaController extends Controller
 {

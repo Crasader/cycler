@@ -1,11 +1,13 @@
 <?php
 
-
-
 use Illuminate\Database\Seeder;
 
 class Permissions extends Seeder
 {
+
+	
+    
+
     /**
      * Run the database seeds.
      *
@@ -13,6 +15,6 @@ class Permissions extends Seeder
      */
     public function run()
     {
-        //
+        
     }
 }

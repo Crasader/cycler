@@ -10,7 +10,6 @@ use App\{Role,Permissions,User};
 use App\Helpers\ApiHelper;
 
 use App\Events\UpdatedModels;
-
 use App\Exceptions\ModelValidateException;
 use Exception;
 

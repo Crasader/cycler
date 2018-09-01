@@ -16,12 +16,7 @@ use Illuminate\Http\Request;
 
 
 
-Route::middleware(['auth:api','cors'])->get('/user', function (Request $request) {
-    
 
-
-    return $request->user();
-});
 
 
 Route::middleware(['auth:api','cors'])->get('/todos', function (Request $request) {
@@ -59,7 +54,27 @@ Route::group(['prefix'=>'/public','namespace'=>'Api','middleware'=>['auth:api','
 Route::group(['namespace'=>'Api','middleware'=>['auth:api','cors']],function($route){
 	$route->get("self","ApiSelfController@self")->name("self");
 
-	
+
+	/**
+	* Users
+	*/
+	$route->get('users',"ApiUserController@getUsers")->name("getUsers");
+
+	$route->get('users/{id}',"ApiUserController@getUser")->name("getUser");
+
+	$route->get('user',"ApiUserController@getMe")->name("getMe");
+
+
+	$route->post('users/{user_id}/roles/{role_id}',"ApiUserController@attachRole")->name("attachRole");
+
+	$route->delete('users/{user_id}/roles/{role_id}',"ApiUserController@detachRole")->name("detachRole");
+
+
+
+
+	/**
+	* Deals
+	*/
 	$route->get("deals","ApiDealController@getDeals")->name("getDeals");
 
 	$route->put("deals","ApiDealController@createDeal")->name("createDeal");
@@ -109,7 +124,7 @@ Route::group(['namespace'=>'Api','middleware'=>['auth:api','cors']],function($ro
 
 
 	/*
-	* Pipelines
+	* Stages
 	* 
 	*/
 	$route->get("stages","ApiStageController@getStages")->name("getStages");
@@ -145,6 +160,42 @@ Route::group(['namespace'=>'Api','middleware'=>['auth:api','cors']],function($ro
 	* 
 	*/
 	$route->get("events","ApiEventsController@getEvents")->name("getEvents");
+
+
+
+
+
+
+	/*
+	* Roles
+	* 
+	*/
+	$route->get("roles","ApiRolesController@getRoles")->name("getRoles");
+
+	$route->get("roles/{id}","ApiRolesController@getRole")->name("getRole");
+
+	$route->put("roles","ApiRolesController@create")->name("create");
+	
+	$route->post("roles/{id}","ApiRolesController@update")->name("update");
+	
+	$route->delete("roles/{id}","ApiRolesController@delete")->name("delete");
+
+
+	$route->post("roles/{role_id}/permissions","ApiRolesController@addPermissions")->name("role_add_permissions");
+	
+	$route->post("roles/{role_id}/permissions/{permission_id}","ApiRolesController@attachPermissions")->name("attachPermissions");
+
+	$route->delete("roles/{role_id}/permissions/{permission_id}","ApiRolesController@deletePermissions")->name("role_delete_permissions");
+
+
+
+
+	/*
+	* Permissions
+	* 
+	*/
+	$route->get("permissions","ApiPermissionsController@getPerms")->name("getPerms");
+	$route->get("permissions/{id}","ApiPermissionsController@getPerm")->name("getPerm");
 
 
 

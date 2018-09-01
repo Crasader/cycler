@@ -9,7 +9,8 @@ use App\{Role,Permissions,User};
 use App\Helpers\ApiHelper;
 use App\Models\{Pipeline};
 use App\Events\UpdatedModels;
-use \Exception;
+use App\Exceptions\ModelValidateException;
+use Exception;
 class ApiPipelinesController extends Controller
 {
 
@@ -75,7 +76,7 @@ class ApiPipelinesController extends Controller
         $errors = $model->errors();
         
         if(count($errors))
-                throw new ModelValidateException($model);
+            throw new ModelValidateException($model);
 
         return [
             'success'=>$success,
