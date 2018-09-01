@@ -12,7 +12,8 @@ class CreateUsersTable extends Migration
      * @return void
      */
     public function up()
-    {
+    {   
+        return true;
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
@@ -29,7 +30,8 @@ class CreateUsersTable extends Migration
      * @return void
      */
     public function down()
-    {
+    {   
+        return true;
         Schema::dropIfExists('users');
     }
 }
