@@ -12,7 +12,7 @@ class Users extends Seeder
     public function run()
     {
         
-
+        return true;
         $id = DB::table('users')->insertGetId([
             'name' => "default",
             'email' => 'admin@admin.ru',
