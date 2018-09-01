@@ -18,7 +18,7 @@ class TableFields extends Migration
         $fields = $this->getFields();
 
         foreach ($fields as $field) {
-            DB::table("fields_schema")->insert($field);
+            DB::table("fields")->insert($field);
         }
     }
 

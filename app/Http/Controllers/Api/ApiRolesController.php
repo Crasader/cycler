@@ -59,7 +59,7 @@ class ApiRolesController extends Controller
     * PUT <baseUrl>/api/roles
     *
     */
-    public function create(Request $request){
+    public function createRoles(Request $request){
 
         $answer = array();
 
@@ -97,7 +97,7 @@ class ApiRolesController extends Controller
     * POST <baseUrl>/api/roles/<id>
     *
     */
-    public function update($id,Request $request){
+    public function editRoles($id,Request $request){
         
         
         $model = Role::find($id);
@@ -113,7 +113,7 @@ class ApiRolesController extends Controller
                 event(new UpdatedModels($model,UpdatedModels::UPDATED));
             }
 
-            $stage=$model->getAttributes();
+            $role=$model->getAttributes();
             
             $errors = $model->errors();
         }else{
@@ -125,7 +125,7 @@ class ApiRolesController extends Controller
 
         return [
             'success'=>$success,
-            'role'=>$stage,
+            'role'=>$role,
             'errors'=>$errors
         ];
     }
@@ -139,7 +139,7 @@ class ApiRolesController extends Controller
     * DELETE <baseUrl>/api/roles/<id>
     *
     */
-    public function delete($id){
+    public function removeRoles($id){
         
         $model = Role::find($id);
         

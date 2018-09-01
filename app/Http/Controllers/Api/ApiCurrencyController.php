@@ -45,7 +45,7 @@ class ApiCurrencyController extends Controller
 
     /*
     *
-    * GET <baseUrl>/api/currency/<id>
+    * GET <baseUrl>/api/currencies/<id>
     *
     */
     public function getCurrency($id){
@@ -59,9 +59,9 @@ class ApiCurrencyController extends Controller
 
 
     /*
-    * PUT <baseUrl>/api/currency
+    * PUT <baseUrl>/api/currencies
     */
-    public function createCurrency(Request $request){
+    public function createCurrencies(Request $request){
 
         $answer = array();
 
@@ -94,10 +94,10 @@ class ApiCurrencyController extends Controller
 
     /*
     *
-    * POST <baseUrl>/api/currency/<id>
+    * POST <baseUrl>/api/currencies/<id>
     *
     */
-    public function updateCurrency($id,Request $request){
+    public function editCurrencies($id,Request $request){
         $answer = array();
         
         $model = Currency::find($id);
@@ -133,10 +133,10 @@ class ApiCurrencyController extends Controller
 
     /*
     *
-    * DELETE <baseUrl>/api/currency/<id>
+    * DELETE <baseUrl>/api/currencies/<id>
     *
     */
-    public function deleteCurrency($id){
+    public function removeCurrencies($id){
         
         $model = Currency::find($id);
         $success = false;

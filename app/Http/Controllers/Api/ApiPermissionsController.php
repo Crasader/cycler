@@ -30,7 +30,7 @@ class ApiPermissionsController extends Controller
     * GET <baseUrl>/api/permissions
     *
     */
-    public function getPerms(Request $request){
+    public function getPermissions(Request $request){
 
         $api = new ApiHelper;
         
@@ -47,12 +47,125 @@ class ApiPermissionsController extends Controller
     * GET <baseUrl>/api/permissions/<id>
     *
     */
-    public function getPerm($id){
+    public function getPermission($id){
         
         $model = Permission::findOrFail($id);
 
         return response()->json([$model->getAttributes()]);
     }
 
+
+
+    /*
+    *
+    * PUT <baseUrl>/api/permissions
+    *
+    */
+    public function createPermissions(Request $request){
+
+        $answer = array();
+
+        $parameters = $request->toArray();
+
+        $model = new Permission;
+        
+        $success = $model->fill($request->toArray(),true) && $model->save() ? true : false;
+        
+        if($success){
+            event(new UpdatedModels($model,UpdatedModels::CREATED));
+        }
+
+        $errors = $model->errors();
+        
+        if(count($errors))
+            throw new ModelValidateException($model);
+
+        return [
+            'success'=>$success,
+            'requestData'=>$parameters,
+            'errors'=>$errors
+        ];
+    }
+
+
+
+
+
+
+
+
+    /*
+    *
+    * POST <baseUrl>/api/permissions/<id>
+    *
+    */
+    public function editPermissions($id,Request $request){
+        
+        
+        $model = Permission::find($id);
+        
+        if(isset($model->id)){
+
+            if(boolval($model->is_system))
+                throw new Exception("Permission is system entity. You can`t update it!",500);
+
+            $success = $model->fill($request->toArray(),true) && $model->save() ? true : false;
+            
+            if($success){
+                event(new UpdatedModels($model,UpdatedModels::UPDATED));
+            }
+
+            $permission=$model->getAttributes();
+            
+            $errors = $model->errors();
+        }else{
+            throw new Exception("Permission not found",404);
+        }
+        
+        if(count($errors))
+            throw new ModelValidateException($model);
+
+        return [
+            'success'=>$success,
+            'role'=>$permission,
+            'errors'=>$errors
+        ];
+    }
+
+
+
+
+
+    /*
+    *
+    * DELETE <baseUrl>/api/permissions/<id>
+    *
+    */
+    public function removePermissions($id){
+        
+        $model = Permission::find($id);
+        
+
+        $success = false;
+
+        if(isset($model->id)){
+            
+            if(boolval($model->is_system))
+                throw new Exception("Permission is system entity. You can`t delete system permission!",500);
+
+            $success = $model->delete();
+
+            if($success){
+                event(new UpdatedModels($model,UpdatedModels::DELETED));
+            }
+
+        }else{
+            throw new Exception("Permission not found",404);
+        }
+
+        return [
+            'success'=>$success
+        ];
+    }
 
 }

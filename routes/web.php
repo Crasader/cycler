@@ -77,23 +77,3 @@ $regex = "^([0-9A-Za-z\-_\.]*)";
 
 Route::get('/',"HomeController@index")->name('home');
 Route::get('/home',"HomeController@index")->name('home');
-
-
-
-//Временно для разработки
-
-Route::group(['namespace'=>'Api'],function($route){
-    $route->get("self","ApiDealController@self")->name("self");
-
-    $route->get("deals","ApiDealController@getDeals")->name("getDeals");
-
-    $route->put("deals","ApiDealController@createDeal")->name("createDeal");
-
-    $route->get("deals/{id}","ApiDealController@getDeal")->name("getDeal");
-
-    $route->post("deals/{id}","ApiDealController@updateDeal")->name("updateDeal");
-
-    $route->delete("deals/{id}","ApiDealController@deleteDeal")->name("deleteDeal");
-
-    $route->get("currencies","ApiCurrencyController@getCurrencies")->name("getCurrencies");
-});

@@ -58,16 +58,16 @@ Route::group(['namespace'=>'Api','middleware'=>['auth:api','cors']],function($ro
 	/**
 	* Users
 	*/
-	$route->get('users',"ApiUserController@getUsers")->name("getUsers");
+	$route->get('users',"ApiUserController@getUsers")->name("getUsers")->middleware('permission:read:users');
 
-	$route->get('users/{id}',"ApiUserController@getUser")->name("getUser");
+	$route->get('users/{id}',"ApiUserController@getUser")->name("getUser")->middleware('permission:read:users');
 
 	$route->get('user',"ApiUserController@getMe")->name("getMe");
 
 
-	$route->post('users/{user_id}/roles/{role_id}',"ApiUserController@attachRole")->name("attachRole");
+	$route->post('users/{user_id}/roles/{role_id}',"ApiUserController@attachRole")->name("attachRole")->middleware('permission:create:users_roles|edit:users_roles');
 
-	$route->delete('users/{user_id}/roles/{role_id}',"ApiUserController@detachRole")->name("detachRole");
+	$route->delete('users/{user_id}/roles/{role_id}',"ApiUserController@detachRole")->name("detachRole")->middleware('permission:remove:users_roles');
 
 
 
@@ -75,15 +75,15 @@ Route::group(['namespace'=>'Api','middleware'=>['auth:api','cors']],function($ro
 	/**
 	* Deals
 	*/
-	$route->get("deals","ApiDealController@getDeals")->name("getDeals");
+	$route->get("deals","ApiDealController@getDeals")->name("getDeals")->middleware('permission:read:deals');
 
-	$route->put("deals","ApiDealController@createDeal")->name("createDeal");
+	$route->get("deals/{id}","ApiDealController@getDeal")->name("getDeal")->middleware('permission:read:deals');
 
-	$route->get("deals/{id}","ApiDealController@getDeal")->name("getDeal");
+	$route->put("deals","ApiDealController@createDeals")->name("createDeals")->middleware('permission:create:deals');
 
-	$route->post("deals/{id}","ApiDealController@updateDeal")->name("updateDeal");
+	$route->post("deals/{id}","ApiDealController@editDeals")->name("editDeals")->middleware('permission:edit:deals');
 
-	$route->delete("deals/{id}","ApiDealController@deleteDeal")->name("deleteDeal");
+	$route->delete("deals/{id}","ApiDealController@removeDeals")->name("removeDeals")->middleware('permission:remove:deals');
 
 
 
@@ -91,15 +91,15 @@ Route::group(['namespace'=>'Api','middleware'=>['auth:api','cors']],function($ro
 	* Currencies
 	* 
 	*/
-	$route->get("currencies","ApiCurrencyController@getCurrencies")->name("getCurrencies");
+	$route->get("currencies","ApiCurrencyController@getCurrencies")->name("getCurrencies")->middleware('permission:read:currencies');
 
-	$route->get("currencies/{id}","ApiCurrencyController@getCurrency")->name("getCurrency");
+	$route->get("currencies/{id}","ApiCurrencyController@getCurrency")->name("getCurrency")->middleware('permission:read:currencies');
 
-	$route->put("currencies","ApiCurrencyController@createCurrency")->name("createCurrency");
+	$route->put("currencies","ApiCurrencyController@createCurrencies")->name("createCurrencies")->middleware('permission:create:currencies');
 
-	$route->post("currencies/{id}","ApiCurrencyController@updateCurrency")->name("updateCurrency");
+	$route->post("currencies/{id}","ApiCurrencyController@editCurrencies")->name("editCurrencies")->middleware('permission:edit:currencies');
 
-	$route->delete("currencies/{id}","ApiCurrencyController@deleteCurrency")->name("deleteCurrency");
+	$route->delete("currencies/{id}","ApiCurrencyController@removeCurrencies")->name("removeCurrencies")->middleware('permission:remove:currencies');
 
 
 
@@ -108,15 +108,15 @@ Route::group(['namespace'=>'Api','middleware'=>['auth:api','cors']],function($ro
 	* Pipelines
 	* 
 	*/
-	$route->get("pipelines","ApiPipelinesController@getPipelines")->name("getPipelines");
+	$route->get("pipelines","ApiPipelinesController@getPipelines")->name("getPipelines")->middleware('permission:read:pipelines');
 
-	$route->get("pipelines/{id}","ApiPipelinesController@getPipeline")->name("getPipeline");
+	$route->get("pipelines/{id}","ApiPipelinesController@getPipeline")->name("getPipeline")->middleware('permission:read:pipelines');
 
-	$route->put("pipelines","ApiPipelinesController@createPipeline")->name("createPipeline");
+	$route->put("pipelines","ApiPipelinesController@createPipelines")->name("createPipelines")->middleware('permission:create:pipelines');
 
-	$route->post("pipelines/{id}","ApiPipelinesController@updatePipeline")->name("updatePipeline");
+	$route->post("pipelines/{id}","ApiPipelinesController@editPipelines")->name("editPipelines")->middleware('permission:edit:pipelines');
 
-	$route->delete("pipelines/{id}","ApiPipelinesController@deletePipeline")->name("deletePipeline");
+	$route->delete("pipelines/{id}","ApiPipelinesController@removePipelines")->name("removePipelines")->middleware('permission:remove:pipelines');
 
 
 
@@ -127,15 +127,15 @@ Route::group(['namespace'=>'Api','middleware'=>['auth:api','cors']],function($ro
 	* Stages
 	* 
 	*/
-	$route->get("stages","ApiStageController@getStages")->name("getStages");
+	$route->get("stages","ApiStageController@getStages")->name("getStages")->middleware('permission:read:stages');
 
-	$route->get("stages/{id}","ApiStageController@getStage")->name("getStage");
+	$route->get("stages/{id}","ApiStageController@getStage")->name("getStage")->middleware('permission:read:stages');
 
-	$route->put("stages","ApiStageController@createStage")->name("createStage");
+	$route->put("stages","ApiStageController@createStages")->name("createStages")->middleware('permission:create:stages');
 
-	$route->post("stages/{id}","ApiStageController@updateStage")->name("updateStage");
+	$route->post("stages/{id}","ApiStageController@editStages")->name("editStages")->middleware('permission:edit:stages');
 
-	$route->delete("stages/{id}","ApiStageController@deleteStage")->name("deleteStage");
+	$route->delete("stages/{id}","ApiStageController@removeStages")->name("removeStages")->middleware('permission:remove:stages');
 
 
 
@@ -144,22 +144,22 @@ Route::group(['namespace'=>'Api','middleware'=>['auth:api','cors']],function($ro
 	* Settings
 	* 
 	*/
-	$route->get("settings","ApiSettingController@getSettings")->name("getSettings");
+	$route->get("settings","ApiSettingController@getSettings")->name("getSettings")->middleware('permission:read:settings');
 
-	$route->get("settings/{id}","ApiSettingController@getSetting")->name("getSetting");
+	$route->get("settings/{id}","ApiSettingController@getSetting")->name("getSetting")->middleware('permission:read:settings');
 
-	$route->put("settings","ApiSettingController@createSetting")->name("createSetting");
+	$route->put("settings","ApiSettingController@createSettings")->name("createSettings")->middleware('permission:create:settings');
 
-	$route->post("settings/{id}","ApiSettingController@updateSetting")->name("updateSetting");
+	$route->post("settings/{id}","ApiSettingController@editSettings")->name("editSettings")->middleware('permission:edit:settings');
 
-	$route->delete("settings/{id}","ApiSettingController@deleteSetting")->name("deleteSetting");
+	$route->delete("settings/{id}","ApiSettingController@removeSettings")->name("removeSettings")->middleware('permission:remove:settings');
 
 
 	/*
 	* Events
 	* 
 	*/
-	$route->get("events","ApiEventsController@getEvents")->name("getEvents");
+	$route->get("events","ApiEventsController@getEvents")->name("getEvents")->middleware('permission:read:events');
 
 
 
@@ -170,22 +170,30 @@ Route::group(['namespace'=>'Api','middleware'=>['auth:api','cors']],function($ro
 	* Roles
 	* 
 	*/
-	$route->get("roles","ApiRolesController@getRoles")->name("getRoles");
+	$route->get("roles","ApiRolesController@getRoles")->name("getRoles")->middleware('permission:read:roles');
 
-	$route->get("roles/{id}","ApiRolesController@getRole")->name("getRole");
+	$route->get("roles/{id}","ApiRolesController@getRole")->name("getRole")->middleware('permission:read:roles');
 
-	$route->put("roles","ApiRolesController@create")->name("create");
+	$route->put("roles","ApiRolesController@createRoles")->name("createRoles")->middleware('permission:create:roles');
 	
-	$route->post("roles/{id}","ApiRolesController@update")->name("update");
+	$route->post("roles/{id}","ApiRolesController@editRoles")->name("editRoles")->middleware('permission:edit:roles');
 	
-	$route->delete("roles/{id}","ApiRolesController@delete")->name("delete");
+	$route->delete("roles/{id}","ApiRolesController@removeRoles")->name("removeRoles")->middleware('permission:remove:roles');
 
 
-	$route->post("roles/{role_id}/permissions","ApiRolesController@addPermissions")->name("role_add_permissions");
+
+	/*
+	* Roles permissions
+	* 
+	*/
+	$route->post("roles/{role_id}/permissions","ApiRolesController@addPermissions")->name("role_add_permissions")
+	->middleware('permission:create:roles_permissions');
 	
-	$route->post("roles/{role_id}/permissions/{permission_id}","ApiRolesController@attachPermissions")->name("attachPermissions");
+	$route->post("roles/{role_id}/permissions/{permission_id}","ApiRolesController@attachPermissions")->name("attachPermissions")
+	->middleware('permission:edit:roles_permissions');
 
-	$route->delete("roles/{role_id}/permissions/{permission_id}","ApiRolesController@deletePermissions")->name("role_delete_permissions");
+	$route->delete("roles/{role_id}/permissions/{permission_id}","ApiRolesController@deletePermissions")->name("role_delete_permissions")
+	->middleware('permission:remove:roles_permissions');
 
 
 
@@ -194,8 +202,13 @@ Route::group(['namespace'=>'Api','middleware'=>['auth:api','cors']],function($ro
 	* Permissions
 	* 
 	*/
-	$route->get("permissions","ApiPermissionsController@getPerms")->name("getPerms");
-	$route->get("permissions/{id}","ApiPermissionsController@getPerm")->name("getPerm");
+	$route->get("permissions","ApiPermissionsController@getPermissions")->name("getPermissions")->middleware('permission:read:permissions');
+	$route->get("permissions/{id}","ApiPermissionsController@getPermission")->name("getPermission")->middleware('permission:read:permissions');
+	$route->put("permissions","ApiPermissionsController@createPermissions")->name("createPermissions")->middleware('permission:create:permissions');
+	$route->post("permissions/{id}","ApiPermissionsController@editPermissions")->name("editPermissions")
+	->middleware('permission:edit:permissions');
+	$route->delete("permissions/{id}","ApiPermissionsController@removePermissions")->name("removePermissions")
+	->middleware('permission:remove:permissions');
 
 
 
@@ -205,13 +218,13 @@ Route::group(['namespace'=>'Api','middleware'=>['auth:api','cors']],function($ro
 	* Custom Fields
 	* 
 	*/
-	$route->get("fields","ApiFieldsSchemaController@getFields")->name("getFields");
+	$route->get("fields","ApiFieldsController@getFields")->name("getFields")->middleware('permission:read:fields');
 
-	$route->get("fields/{id}","ApiFieldsSchemaController@getField")->name("getField");
+	$route->get("fields/{id}","ApiFieldsController@getField")->name("getField")->middleware('permission:read:fields');
 
-	$route->put("fields","ApiFieldsSchemaController@createField")->name("createField");
+	$route->put("fields","ApiFieldsController@createFields")->name("createFields")->middleware('permission:create:fields');
 
-	//$route->post("fields/{id}/rename","ApiFieldsSchemaController@updateField")->name("updateField");
+	//$route->post("fields/{id}/rename","ApiFieldsController@editFields")->name("editFields")->middleware('permission:edit:fields');
 
-	$route->delete("fields/{id}","ApiFieldsSchemaController@deleteField")->name("deleteField");
+	$route->delete("fields/{id}","ApiFieldsController@removeFields")->name("removeFields")->middleware('permission:remove:fields');
 });

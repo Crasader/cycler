@@ -13,7 +13,7 @@ class FieldSchema extends Migration
      */
     public function up()
     {
-        Schema::create('fields_schema', function (Blueprint $table) {
+        Schema::create('fields', function (Blueprint $table) {
             $table->increments('id');
             
             $table->string('dbtable',64);
@@ -71,6 +71,6 @@ class FieldSchema extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fields_schema');
+        Schema::dropIfExists('fields');
     }
 }

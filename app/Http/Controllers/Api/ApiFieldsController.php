@@ -12,7 +12,7 @@ use App\Events\UpdatedModels;
 use Exception;
 use App\Exceptions\ModelValidateException;
 
-class ApiFieldsSchemaController extends Controller
+class ApiFieldsController extends Controller
 {
 
     /**
@@ -46,7 +46,7 @@ class ApiFieldsSchemaController extends Controller
 
     /*
     *
-    * GET <baseUrl>/api/field/<id>
+    * GET <baseUrl>/api/fields/<id>
     *
     */
     public function getField($id,Request $request){
@@ -66,9 +66,9 @@ class ApiFieldsSchemaController extends Controller
 
 
     /*
-    * PUT <baseUrl>/api/field
+    * PUT <baseUrl>/api/fields
     */
-    public function createField(Request $request){
+    public function createFields(Request $request){
         //Создание новой колонки
         
         $params = $request->toArray();
@@ -116,10 +116,10 @@ class ApiFieldsSchemaController extends Controller
 
     /*
     *
-    * POST <baseUrl>/api/field/<id>/rename
+    * POST <baseUrl>/api/fields/<id>/rename
     *
     */
-    public function updateField($id,Request $request){
+    public function editFields($id,Request $request){
         //Переименование столбца
         
         $model = Field::find($id);
@@ -175,10 +175,10 @@ class ApiFieldsSchemaController extends Controller
 
     /*
     *
-    * DELETE <baseUrl>/api/field/<id>
+    * DELETE <baseUrl>/api/fields/<id>
     *
     */
-    public function deleteField($id){
+    public function removeFields($id){
         
         $model = Field::findOrFail($id);
         $success = false;

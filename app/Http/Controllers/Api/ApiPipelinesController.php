@@ -59,7 +59,7 @@ class ApiPipelinesController extends Controller
     /*
     * PUT <baseUrl>/api/pipelines
     */
-    public function createPipeline(Request $request){
+    public function createPipelines(Request $request){
 
         $answer = array();
 
@@ -95,7 +95,7 @@ class ApiPipelinesController extends Controller
     * POST <baseUrl>/api/pipelines/<id>
     *
     */
-    public function updatePipeline($id,Request $request){
+    public function editPipelines($id,Request $request){
         $answer = array();
         
         $model = Pipeline::find($id);
@@ -134,7 +134,7 @@ class ApiPipelinesController extends Controller
     * DELETE <baseUrl>/api/pipelines/<id>
     *
     */
-    public function deletePipeline($id){
+    public function removePipelines($id){
         
         $model = Pipeline::findOrFail($id);
         $success = false;

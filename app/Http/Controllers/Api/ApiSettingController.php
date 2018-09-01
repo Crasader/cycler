@@ -64,7 +64,7 @@ class ApiSettingController extends Controller
     /*
     * PUT <baseUrl>/api/settings
     */
-    public function createSetting(Request $request){
+    public function createSettings(Request $request){
 
 
         $parameters = $request->toArray();
@@ -99,7 +99,7 @@ class ApiSettingController extends Controller
     * POST <baseUrl>/api/settings/<id>
     *
     */
-    public function updateSetting($id,Request $request){
+    public function editSettings($id,Request $request){
         $answer = array();
         
         $model = Settings::find($id);
@@ -138,7 +138,7 @@ class ApiSettingController extends Controller
     * DELETE <baseUrl>/api/settings/<id>
     *
     */
-    public function deleteSetting($id){
+    public function removeSettings($id){
         
         $model = Settings::find($id);
         $success = false;

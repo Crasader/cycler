@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 trait DynamicalModel{
 
 
-	protected $fields_table = "fields_schema"; 
+	protected $fields_table = "fields"; 
 
 
 	public static function init($id = null){

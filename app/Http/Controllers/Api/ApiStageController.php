@@ -26,7 +26,7 @@ class ApiStageController extends Controller
 
     /*
     *
-    * GET <baseUrl>/api/pipelines
+    * GET <baseUrl>/api/stages
     *
     */
     public function getStages(Request $request){
@@ -43,7 +43,7 @@ class ApiStageController extends Controller
 
     /*
     *
-    * GET <baseUrl>/api/pipelines/<id>
+    * GET <baseUrl>/api/stages/<id>
     *
     */
     public function getStage($id){
@@ -57,9 +57,9 @@ class ApiStageController extends Controller
 
 
     /*
-    * PUT <baseUrl>/api/pipelines
+    * PUT <baseUrl>/api/stages
     */
-    public function createStage(Request $request){
+    public function createStages(Request $request){
 
 
         $parameters = $request->toArray();
@@ -91,10 +91,10 @@ class ApiStageController extends Controller
 
     /*
     *
-    * POST <baseUrl>/api/pipelines/<id>
+    * POST <baseUrl>/api/stages/<id>
     *
     */
-    public function updateStage($id,Request $request){
+    public function editStages($id,Request $request){
         
         
         $model = Stage::find($id);
@@ -130,10 +130,10 @@ class ApiStageController extends Controller
 
     /*
     *
-    * DELETE <baseUrl>/api/pipelines/<id>
+    * DELETE <baseUrl>/api/stages/<id>
     *
     */
-    public function deleteStage($id){
+    public function removeStages($id){
         
         $model = Stage::find($id);
         

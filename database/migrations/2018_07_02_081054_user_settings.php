@@ -29,6 +29,7 @@ class UserSettings extends Migration
         });
     }
 
+
     /**
      * Reverse the migrations.
      *

@@ -50,7 +50,7 @@ class ApiDealController extends Controller
     * GET <baseUrl>/api/<role_name>/deals/<id>
     *
     */
-    public function getDeal($id){
+    public function createDeals($id){
         
         $deal = Deals::init($id);
 
@@ -102,7 +102,7 @@ class ApiDealController extends Controller
     * POST <baseUrl>/api/<role_name>/deals/<id>
     *
     */
-    public function updateDeal($id,Request $request){
+    public function editDeals($id,Request $request){
         $answer = array();
         
         $deal = Deals::init($id);
@@ -141,7 +141,7 @@ class ApiDealController extends Controller
     * DELETE <baseUrl>/api/<role_name>/deals/<id>
     *
     */
-    public function deleteDeal($id){
+    public function removeDeals($id){
         
         $deal = Deals::init($id);
         $success = false;

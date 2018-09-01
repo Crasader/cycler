@@ -13,7 +13,7 @@ class Field extends ModelValidation
 	/*
 	* Table name in the BD
 	*/
-	protected $table = "fields_schema";
+	protected $table = "fields";
 
 
 	/*

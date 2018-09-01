@@ -14,35 +14,68 @@ class Roles extends Seeder
 
 
     public $perms = array(
-        ['id'=>1,'name'=>'self:read'],
-        ['id'=>2,'name'=>'user:read'],
-        ['id'=>3,'name'=>'user:edit'],
-        ['id'=>4,'name'=>'user:delete'],
-        ['id'=>5,'name'=>'users:read'],
-        ['id'=>6,'name'=>'users:create'],
-        ['id'=>7,'name'=>'users:edit'],
-        ['id'=>8,'name'=>'users:delete'],
-        ['id'=>9,'name'=>'roles:read'],
-        ['id'=>10,'name'=>'roles:create'],
-        ['id'=>11,'name'=>'roles:edit'],
-        ['id'=>12,'name'=>'roles:delete'],
-        ['id'=>13,'name'=>'permissions:read'],
-        ['id'=>14,'name'=>'permissions:create'],
-        ['id'=>15,'name'=>'permissions:edit'],
-        ['id'=>16,'name'=>'permissions:delete'],
-        ['id'=>17,'name'=>'users_roles:read'],
-        ['id'=>18,'name'=>'users_roles:create'],
-        ['id'=>19,'name'=>'users_roles:edit'],
-        ['id'=>20,'name'=>'users_roles:delete'],
-        ['id'=>21,'name'=>'roles_permissions:read'],
-        ['id'=>22,'name'=>'roles_permissions:create'],
-        ['id'=>23,'name'=>'roles_permissions:edit'],
-        ['id'=>24,'name'=>'roles_permissions:delete'],
-        ['id'=>25,'name'=>'deals:read'],
-        ['id'=>26,'name'=>'deals:create'],
-        ['id'=>27,'name'=>'deals:edit'],
-        ['id'=>28,'name'=>'deals:delete'],
-        ['id'=>29,'name'=>'events:read']
+        ['id'=>1,'name'=>'read:self'],
+
+        ['id'=>2,'name'=>'read:user'],
+        ['id'=>3,'name'=>'edit:user'],
+        ['id'=>4,'name'=>'remove:user'],
+
+        ['id'=>5,'name'=>'read:users'],
+        ['id'=>6,'name'=>'create:users'],
+        ['id'=>7,'name'=>'edit:users'],
+        ['id'=>8,'name'=>'remove:users'],
+
+        ['id'=>9,'name'=>'read:roles'],
+        ['id'=>10,'name'=>'create:roles'],
+        ['id'=>11,'name'=>'edit:roles'],
+        ['id'=>12,'name'=>'remove:roles'],
+
+        ['id'=>13,'name'=>'read:permissions'],
+        ['id'=>14,'name'=>'create:permissions'],
+        ['id'=>15,'name'=>'edit:permissions'],
+        ['id'=>16,'name'=>'remove:permissions'],
+
+        ['id'=>17,'name'=>'read:users_roles'],
+        ['id'=>18,'name'=>'create:users_roles'],
+        ['id'=>19,'name'=>'edit:users_roles'],
+        ['id'=>20,'name'=>'remove:users_roles'],
+
+        ['id'=>21,'name'=>'read:roles_permissions'],
+        ['id'=>22,'name'=>'create:roles_permissions'],
+        ['id'=>23,'name'=>'edit:roles_permissions'],
+        ['id'=>24,'name'=>'remove:roles_permissions'],
+        
+        ['id'=>25,'name'=>'read:deals'],
+        ['id'=>26,'name'=>'create:deals'],
+        ['id'=>27,'name'=>'edit:deals'],
+        ['id'=>28,'name'=>'remove:deals'],
+
+        ['id'=>29,'name'=>'read:events'],
+
+        ['id'=>30,'name'=>'read:currencies'],
+        ['id'=>31,'name'=>'create:currencies'],
+        ['id'=>32,'name'=>'edit:currencies'],
+        ['id'=>33,'name'=>'remove:currencies'],
+
+        ['id'=>34,'name'=>'read:pipelines'],
+        ['id'=>35,'name'=>'create:pipelines'],
+        ['id'=>36,'name'=>'edit:pipelines'],
+        ['id'=>37,'name'=>'remove:pipelines'],
+
+        ['id'=>38,'name'=>'read:stages'],
+        ['id'=>39,'name'=>'create:stages'],
+        ['id'=>40,'name'=>'edit:stages'],
+        ['id'=>41,'name'=>'remove:stages'],
+
+        ['id'=>42,'name'=>'read:settings'],
+        ['id'=>43,'name'=>'create:settings'],
+        ['id'=>44,'name'=>'edit:settings'],
+        ['id'=>45,'name'=>'remove:settings'],
+
+        ['id'=>46,'name'=>'read:fields'],
+        ['id'=>47,'name'=>'create:fields'],
+        ['id'=>48,'name'=>'edit:fields'],
+        ['id'=>49,'name'=>'remove:fields'],
     );
 
 
