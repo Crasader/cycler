@@ -10,7 +10,9 @@ class EntrustSetupTables extends Migration
      * @return  void
      */
     public function up()
-    {
+    {   
+
+        return true;
         DB::beginTransaction();
 
         // Create table for storing roles
@@ -69,6 +71,8 @@ class EntrustSetupTables extends Migration
      */
     public function down()
     {
+        
+        return true;
         Schema::drop('permission_role');
         Schema::drop('permissions');
         Schema::drop('role_user');
