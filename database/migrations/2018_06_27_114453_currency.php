@@ -13,7 +13,7 @@ class Currency extends Migration
      */
     public function up()
     {
-        Schema::create('currency', function (Blueprint $table) {
+        Schema::create('currencies', function (Blueprint $table) {
             $table->increments('id');
             $table->string('code',64);
             $table->string('name');
@@ -35,7 +35,7 @@ class Currency extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('currency');
+        Schema::dropIfExists('currencies');
     }
 
 

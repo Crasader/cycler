@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\{Deals,Field,Currency,Pipeline,Stage};
+use App\Models\{Deals,Field,Currencies,Pipeline,Stage};
 use App\{Role,Permissions,User};
 use App\Helpers\ApiHelper;
 
@@ -13,7 +13,7 @@ use App\Events\UpdatedModels;
 use App\Exceptions\ModelValidateException;
 use Exception;
 
-class ApiCurrencyController extends Controller
+class ApiCurrenciesController extends Controller
 {
 
 
@@ -34,7 +34,7 @@ class ApiCurrencyController extends Controller
     public function getCurrencies(Request $request){
         $api = new ApiHelper;
         
-        $result = $api->getByRequest(new Currency,$request->all());
+        $result = $api->getByRequest(new Currencies,$request->all());
         
         return $result; 
     }
@@ -50,7 +50,7 @@ class ApiCurrencyController extends Controller
     */
     public function getCurrency($id){
         
-        $model = Currency::findOrFail($id);
+        $model = Currencies::findOrFail($id);
 
         return $model->getAttributes();
     }
@@ -67,7 +67,7 @@ class ApiCurrencyController extends Controller
 
         $parameters = $request->toArray();
 
-        $model =  new Currency;
+        $model =  new Currencies;
         
         $success = $model->fill($request->toArray(),true) && $model->save() ? true : false;
         
@@ -100,7 +100,7 @@ class ApiCurrencyController extends Controller
     public function editCurrencies($id,Request $request){
         $answer = array();
         
-        $model = Currency::find($id);
+        $model = Currencies::find($id);
         
         if(isset($model->id)){
             $success = $model->fill($request->toArray(),true) && $model->save() ? true : false;
@@ -138,7 +138,7 @@ class ApiCurrencyController extends Controller
     */
     public function removeCurrencies($id){
         
-        $model = Currency::find($id);
+        $model = Currencies::find($id);
         $success = false;
         if(isset($model->id)){
             

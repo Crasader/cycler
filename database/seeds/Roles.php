@@ -14,7 +14,6 @@ class Roles extends Seeder
 
 
     public $perms = array(
-        ['id'=>1,'name'=>'read:self'],
 
         ['id'=>2,'name'=>'read:user'],
         ['id'=>3,'name'=>'edit:user'],

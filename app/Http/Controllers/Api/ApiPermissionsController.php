@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\{Deals,Field,Currency,Pipeline,Stage};
+use App\Models\{Deals,Field,Currencies,Pipeline,Stage};
 use App\{Role,Permission,User};
 use App\Helpers\ApiHelper;
 use App\Events\UpdatedModels;

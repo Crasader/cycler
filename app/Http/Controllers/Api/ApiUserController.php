@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\{Role,Permission,User};
 use App\Helpers\ApiHelper;
-
+use Illuminate\Support\Facades\DB;
 use App\Events\UpdatedModels;
 use App\Exceptions\ModelValidateException;
 use Exception;
@@ -57,16 +57,28 @@ class ApiUserController extends Controller
             $roles[$r->id]['description']=$r->description;
             
             $perms = $r->perms()->get(['id','name','display_name','description'])->toArray();
-            array_push($allPerms, $perms);
+            $allPerms = array_merge($allPerms, $perms);
             
             $roles[$r->id]['permissions']=array_map(function($p){return $p['id'];}, $perms);
         }
         
+        $arrayRolesIds = array_keys($roles);
+        
+        $answer['permissions'] = array();
+        $answer['account']['roles'] = array();
         $answer['roles']=$roles;
-        $answer['permissions']=$allPerms;
+        
+        if($arrayRolesIds){
+            $p = new Permission();
+            $perms = DB::table($p->getTable())
+                            ->join(config('entrust.permission_role_table'), 'permission_id', '=', 'id')
+                            ->whereRaw("role_id IN (".implode(",", $arrayRolesIds).")")->get()->toArray();
+            
+            $answer['permissions']=$perms;
+            $answer['account']['roles'] = $arrayRolesIds;
+        }
+        
 
-
-        $answer['account']['roles'] = array_map(function($r){return $r['id'];}, $roles);
         
 
         //Настройки пользователя

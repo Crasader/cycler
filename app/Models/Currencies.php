@@ -4,10 +4,10 @@ namespace App\Models;
 
 
 
-class Currency extends ModelValidation
+class Currencies extends ModelValidation
 {
     
-    protected $table = "currency";
+    protected $table = "currencies";
 
     /**
      * The attributes that are mass assignable.

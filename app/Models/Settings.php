@@ -9,7 +9,7 @@ class Settings extends ModelValidation
     /*
     * Table name in the BD
     */
-    protected $table = "app_settings";
+    protected $table = "settings";
 
 
     /*
@@ -21,7 +21,7 @@ class Settings extends ModelValidation
 
 
     protected $rules = array(
-        'name'=>['required','unique:app_settings'],
+        'name'=>['required','unique:settings'],
     );
 
 

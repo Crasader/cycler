@@ -11,7 +11,7 @@ class Currencies extends Seeder
      */
     public function run()
     {
-        DB::table('currency')->insert($this->data);
+        DB::table('currencies')->insert($this->data);
     }
 
     protected $data = array(

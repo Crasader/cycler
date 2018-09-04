@@ -52,8 +52,7 @@ Route::group(['prefix'=>'/public','namespace'=>'Api','middleware'=>['auth:api','
 */
 
 Route::group(['namespace'=>'Api','middleware'=>['auth:api','cors']],function($route){
-	$route->get("self","ApiSelfController@self")->name("self");
-
+	
 
 	/**
 	* Users
@@ -91,15 +90,15 @@ Route::group(['namespace'=>'Api','middleware'=>['auth:api','cors']],function($ro
 	* Currencies
 	* 
 	*/
-	$route->get("currencies","ApiCurrencyController@getCurrencies")->name("getCurrencies")->middleware('permission:read:currencies');
+	$route->get("currencies","ApiCurrenciesController@getCurrencies")->name("getCurrencies")->middleware('permission:read:currencies');
 
-	$route->get("currencies/{id}","ApiCurrencyController@getCurrency")->name("getCurrency")->middleware('permission:read:currencies');
+	$route->get("currencies/{id}","ApiCurrenciesController@getCurrency")->name("getCurrency")->middleware('permission:read:currencies');
 
-	$route->put("currencies","ApiCurrencyController@createCurrencies")->name("createCurrencies")->middleware('permission:create:currencies');
+	$route->put("currencies","ApiCurrenciesController@createCurrencies")->name("createCurrencies")->middleware('permission:create:currencies');
 
-	$route->post("currencies/{id}","ApiCurrencyController@editCurrencies")->name("editCurrencies")->middleware('permission:edit:currencies');
+	$route->post("currencies/{id}","ApiCurrenciesController@editCurrencies")->name("editCurrencies")->middleware('permission:edit:currencies');
 
-	$route->delete("currencies/{id}","ApiCurrencyController@removeCurrencies")->name("removeCurrencies")->middleware('permission:remove:currencies');
+	$route->delete("currencies/{id}","ApiCurrenciesController@removeCurrencies")->name("removeCurrencies")->middleware('permission:remove:currencies');
 
 
 
