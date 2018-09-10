@@ -50,7 +50,7 @@ class ApiDealController extends Controller
     * GET <baseUrl>/api/<role_name>/deals/<id>
     *
     */
-    public function createDeals($id){
+    public function getDeal($id){
         
         $deal = Deals::init($id);
 
@@ -66,7 +66,7 @@ class ApiDealController extends Controller
     /*
     * PUT <baseUrl>/api/<role_name>/deals
     */
-    public function createDeal(Request $request){
+    public function createDeals(Request $request){
 
         $answer = array();
 
@@ -83,12 +83,13 @@ class ApiDealController extends Controller
         $errors = $deal->errors();
         
         if(count($errors))
-            throw new ModelValidateException($model);
+            throw new ModelValidateException($deal);
 
         return [
             'success'=>$success,
             'errors'=>$errors,
-            'requestData'=>$parameters
+            'requestData'=>$parameters,
+            'dts_created'=> $success ? strtotime($deal->dts_created) : null,
         ];
     }
 
@@ -116,7 +117,7 @@ class ApiDealController extends Controller
 
             $errors = $deal->errors();
 
-            $deal = $deal->getAttributes();
+            
         }else{
             throw new \Exception("Deal not found",404);
         }
@@ -127,7 +128,8 @@ class ApiDealController extends Controller
         return [
             'success'=>$success,
             'deal'=>$deal,
-            'errors'=>$errors
+            'errors'=>$errors,
+            'dts_updated'=> $success ? strtotime($deal->dts_updated) : null,
         ];
     }
 
@@ -137,7 +139,6 @@ class ApiDealController extends Controller
 
 
     /*
-    *
     * DELETE <baseUrl>/api/<role_name>/deals/<id>
     *
     */

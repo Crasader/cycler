@@ -25,10 +25,17 @@ Route::middleware(['auth:api','cors'])->get('/todos', function (Request $request
 
 
 
+
+
+
 Route::middleware(['cors'])->post('auth', 'Auth\AuthController@auth');
 
 
+
+
 Route::middleware(['cors'])->post('auth/register', 'Auth\AuthController@register');
+
+
 
 
 
@@ -46,13 +53,17 @@ Route::group(['prefix'=>'/public','namespace'=>'Api','middleware'=>['auth:api','
 
 
 
+
+
 /*
 * Routes for role admin
 *
 */
-
 Route::group(['namespace'=>'Api','middleware'=>['auth:api','cors']],function($route){
 	
+
+
+
 
 	/**
 	* Users
@@ -67,6 +78,8 @@ Route::group(['namespace'=>'Api','middleware'=>['auth:api','cors']],function($ro
 	$route->post('users/{user_id}/roles/{role_id}',"ApiUserController@attachRole")->name("attachRole")->middleware('permission:create:users_roles|edit:users_roles');
 
 	$route->delete('users/{user_id}/roles/{role_id}',"ApiUserController@detachRole")->name("detachRole")->middleware('permission:remove:users_roles');
+
+
 
 
 
@@ -86,6 +99,8 @@ Route::group(['namespace'=>'Api','middleware'=>['auth:api','cors']],function($ro
 
 
 
+
+
 	/*
 	* Currencies
 	* 
@@ -99,6 +114,8 @@ Route::group(['namespace'=>'Api','middleware'=>['auth:api','cors']],function($ro
 	$route->post("currencies/{id}","ApiCurrenciesController@editCurrencies")->name("editCurrencies")->middleware('permission:edit:currencies');
 
 	$route->delete("currencies/{id}","ApiCurrenciesController@removeCurrencies")->name("removeCurrencies")->middleware('permission:remove:currencies');
+
+
 
 
 
