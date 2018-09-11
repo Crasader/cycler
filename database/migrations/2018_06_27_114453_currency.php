@@ -21,7 +21,7 @@ class Currency extends Migration
             $table->string("symbol");
             $table->unsignedTinyInteger("active_flag")->default(true);
             $table->unsignedTinyInteger("is_custom_flag")->default(false);
-
+            $table->timestamps();
             $table->engine = 'MyISAM';
             $table->collation = 'utf8_general_ci';
             $table->charset = 'utf8';

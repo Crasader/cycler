@@ -16,12 +16,6 @@ class Field extends ModelValidation
 	protected $table = "fields";
 
 
-	/*
-	* including created_at and updated_at columns in the table
-	*/
-	public $timestamps = false;
-
-
 
 	/*
 	* Fillable model properties

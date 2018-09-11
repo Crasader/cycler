@@ -51,9 +51,9 @@ trait DynamicalModel{
 		$visible = array();
 		$hidden = array();
 
-		//unable default timestamps
-		$this->timestamps = false;
 
+		$hasCreatedAt = false;
+		$hasUpdateAt = false;
 		foreach ($schema as $field) {
 			array_push($available, $field->name);
 			
@@ -72,9 +72,17 @@ trait DynamicalModel{
 			
 			$this->createRule($field);
 			
-
+			if(!$hasCreatedAt && $field->name == "created_at"){
+				$hasCreatedAt = true;
+			}
+			if(!$hasUpdateAt && $field->name == "updated_at"){
+				$hasUpdateAt = true;
+			}
 			//array_push($hidden, $field->name);
 		}
+
+		//unable default timestamps
+		$this->timestamps = $hasCreatedAt && $hasUpdateAt;
 
 		$this->setAvailable($available);
 		$this->setVisible($visible);

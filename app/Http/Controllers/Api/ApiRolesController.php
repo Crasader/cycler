@@ -50,7 +50,7 @@ class ApiRolesController extends Controller
 
         $model = Role::findOrFail($id);
 
-        return response()->json([$model->getAttributes()]);
+        return $model;
     }
 
     
@@ -80,7 +80,7 @@ class ApiRolesController extends Controller
 
         return [
             'success'=>$success,
-            'requestData'=>$parameters,
+            'role'=>$model,
             'errors'=>$errors
         ];
     }
@@ -113,7 +113,6 @@ class ApiRolesController extends Controller
                 event(new UpdatedModels($model,UpdatedModels::UPDATED));
             }
 
-            $role=$model->getAttributes();
             
             $errors = $model->errors();
         }else{
@@ -125,7 +124,7 @@ class ApiRolesController extends Controller
 
         return [
             'success'=>$success,
-            'role'=>$role,
+            'role'=>$model,
             'errors'=>$errors
         ];
     }

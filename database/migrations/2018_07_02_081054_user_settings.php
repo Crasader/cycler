@@ -22,7 +22,8 @@ class UserSettings extends Migration
             $table->string('title');
             $table->text('description')->nullable()->default(null);
             $table->longText('value')->nullable()->default(null);
-
+            $table->timestamps();
+            
             $table->engine = 'MyISAM';
             $table->collation = 'utf8_general_ci';
             $table->charset = 'utf8';

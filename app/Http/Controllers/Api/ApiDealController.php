@@ -14,6 +14,7 @@ use App\Exceptions\ModelValidateException;
 use Exception;
 class ApiDealController extends Controller
 {
+
     /**
      * Create a new controller instance.
      *
@@ -45,7 +46,9 @@ class ApiDealController extends Controller
 
 
 
-     /*
+
+
+    /*
     *
     * GET <baseUrl>/api/<role_name>/deals/<id>
     *
@@ -54,10 +57,7 @@ class ApiDealController extends Controller
         
         $deal = Deals::init($id);
 
-        return [
-            'status'=>200,
-            'data'=>$deal->getAttributes()
-        ];
+        return $deal;
     }
 
 
@@ -88,8 +88,8 @@ class ApiDealController extends Controller
         return [
             'success'=>$success,
             'errors'=>$errors,
-            'requestData'=>$parameters,
-            'dts_created'=> $success ? strtotime($deal->dts_created) : null,
+            'deal'=>$success ?$deal : null,
+            'created_at'=> $success ? strtotime($deal->created_at) : null,
         ];
     }
 
@@ -129,7 +129,7 @@ class ApiDealController extends Controller
             'success'=>$success,
             'deal'=>$deal,
             'errors'=>$errors,
-            'dts_updated'=> $success ? strtotime($deal->dts_updated) : null,
+            'updated_at'=> $success ? strtotime($deal->updated_at) : null,
         ];
     }
 

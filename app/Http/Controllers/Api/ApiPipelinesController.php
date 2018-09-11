@@ -50,7 +50,7 @@ class ApiPipelinesController extends Controller
         
         $model = Pipeline::findOrFail($id);
 
-        return response()->json([$model->getAttributes()]);
+        return response()->json([$model]);
     }
 
 
@@ -80,7 +80,7 @@ class ApiPipelinesController extends Controller
 
         return [
             'success'=>$success,
-            'requestData'=>$parameters,
+            'pipeline'=>$model,
             'errors'=>$errors
         ];
     }
@@ -107,7 +107,6 @@ class ApiPipelinesController extends Controller
                 event(new UpdatedModels($model,UpdatedModels::UPDATED));
             }
 
-            $pipeline=$model->getAttributes();
         
             $errors = $model->errors();
         }else{
@@ -119,7 +118,7 @@ class ApiPipelinesController extends Controller
 
         return [
             'success'=>$success,
-            'pipeline'=>$pipeline,
+            'pipeline'=>$model,
             'errors'=>$errors
         ];
     }

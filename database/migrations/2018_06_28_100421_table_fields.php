@@ -70,8 +70,7 @@ class TableFields extends Migration
            $table->string("person_email")->nullable();
 
 
-           $table->timestamp("dts_created");
-           $table->timestamp("dts_updated")->nullable()->default(null);
+           $table->timestamps();
         });
 
         
@@ -220,13 +219,13 @@ class TableFields extends Migration
 
           "dts_created"=>[
                 'dbtable' => 'deals',
-                'name' => 'dts_created',
+                'name' => 'created_at',
                 'model_type'=>'Integer',
                 'data_type'=>'timestamp',
           ],
           "dts_updated"=>[
                 'dbtable' => 'deals',
-                'name' => 'dts_updated',
+                'name' => 'updated_at',
                 'model_type'=>'Integer',
                 'data_type'=>'timestamp',
                 'is_nullable' => true,

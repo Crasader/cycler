@@ -58,6 +58,8 @@ class FieldSchema extends Migration
 
             $table->unique(['dbtable', 'name'],'table_name_unique_index');
 
+            $table->timestamps();
+            
             $table->engine = 'MyISAM';
             $table->collation = 'utf8_general_ci';
             $table->charset = 'utf8';

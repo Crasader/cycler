@@ -16,15 +16,8 @@ class Pipelines extends Migration
        Schema::create('pipelines', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('url_title')->default("default");
-            $table->integer('order_nr')->default(1);
-            $table->unsignedTinyInteger("active")->default(true);
-            $table->unsignedTinyInteger("deal_probability")->nullable()->default(null);
-
-            $table->timestamp("add_time");
-            $table->timestamp("update_time")->default(null)->nullable();
-            $table->unsignedTinyInteger('selected')->default(1);
-
+            $table->text('description')->nullable();
+            $table->timestamps();
 
             $table->engine = 'MyISAM';
             $table->collation = 'utf8_general_ci';

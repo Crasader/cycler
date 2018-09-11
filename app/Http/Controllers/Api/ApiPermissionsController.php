@@ -11,6 +11,7 @@ use App\Helpers\ApiHelper;
 use App\Events\UpdatedModels;
 use App\Exceptions\ModelValidateException;
 use Exception;
+
 class ApiPermissionsController extends Controller
 {
 
@@ -51,7 +52,7 @@ class ApiPermissionsController extends Controller
         
         $model = Permission::findOrFail($id);
 
-        return response()->json([$model->getAttributes()]);
+        return $model;
     }
 
 
@@ -82,7 +83,7 @@ class ApiPermissionsController extends Controller
 
         return [
             'success'=>$success,
-            'requestData'=>$parameters,
+            'permission'=>$success ?  $model : null,
             'errors'=>$errors
         ];
     }
@@ -114,8 +115,6 @@ class ApiPermissionsController extends Controller
             if($success){
                 event(new UpdatedModels($model,UpdatedModels::UPDATED));
             }
-
-            $permission=$model->getAttributes();
             
             $errors = $model->errors();
         }else{
@@ -127,7 +126,7 @@ class ApiPermissionsController extends Controller
 
         return [
             'success'=>$success,
-            'role'=>$permission,
+            'permission'=>$model,
             'errors'=>$errors
         ];
     }

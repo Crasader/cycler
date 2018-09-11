@@ -17,13 +17,7 @@ class Pipeline extends ModelValidation
      * @var array
      */
     protected $fillable = [
-        'name',
-        'url_title',
-        'order_nr',
-        'active',
-        'deal_probability',
-        'update_time',
-        'selected'
+        'name'
     ];
 
 
@@ -35,12 +29,9 @@ class Pipeline extends ModelValidation
     protected $visible = [
         'id',
         'name',
-        'url_title',
-        'order_nr',
-        'active',
-        'deal_probability',
-        'update_time',
-        'selected'
+        'description',
+        'created_at',
+        'updated_at'
     ];
 
 
@@ -54,12 +45,9 @@ class Pipeline extends ModelValidation
     protected $available = [
         'id',
         'name',
-        'url_title',
-        'order_nr',
-        'active',
-        'deal_probability',
-        'update_time',
-        'selected'
+        'description',
+        'created_at',
+        'updated_at'
     ];
 
 

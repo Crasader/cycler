@@ -9,7 +9,14 @@ use Illuminate\Support\Facades\Validator;
 class ModelValidation extends Model{
 
 
-	public $timestamps = false;
+	public function getCreatedAtAttribute($date){
+	    return strtotime($date);
+	}
+
+	public function getUpdatedAtAttribute($date){
+	    return strtotime($date);
+	}
+
 
 	protected $rules = array();
 	

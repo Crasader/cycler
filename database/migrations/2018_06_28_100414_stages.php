@@ -15,19 +15,16 @@ class Stages extends Migration
     {
         Schema::create('stages', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('order_nr')->default(1);
-            $table->string('name');
-            $table->unsignedTinyInteger("active_flag")->default(1);
-            $table->integer("deal_probability")->default(100);
 
             $table->unsignedInteger("pipeline_id");
             $table->foreign('pipeline_id','stages_pipeline_id')->references('id')->on('pipelines');
 
-            $table->unsignedTinyInteger("rotten_flag")->default(0);
-            $table->integer("rotten_days")->default(null)->nullable();
-            $table->timestamp("add_time");
-            $table->timestamp("update_time")->default(null)->nullable();
-            $table->string('pipeline_name')->default(null)->nullable();
+            
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->integer('order_nr')->default(1);
+            
+            $table->timestamps();
 
 
             $table->engine = 'MyISAM';

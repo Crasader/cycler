@@ -14,6 +14,9 @@ use Exception;
 class ApiStageController extends Controller
 {
 
+
+
+
     /**
      * 
      * @return void
@@ -22,6 +25,9 @@ class ApiStageController extends Controller
     {
       
     }
+
+
+
 
 
     /*
@@ -50,7 +56,7 @@ class ApiStageController extends Controller
         
         $model = Stage::findOrFail($id);
 
-        return response()->json([$model->getAttributes()]);
+        return $model;
     }
 
 
@@ -80,7 +86,7 @@ class ApiStageController extends Controller
         return [
             'success'=>$success,
             'errors'=>$errors,
-            'requestData'=>$parameters
+            'stage'=>$model
         ];
     }
 
@@ -106,7 +112,6 @@ class ApiStageController extends Controller
                 event(new UpdatedModels($model,UpdatedModels::UPDATED));
             }
 
-            $stage=$model->getAttributes();
             
             $errors = $model->errors();
         }else{
@@ -118,7 +123,7 @@ class ApiStageController extends Controller
 
         return [
             'success'=>$success,
-            'stage'=>$stage,
+            'stage'=>$model,
             'errors'=>$errors
         ];
     }

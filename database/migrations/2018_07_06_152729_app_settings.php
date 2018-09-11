@@ -18,6 +18,8 @@ class AppSettings extends Migration
             $table->string("name");
             $table->unique("name","app_settings_unique_name");
             $table->longText('value')->nullable()->default(null);
+            
+            $table->timestamps();
 
             $table->engine = 'MyISAM';
             $table->collation = 'utf8_general_ci';

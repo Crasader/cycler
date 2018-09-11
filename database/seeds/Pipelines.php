@@ -13,25 +13,25 @@ class Pipelines extends Seeder
     {	
     	
         $id = DB::table('pipelines')->insertGetId(
-        	['name' => 'Грузоперевозка','order_nr'=>1]
+        	['name' => 'Грузоперевозка']
         );
 
         if($id){
         	DB::table('stages')->insert([
-        		['name' => 'Первая стадия','order_nr'=>1,'pipeline_id'=>$id,'pipeline_name'=>'Грузоперевозка'],
-        		['name' => 'Стадия завершения','order_nr'=>2,'pipeline_id'=>$id,'pipeline_name'=>'Грузоперевозка']
+        		['name' => 'Первая стадия','order_nr'=>1,'pipeline_id'=>$id],
+        		['name' => 'Стадия завершения','order_nr'=>2,'pipeline_id'=>$id]
         	]);
         }
 
 
         $id = DB::table('pipelines')->insertGetId(
-        	['name' => 'Расчет стоимости','order_nr'=>2]
+        	['name' => 'Расчет стоимости']
         );
 
         if($id){
         	DB::table('stages')->insert([
-        		['name' => 'Первая стадия','order_nr'=>1,'pipeline_id'=>$id,'pipeline_name'=>'Расчет стоимости'],
-        		['name' => 'Стадия завершения','order_nr'=>2,'pipeline_id'=>$id,'pipeline_name'=>'Расчет стоимости']
+        		['name' => 'Первая стадия','order_nr'=>1,'pipeline_id'=>$id],
+        		['name' => 'Стадия завершения','order_nr'=>2,'pipeline_id'=>$id]
         	]);
         }
         

@@ -84,7 +84,8 @@ class Roles extends Seeder
      * @return void
      */
     public function run()
-    {
+    {   
+        return true;
         DB::table('roles')->insert($this->roles);
 
         DB::table('permissions')->insert($this->perms);

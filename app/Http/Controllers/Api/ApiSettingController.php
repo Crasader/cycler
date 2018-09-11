@@ -55,7 +55,7 @@ class ApiSettingController extends Controller
         
         $model = Settings::findOrFail($id);
 
-        return response()->json([$model->getAttributes()]);
+        return $model;
     }
 
 
@@ -85,7 +85,7 @@ class ApiSettingController extends Controller
         return [
             'success'=>$success,
             'errors'=>$errors,
-            'requestData'=>$parameters
+            'setting'=>$model
         ];
     }
 
@@ -111,7 +111,6 @@ class ApiSettingController extends Controller
                 event(new UpdatedModels($model,UpdatedModels::UPDATED));
             }
 
-            $setting=$model->getAttributes();
         
             $errors = $model->errors();
         }else{
@@ -123,7 +122,7 @@ class ApiSettingController extends Controller
 
         return [
             'success'=>$success,
-            'setting'=>$setting,
+            'setting'=>$model,
             'errors'=>$errors
         ];
     }

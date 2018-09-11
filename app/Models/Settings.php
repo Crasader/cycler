@@ -12,12 +12,7 @@ class Settings extends ModelValidation
     protected $table = "settings";
 
 
-    /*
-    * including created_at and updated_at columns in the table
-    */
-    public $timestamps = false;
-
-
+   
 
 
     protected $rules = array(
