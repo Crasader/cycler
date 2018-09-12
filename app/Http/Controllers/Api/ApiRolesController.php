@@ -34,10 +34,18 @@ class ApiRolesController extends Controller
 
         $api = new ApiHelper;
         
-        $result = $api->getByRequest(new Role,$request->all());
+        $roles = $api->getByRequest(new Role,$request->all());
         
-        return $result; 
+        foreach ($roles as  $r) {
+           
+           $results[$r->id] =  $r;
+           $results[$r->id]->permissions = Permission::getPermissionsIdsByRoleId($r->id);
+
+        }
+        return $results; 
     }
+
+
 
 
 
@@ -50,10 +58,14 @@ class ApiRolesController extends Controller
 
         $model = Role::findOrFail($id);
 
-        return $model;
+        $result = $model->toArray();
+        $result['permissions']=$model->getPermissionsIds();
+        return $result;
     }
 
     
+
+
     /*
     *
     * PUT <baseUrl>/api/roles
@@ -208,6 +220,9 @@ class ApiRolesController extends Controller
             'errors'=>$errors
         ];
     }
+
+
+
 
 
     /*

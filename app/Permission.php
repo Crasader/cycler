@@ -5,7 +5,7 @@ use Zizaco\Entrust\Contracts\EntrustPermissionInterface;
 use Zizaco\Entrust\Traits\EntrustPermissionTrait;
 use Illuminate\Support\Facades\Config;
 use App\Models\ModelValidation;
-
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -75,5 +75,19 @@ class Permission extends ModelValidation implements EntrustPermissionInterface
         }
 
         return $this;
+    }
+
+
+
+    public static function getPermissionsIdsByRoleId($roleId){
+
+        $perms = DB::table(Config::get('entrust.permission_role_table'))->where("role_id",$roleId)->get(['permission_id'])->toArray();
+        // $perms = self::query()
+        //             ->leftJoin(Config::get('entrust.permission_role_table'),Config::get('entrust.permissions_table').'.id','=',Config::get('entrust.permission_role_table').'.permission_id')
+        //             ->where(Config::get('entrust.permission_role_table').'.role_id',$roleId)
+        //             ->get([Config::get('entrust.permissions_table').'.id']);
+
+
+        return array_map(function($p){return $p['permission_id'];}, json_decode(json_encode($perms), true));
     }
 }

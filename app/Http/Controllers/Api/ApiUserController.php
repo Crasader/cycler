@@ -95,9 +95,16 @@ class ApiUserController extends Controller
     */
     public function getUsers(Request $request){
         
-        $result = User::all();
+        $users = User::all();
         
-        return $result; 
+        $results = array();
+        foreach ($users as $u) {
+            $results[$u->id] = $u->toArray();
+            
+            $results[$u->id]['roles']=$u->getRolesIds();
+        }
+
+        return $results; 
     }
 
 
@@ -111,13 +118,11 @@ class ApiUserController extends Controller
         
         $model = User::findOrFail($id);
 
-        $roles = $model->roles()->get(['id'])->toArray();
-
         return [
             'id'=>$model->id,
             'name'=>$model->name,
             'email'=>$model->email,
-            'roles'=>array_map(function($r){return $r['id'];}, $roles)
+            'roles'=>$model->getRolesIds()
         ];
     }
 

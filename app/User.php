@@ -31,4 +31,13 @@ class User extends Authenticatable
         'password', 'remember_token',
         'privot'
     ];
+
+
+
+
+    public function getRolesIds(){
+
+        $roles = $this->roles()->get(['id'])->toArray();
+        return array_map(function($r){return $r['id'];}, $roles);
+    }
 }

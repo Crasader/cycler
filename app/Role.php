@@ -79,4 +79,12 @@ class Role extends ModelValidation implements EntrustRoleInterface
         return $this;
     }
 
+
+
+
+    public function getPermissionsIds(){
+        $perms = $this->perms()->get(['id'])->toArray();
+
+        return array_map(function($p){return $p['id'];}, $perms);
+    }
 }
