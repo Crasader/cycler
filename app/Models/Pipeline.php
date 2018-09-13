@@ -17,7 +17,8 @@ class Pipeline extends ModelValidation
      * @var array
      */
     protected $fillable = [
-        'name'
+        'name',
+        'description'
     ];
 
 

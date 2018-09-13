@@ -23,14 +23,9 @@ class Stage extends ModelValidation
      */
     protected $fillable = [
         'name',
+        'description',
         'order_nr',
-        'active_flag',
-        'deal_probability',
         'pipeline_id',
-        'rotten_flag',
-        'rotten_days',
-        'update_time',
-        'pipeline_name'
     ];
 
 
@@ -42,15 +37,11 @@ class Stage extends ModelValidation
      * @var array
      */
     protected $available = [
+        'id',
         'name',
+        'description',
         'order_nr',
-        'active_flag',
-        'deal_probability',
-        'pipeline_id',
-        'rotten_flag',
-        'rotten_days',
-        'update_time',
-        'pipeline_name'
+        'pipeline_id'
     ];
 
 
@@ -64,6 +55,9 @@ class Stage extends ModelValidation
     protected $visible = [
         'id',
         'name',
+        'description',
+        'order_nr',
+        'pipeline_id'
     ];
 
     /**
