@@ -15,34 +15,25 @@ use Exception;
 class ApiUserController extends Controller
 {
 
-    /**
-     * 
-     * @return void
-     */
-    public function __construct()
-    {
-      
-    }
-
-
     
-
-    /*
-    *
+    /**
     * GET <baseUrl>/api/user
-    *
+    * role *
+    * permission *
+    * @return array()
     */
-    public function getMe(Request $request){
+    public function getMe(){
         
         
         $answer = array();
         $user = Auth::user();
 
 
-        $answer['account']['id']  = $user->id;
-        $answer['account']['name'] = $user->name;
-        $answer['account']['email'] = $user->email;
-
+        $account['id']  = $user->id;
+        $account['name'] = $user->name;
+        $account['email'] = $user->email;
+        $account['created_at'] = $user->created_at;
+        $account['updated_at'] = $user->updated_at;
        
 
         //Роли пользователя
@@ -64,9 +55,9 @@ class ApiUserController extends Controller
         
         $arrayRolesIds = array_keys($roles);
         
-        $answer['permissions'] = array();
-        $answer['account']['roles'] = array();
-        $answer['roles']=$roles;
+        $permissions = array();
+        $account['roles'] = array();
+        
         
         if($arrayRolesIds){
             $p = new Permission();
@@ -74,34 +65,44 @@ class ApiUserController extends Controller
                             ->join(config('entrust.permission_role_table'), 'permission_id', '=', 'id')
                             ->whereRaw("role_id IN (".implode(",", $arrayRolesIds).")")->get()->toArray();
             
-            $answer['permissions']=$perms;
-            $answer['account']['roles'] = $arrayRolesIds;
+            $permissions=$perms;
+            $account['roles'] = $arrayRolesIds;
         }
         
-
-        
-
         //Настройки пользователя
-        $answer['settings'] = array();
+        $settings = array();
 
-        return $answer;
+        return [
+            'account'=>$account,
+            'roles'=>$roles,
+            'permissions'=>$permissions,
+            'settings'=>$settings,
+        ];
     }
 
 
-    /*
-    *
+
+
+    /**
     * GET <baseUrl>/api/users
-    *
+    * roles: *
+    * permission: read:users
+    * filters: Yes
+    * @param Request
+    * @return Array Users
     */
     public function getUsers(Request $request){
         
-        $users = User::all();
+        
+        $api = new ApiHelper;
+        // $users = User::all();
+        $users = $api->getByRequest(new User,$request->all());
         
         $results = array();
         foreach ($users as $u) {
             $results[$u->id] = $u->toArray();
             
-            $results[$u->id]['roles']=$u->getRolesIds();
+            $results[$u->id]['roles'] = $u->getRolesIds();
         }
 
         return $results; 
@@ -109,31 +110,32 @@ class ApiUserController extends Controller
 
 
 
-    /*
-    *
+    /**
     * GET <baseUrl>/api/users/<id>
-    *
+    * permission: read:users
+    * filters: No
+    * @param id - user identificator
+    * @return User
     */
     public function getUser($id){
         
         $model = User::findOrFail($id);
-
-        return [
-            'id'=>$model->id,
-            'name'=>$model->name,
-            'email'=>$model->email,
-            'roles'=>$model->getRolesIds()
-        ];
+        $user = $model->toArray();
+        $user['roles'] = $model->getRolesIds();
+        
+        return $user;
     }
 
 
 
 
 
-    /*
-    *
+    /**
     * POST <baseUrl>/api/users/<user_id>/roles/<role_id>
-    *
+    * permission: edit:users_roles | permission:create:users_roles
+    * @param $user_id - user identificator
+    * @param $role_id - role identificator
+    * @return [success => <boolean>]
     */
     public function attachRole($user_id,$role_id){
         

@@ -89,7 +89,7 @@ class ApiHelper{
 		$select = array_unique(array_merge($select,$canIncluded));
 
 		
-		$q = DB::table($model->getTable());
+		$q = $model->newQuery();//DB::table($model->getTable());
 		$q->select(count($select) ? $select : ['*']);
 
 		//Group
@@ -158,8 +158,8 @@ class ApiHelper{
 			}
 		}
 
-
-		$data = $q->get()->toArray();
+		$data = $q->get();
+		
 		$result = [];
 		
 		if(isset($params[self::QueryField_Index]) && in_array($params[self::QueryField_Index], $select)){
