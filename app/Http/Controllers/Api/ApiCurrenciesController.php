@@ -16,20 +16,12 @@ use Exception;
 class ApiCurrenciesController extends Controller
 {
 
-
     /**
-     * 
-     * @return void
-     */
-    public function __construct()
-    {
-       
-    }
-
-    /*
-    *
     * GET <baseUrl>/api/currencies
-    *
+    * role: *
+    * permission: read:currencies
+    * filters: Yes
+    * @return array()
     */
     public function getCurrencies(Request $request){
         $api = new ApiHelper;

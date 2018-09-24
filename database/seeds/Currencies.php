@@ -21,7 +21,7 @@ class Currencies extends Seeder
 			"name"=> "US Dollar",
 			"decimal_points"=> 2,
 			"symbol"=> "$",
-			"active_flag"=> true,
+			"is_active"=> true,
 			"is_custom_flag"=> false
 		], 
 		
@@ -31,7 +31,7 @@ class Currencies extends Seeder
 			"name"=> "Euro",
 			"decimal_points"=> 2,
 			"symbol"=> "\u20ac",
-			"active_flag"=> true,
+			"is_active"=> true,
 			"is_custom_flag"=> false
 		],
 
@@ -41,7 +41,7 @@ class Currencies extends Seeder
 			"name"=> "Russian Ruble",
 			"decimal_points"=> 2,
 			"symbol"=> "RUB",
-			"active_flag"=> true,
+			"is_active"=> true,
 			"is_custom_flag"=> false
 		],
 
@@ -51,7 +51,7 @@ class Currencies extends Seeder
 			"name"=> "New Israeli Shekel",
 			"decimal_points"=> 2,
 			"symbol"=> "\u20aa",
-			"active_flag"=> true,
+			"is_active"=> true,
 			"is_custom_flag"=> false
 		],
 		
@@ -60,7 +60,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Afghanistan Afghani",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "AFN",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -68,7 +68,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Albanian Lek",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "ALL",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -76,7 +76,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Algerian Dinar",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "DZD",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -84,7 +84,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Angolan Kwanza",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "AOA",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -92,7 +92,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Argentine Peso",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "ARS",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -100,7 +100,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Armenian Dram",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "AMD",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -108,7 +108,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Aruban Guilder",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "AWG",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -116,7 +116,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Australian Dollar",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "A$",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -124,7 +124,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Azerbaijan Manat",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "AZN",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -132,7 +132,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Azerbaijan Old Manat",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -140,7 +140,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Bahamian Dollar",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "BSD",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -148,7 +148,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Bahraini Dinar",
 		// 	"decimal_points"=> 3,
 		// 	"symbol"=> "BHD",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -156,7 +156,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Bangladesh Taka",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "BDT",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -164,7 +164,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Barbados Dollar",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "BBD",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -172,7 +172,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Belarussian Ruble",
 		// 	"decimal_points"=> 0,
 		// 	"symbol"=> "BYR",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -180,7 +180,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Belize Dollar",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "BZD",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -188,7 +188,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Bermudian Dollar",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "BMD",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -196,7 +196,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Bhutan Ngultrum",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "BTN",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -204,7 +204,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Bitcoin",
 		// 	"decimal_points"=> 8,
 		// 	"symbol"=> "\u0e3f",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -212,7 +212,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Bolivian Boliviano",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "BOB",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -220,7 +220,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Bosnia and Herzegovina Convertible Marks",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "BAM",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -228,7 +228,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Botswana Pula",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "BWP",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -236,7 +236,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Brazilian Real",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "R$",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -244,7 +244,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Brunei Dollar",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "BND",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -252,7 +252,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Bulgarian Lev",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "BGN",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -260,7 +260,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Burundi Franc",
 		// 	"decimal_points"=> 0,
 		// 	"symbol"=> "BIF",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -268,7 +268,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Cambodia Riel",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "KHR",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -276,7 +276,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Canadian Dollar",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "CA$",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -284,7 +284,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Cape Verde Escudo",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "CVE",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -292,7 +292,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Cayman Islands Dollar",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "KYD",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -300,7 +300,7 @@ class Currencies extends Seeder
 		// 	"name"=> "CFA Franc BCEAO",
 		// 	"decimal_points"=> 0,
 		// 	"symbol"=> "CFA",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -308,7 +308,7 @@ class Currencies extends Seeder
 		// 	"name"=> "CFA Franc BEAC",
 		// 	"decimal_points"=> 0,
 		// 	"symbol"=> "FCFA",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -316,7 +316,7 @@ class Currencies extends Seeder
 		// 	"name"=> "CFP Franc",
 		// 	"decimal_points"=> 0,
 		// 	"symbol"=> "CFPF",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -324,7 +324,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Chilean Peso",
 		// 	"decimal_points"=> 0,
 		// 	"symbol"=> "CLP",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -332,7 +332,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Chilean Unidad de Fomento",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "CLF",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -340,7 +340,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Chinese Yuan Renminbi",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "CN\u00a5",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -348,7 +348,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Colombian Peso",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "COP",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -356,7 +356,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Comorian Franc",
 		// 	"decimal_points"=> 0,
 		// 	"symbol"=> "KMF",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -364,7 +364,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Costa Rican Colon",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "\u20a1",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -372,7 +372,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Croatian Kuna",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "HRK",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -380,7 +380,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Cuban Peso",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "CUP",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -388,7 +388,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Cyprus Pound",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -396,7 +396,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Czech Koruna",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "CZK",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -404,7 +404,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Danish Krone",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "DKK",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -412,7 +412,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Djibouti Franc",
 		// 	"decimal_points"=> 0,
 		// 	"symbol"=> "DJF",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -420,7 +420,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Dominican Peso",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "DOP",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -428,7 +428,7 @@ class Currencies extends Seeder
 		// 	"name"=> "East Caribbean Dollar",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "EC$",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -436,7 +436,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Egyptian Pound",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "EGP",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -444,7 +444,7 @@ class Currencies extends Seeder
 		// 	"name"=> "El Salvador Colon",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "\u20a1",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -452,7 +452,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Eritrea Nafka",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "ERN",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -460,7 +460,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Estonian Kroon",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -468,7 +468,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Ethiopian Birr",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "ETB",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -476,7 +476,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Falkland Islands Pound",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "FKP",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -484,7 +484,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Fiji Dollar",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "FJD",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -492,7 +492,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Franc Congolais",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "CDF",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -500,7 +500,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Gambian Dalasi",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "GMD",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -508,7 +508,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Georgian Lari",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "GEL",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -516,7 +516,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Ghana Cedi",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -524,7 +524,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Ghanaian Cedi",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "GHS",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -532,7 +532,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Gibraltar Pound",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "GIP",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -540,7 +540,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Gold",
 		// 	"decimal_points"=> 3,
 		// 	"symbol"=> "XAU",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -548,7 +548,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Guatemala Quetzal",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "GTQ",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -556,7 +556,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Guinean Franc",
 		// 	"decimal_points"=> 0,
 		// 	"symbol"=> "GNF",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -564,7 +564,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Guyana Dollar",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "GYD",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -572,7 +572,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Haiti Gourde",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "HTG",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -580,7 +580,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Honduras Lempira",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "HNL",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -588,7 +588,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Hong Kong Dollar",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "HK$",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -596,7 +596,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Hungarian Forint",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "HUF",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -604,7 +604,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Iceland Krona",
 		// 	"decimal_points"=> 0,
 		// 	"symbol"=> "ISK",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -612,7 +612,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Indian Rupee",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "\u20a8",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -620,7 +620,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Indonesian Rupiah",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "IDR",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -628,7 +628,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Iranian Rial",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "IRR",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -636,7 +636,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Iraqi Dinar",
 		// 	"decimal_points"=> 3,
 		// 	"symbol"=> "IQD",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -644,7 +644,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Jamaican Dollar",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "JMD",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -652,7 +652,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Japanese Yen",
 		// 	"decimal_points"=> 0,
 		// 	"symbol"=> "\u00a5",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -660,7 +660,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Jordanian Dinar",
 		// 	"decimal_points"=> 3,
 		// 	"symbol"=> "JOD",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -668,7 +668,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Kazakhstan Tenge",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "KZT",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -676,7 +676,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Kenyan Shilling",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "KES",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -684,7 +684,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Korean Won",
 		// 	"decimal_points"=> 0,
 		// 	"symbol"=> "\u20a9",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -692,7 +692,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Kuwaiti Dinar",
 		// 	"decimal_points"=> 3,
 		// 	"symbol"=> "KWD",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -700,7 +700,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Kyrgyzstan Som",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "KGS",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -708,7 +708,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Lao Kip",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "LAK",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -716,7 +716,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Latvian Lats",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "LVL",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -724,7 +724,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Lebanese Pound",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "LBP",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -732,7 +732,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Lesotho Loti",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "LSL",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -740,7 +740,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Liberian Dollar",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "LRD",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -748,7 +748,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Libyan Dinar",
 		// 	"decimal_points"=> 3,
 		// 	"symbol"=> "LYD",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -756,7 +756,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Lithuanian Litas",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "LTL",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -764,7 +764,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Macau Pataca",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "MOP",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -772,7 +772,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Macedonian Denar",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "MKD",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -780,7 +780,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Malagasy Ariary",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "MGA",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -788,7 +788,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Malawi Kwacha",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "MWK",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -796,7 +796,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Malaysian Ringgit",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "MYR",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -804,7 +804,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Maldives Rufiyaa",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "MVR",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -812,7 +812,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Maltese Lira",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -820,7 +820,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Mauritania Ouguiya",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "MRO",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -828,7 +828,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Mauritius Rupee",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "MUR",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -836,7 +836,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Mexican Peso",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "MX$",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -844,7 +844,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Moldovan Leu",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "MDL",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -852,7 +852,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Mongolian Tugrik",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "MNT",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -860,7 +860,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Moroccan Dirham",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "MAD",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -868,7 +868,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Mozambican Metical",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "MZN",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -876,7 +876,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Mozambique Metical",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -884,7 +884,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Myanmar Kyat",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "MMK",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -892,7 +892,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Namibia Dollar",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "NAD",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -900,7 +900,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Nepalese Rupee",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "NPR",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -908,7 +908,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Netherlands Antillian Guilder",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "ANG",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -916,7 +916,7 @@ class Currencies extends Seeder
 		// 	"name"=> "New Belarusian Ruble",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "Br",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ],  [
 			
@@ -924,7 +924,7 @@ class Currencies extends Seeder
 		// 	"name"=> "New Taiwan Dollar",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "NT$",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -932,7 +932,7 @@ class Currencies extends Seeder
 		// 	"name"=> "New Zealand Dollar",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "NZ$",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -940,7 +940,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Nicaragua Cordoba Oro",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "NIO",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -948,7 +948,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Nigerian Naira",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "\u20a6",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -956,7 +956,7 @@ class Currencies extends Seeder
 		// 	"name"=> "North Korean Won",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "\u20a9",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -964,7 +964,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Norwegian Krone",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "NOK",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -972,7 +972,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Pakistan Rupee",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "PKR",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -980,7 +980,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Palladium",
 		// 	"decimal_points"=> 3,
 		// 	"symbol"=> "XPD",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -988,7 +988,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Panama Balboa",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "PAB",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -996,7 +996,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Papua New Guinea Kina",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "PGK",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1004,7 +1004,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Paraguayan Guarani",
 		// 	"decimal_points"=> 0,
 		// 	"symbol"=> "PYG",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1012,7 +1012,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Peruvian Nuevo Sol",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "PEN",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1020,7 +1020,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Peso Uruguayo",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "UYU",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1028,7 +1028,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Philippine Peso",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "PHP",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1036,7 +1036,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Platinum",
 		// 	"decimal_points"=> 3,
 		// 	"symbol"=> "XPT",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1044,7 +1044,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Polish Zloty",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "PLN",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1052,7 +1052,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Pound Sterling",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "\u00a3",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1060,7 +1060,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Qatari Rial",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "QAR",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1068,7 +1068,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Rial Omani",
 		// 	"decimal_points"=> 3,
 		// 	"symbol"=> "OMR",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1076,7 +1076,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Romanian Leu",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "RON",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1084,7 +1084,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Rwanda Franc",
 		// 	"decimal_points"=> 0,
 		// 	"symbol"=> "RWF",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1092,7 +1092,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Samoa Tala",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "WST",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1100,7 +1100,7 @@ class Currencies extends Seeder
 		// 	"name"=> "S\u00e3o Tome and Principe Dobra",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "STD",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1108,7 +1108,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Saudi Riyal",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "SAR",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1116,7 +1116,7 @@ class Currencies extends Seeder
 		// 	"name"=> "SDR (Special Drawing Rights)",
 		// 	"decimal_points"=> 5,
 		// 	"symbol"=> "XDR",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1124,7 +1124,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Serbian Dinar",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1132,7 +1132,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Serbian Dinar",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "RSD",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1140,7 +1140,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Seychelles Rupee",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "SCR",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1148,7 +1148,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Sierra Leone Leone",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "SLL",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1156,7 +1156,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Silver",
 		// 	"decimal_points"=> 3,
 		// 	"symbol"=> "XAG",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1164,7 +1164,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Singapore Dollar",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "SGD",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1172,7 +1172,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Slovak Koruna",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1180,7 +1180,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Slovenian Tolar",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1188,7 +1188,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Solomon Islands Dollar",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "SBD",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1196,7 +1196,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Somali Shilling",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "SOS",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1204,7 +1204,7 @@ class Currencies extends Seeder
 		// 	"name"=> "South African Rand",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "ZAR",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1212,7 +1212,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Sri Lanka Rupee",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "LKR",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1220,7 +1220,7 @@ class Currencies extends Seeder
 		// 	"name"=> "St Helena Pound",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "SHP",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1228,7 +1228,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Sudanese Dinar",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1236,7 +1236,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Sudanese Pound",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "SDG",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1244,7 +1244,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Surinam Dollar",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "SRD",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1252,7 +1252,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Swaziland Lilangeni",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "SZL",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1260,7 +1260,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Swedish Krona",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "SEK",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1268,7 +1268,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Swiss Franc",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "CHF",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1276,7 +1276,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Syrian Pound",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "SYP",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1284,7 +1284,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Tajik Somoni",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "TJS",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1292,7 +1292,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Tanzanian Shilling",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "TZS",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1300,7 +1300,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Thai Baht",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "\u0e3f",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1308,7 +1308,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Tonga Pa'anga",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "TOP",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1316,7 +1316,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Trinidad and Tobago Dollar",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "TTD",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1324,7 +1324,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Tunisian Dinar",
 		// 	"decimal_points"=> 3,
 		// 	"symbol"=> "TND",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1332,7 +1332,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Turkish Lira",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "\u20ba",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1340,7 +1340,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Turkmenistan Manat",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1348,7 +1348,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Turkmenistani Manat",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "TMT",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1356,7 +1356,7 @@ class Currencies extends Seeder
 		// 	"name"=> "UAE Dirham",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "AED",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1364,7 +1364,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Uganda Shilling",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "UGX",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1372,7 +1372,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Ukraine Hryvnia",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "UAH",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ],[
 			
@@ -1380,7 +1380,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Uzbekistan Sum",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "UZS",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1388,7 +1388,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Vanuatu Vatu",
 		// 	"decimal_points"=> 0,
 		// 	"symbol"=> "VUV",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1396,7 +1396,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Venezuelan Bolivar",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1404,7 +1404,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Venezuelan Bol\u00edvar",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "VEF",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1412,7 +1412,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Vietnamese Dong",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "\u20ab",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1420,7 +1420,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Yemeni Rial",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "YER",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1428,7 +1428,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Zambian Kwacha",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1436,7 +1436,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Zambian Kwacha",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "ZMW",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ], [
 			
@@ -1444,7 +1444,7 @@ class Currencies extends Seeder
 		// 	"name"=> "Zimbabwe Dollar",
 		// 	"decimal_points"=> 2,
 		// 	"symbol"=> "ZWL",
-		// 	"active_flag"=> true,
+		// 	"is_active"=> true,
 		// 	"is_custom_flag"=> false
 		// ]
     );

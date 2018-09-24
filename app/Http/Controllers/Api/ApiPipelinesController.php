@@ -24,10 +24,12 @@ class ApiPipelinesController extends Controller
     }
 
 
-    /*
-    *
+    /**
     * GET <baseUrl>/api/pipelines
-    *
+    * role: *
+    * permission: read:pipelines
+    * filters: Yes
+    * @return array()
     */
     public function getPipelines(Request $request){
         $api = new ApiHelper;

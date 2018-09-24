@@ -25,10 +25,12 @@ class ApiRolesController extends Controller
     }
 
 
-    /*
-    *
+    /**
     * GET <baseUrl>/api/roles
-    *
+    * role: *
+    * permission: read:roles
+    * filters: Yes
+    * @return array()
     */
     public function getRoles(Request $request){
 
@@ -37,7 +39,6 @@ class ApiRolesController extends Controller
         $roles = $api->getByRequest(new Role,$request->all());
         
         foreach ($roles as  $r) {
-           
            $results[$r->id] =  $r;
            $results[$r->id]->permissions = Permission::getPermissionsIdsByRoleId($r->id);
 
@@ -49,10 +50,13 @@ class ApiRolesController extends Controller
 
 
 
-    /*
+    /**
     *
     * GET <baseUrl>/api/roles/<id>
-    *
+    * role: *
+    * permission: read:roles
+    * filters: No
+    * @return array()
     */
     public function getRole($id){
 

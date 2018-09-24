@@ -19,7 +19,7 @@ class Currencies extends ModelValidation
         'name',
         'decimal_points',
         'symbol',
-        'active_flag',
+        'is_active',
         'is_custom_flag'
     ];
 
@@ -28,6 +28,10 @@ class Currencies extends ModelValidation
         'code',
         'name',
         'symbol',
+        'decimal_points',
+        'is_active',
+        'created_at',
+        'updated_at'
     ];
 
 
@@ -35,8 +39,11 @@ class Currencies extends ModelValidation
     protected $visible = [
         'id',
         'name',
-        'decimal_points',
         'symbol',
+        'decimal_points',
+        'is_active',
+        'created_at',
+        'updated_at'
     ];
 
     /**
@@ -45,7 +52,6 @@ class Currencies extends ModelValidation
      * @var array
      */
     protected $hidden = [
-        'active_flag',
         'is_custom_flag',
     ];
 

@@ -41,7 +41,9 @@ class Stage extends ModelValidation
         'name',
         'description',
         'order_nr',
-        'pipeline_id'
+        'pipeline_id',
+        'created_at',
+        'updated_at'
     ];
 
 
@@ -57,7 +59,9 @@ class Stage extends ModelValidation
         'name',
         'description',
         'order_nr',
-        'pipeline_id'
+        'pipeline_id',
+        'created_at',
+        'updated_at'
     ];
 
     /**

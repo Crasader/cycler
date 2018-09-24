@@ -19,7 +19,7 @@ class Currency extends Migration
             $table->string('name');
             $table->integer("decimal_points")->default(2);
             $table->string("symbol");
-            $table->unsignedTinyInteger("active_flag")->default(true);
+            $table->unsignedTinyInteger("is_active")->default(true);
             $table->unsignedTinyInteger("is_custom_flag")->default(false);
             $table->timestamps();
             $table->engine = 'MyISAM';

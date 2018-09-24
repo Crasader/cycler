@@ -26,10 +26,12 @@ class ApiPermissionsController extends Controller
     }
 
 
-    /*
-    *
+    /**
     * GET <baseUrl>/api/permissions
-    *
+    * role: *
+    * permission: read:permissions
+    * filters: Yes
+    * @return array()
     */
     public function getPermissions(Request $request){
 
@@ -43,10 +45,12 @@ class ApiPermissionsController extends Controller
 
     
 
-    /*
-    *
+    /**
     * GET <baseUrl>/api/permissions/<id>
-    *
+    * role: *
+    * permission: read:permissions
+    * filters: No
+    * @return array()
     */
     public function getPermission($id){
         

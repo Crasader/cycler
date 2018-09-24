@@ -11,6 +11,9 @@ use App\Models\{Stage};
 use App\Events\UpdatedModels;
 use App\Exceptions\ModelValidateException;
 use Exception;
+
+
+
 class ApiStageController extends Controller
 {
 
@@ -18,22 +21,11 @@ class ApiStageController extends Controller
 
 
     /**
-     * 
-     * @return void
-     */
-    public function __construct()
-    {
-      
-    }
-
-
-
-
-
-    /*
-    *
     * GET <baseUrl>/api/stages
-    *
+    * role: *
+    * permission: read:stages
+    * filters: Yes
+    * @return array()
     */
     public function getStages(Request $request){
         $api = new ApiHelper;
